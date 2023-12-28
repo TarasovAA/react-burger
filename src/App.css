@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+.container{
+  display: grid;
+  grid-template-areas: 
+  "header header"
+  "main sidebar"
+}
+
+.item-a {
+  grid-area: header;
+}
+.item-b {
+  grid-area: main;
+}
+.item-c {
+  grid-area: sidebar;
+}
+
+.test{
+  background-color: rgb(97, 218, 251);
+    max-height: 800px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    align-items: center;
+}

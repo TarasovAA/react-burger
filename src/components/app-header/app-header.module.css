@@ -1,0 +1,21 @@
+.Header {
+    height: 88px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282c34;
+    color: white;
+    padding: 0 20px;
+  }  
+ 
+ 
+  .Navigation {
+    display: flex;
+    align-items: center;
+  }
+ 
+  .Icon {
+    margin-right: 10px;
+  }
+ 
