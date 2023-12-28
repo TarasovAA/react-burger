@@ -7,8 +7,8 @@ const modalRoot = document.getElementById("react-modals");
 
 const Modal = ({onClose, title, children}) =>{
     return createPortal(
-        (<div className={styles.modal} onClick={onClose}>
-            <div className={styles.blur} onClick={e => e.stopPropagation()}>
+        (<div className={styles.overlay} onClick={onClose}>
+            <div className={styles.window} onClick={e => e.stopPropagation()}>
                 <div className={`${styles.header} pl-10 pr-10 pt-10`}>
                     <div>
                         <p className="text text_type_main-default">{title}</p>

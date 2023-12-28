@@ -1,7 +1,6 @@
 .sidebar{
-  max-height: 912px;
-  max-width: 600px;
-  grid-area:'sidebar';
+  width: 100%;
+  padding-top: 130px;
 }
 
 .container{
@@ -17,6 +16,6 @@
   align-items: center;
   gap: 16px;
   overflow-y: auto;
-  max-height: 912px;
+  max-height: 812px;
 }
   

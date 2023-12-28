@@ -51,13 +51,16 @@ const BurgerConstructor = ({ingredients}) => {
 
     return (
         <section className={styles.sidebar}>
-            <ScrollerConstructor burger={burger} />
-            <div className="p-10" style={{display: 'flex', flexDirection: 'row-reverse'}}>
-                <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal}>Оформить заказ</Button>
-                    {isModalVisible && <Modal onClose={handleCloseModal}>
-                            <OrderDetails orderIndex='034536' />
-                        </Modal>}
-                <OfferCouner count={amount} />
+            <div>
+                <ScrollerConstructor burger={burger} />
+                <div className="p-10" style={{display: 'flex', flexDirection: 'row-reverse'}}>
+                    <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal}>Оформить заказ</Button>
+                    <OfferCouner count={amount} />
+                </div>
+
+                {isModalVisible && <Modal onClose={handleCloseModal}>
+                                <OrderDetails orderIndex='034536' />
+                            </Modal>}
             </div>
         </section>
     );

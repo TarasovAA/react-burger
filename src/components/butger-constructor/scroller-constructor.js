@@ -1,6 +1,7 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useState} from 'react'
 import style from './burger-constructor.module.css'
+import { within } from '@testing-library/react';
 
 const ScrollerConstructor = ({burger}) => {
 
@@ -17,14 +18,14 @@ const ScrollerConstructor = ({burger}) => {
                     thumbnail = {defaultBun.image}
               />}
               <div className={scrollScc}>
-                {burger.body.map((item) =>
+                {burger.body.map((item, index) =>
+                <div key = {index} style={{width: '90%'}}>
                     <ConstructorElement
-                        key = {item._id}
                         isLocked = {false}
                         text = {item.name}
                         price ={item.price}
-                        thumbnail = {item.image}
-                />
+                        thumbnail = {item.image} />
+                </div>
                 )}
             </div>
               {defaultBun && <ConstructorElement

@@ -51,10 +51,10 @@ const {ingredients, isLoaded} = state;
     <div className='container'>
       <AppHeader />
       { 
-        isLoaded && <>
+        isLoaded && <div className='mainpart'>
             <BurgerIngredients ingredients={[...ingredients]}/>
             <BurgerConstructor ingredients={[...ingredients]}/>
-        </>
+        </div>
       }
     </div>
   );

@@ -26,10 +26,10 @@ const Ingredient = ({item}) =>{
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <img src={item.image} alt={item.name} />
         </div>
-        <p className="text text_type_main-default" style={{textAlign: 'center'}}>{item.name}</p>
         <div className="mt-2" style={{textAlign: 'center'}}>
           <p className="text text_type_main-medium">{item.price}<CurrencyIcon /></p>
         </div>
+        <p className="text text_type_main-default" style={{textAlign: 'center'}}>{item.name}</p>
         
         {modelVisebele && <Modal onClose={handleCloseModal} title='Детали игредиента'>
             <IngredientDetails item={item} />
