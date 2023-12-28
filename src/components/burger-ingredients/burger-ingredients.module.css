@@ -19,6 +19,7 @@
 
 .scroller {
   max-height: 912px;
+  width: 600px;
   overflow-y: auto;
   gap: 16px;
 }

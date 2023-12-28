@@ -6,11 +6,11 @@ const AppHeader = () => {
     return (
         <>
             <header style={{gridArea:'header'}}>
-                <div className={styles.Header}>
+                <div className={`${styles.Header} pr-20`}>
                     <div style={{display: 'flex'}}>
                         <div className={styles.Icon}>
-                            <BurgerIcon />
-                            Конструктор
+                            <BurgerIcon /> 
+                            <p className="text text_type_main-default">  Конструктор</p>
                         </div>
 
                         <div className={styles.Icon}>

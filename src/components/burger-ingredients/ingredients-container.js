@@ -1,5 +1,7 @@
-import Ingredient from './ingredient'
-import styles from './burger-ingredients.module.css'
+import Ingredient from './ingredient';
+import styles from './burger-ingredients.module.css';
+import Modal from "../modal/modal";
+import { useEffect } from 'react';
 
 const IngredientsContainer  = ({ data, name }) => {
     

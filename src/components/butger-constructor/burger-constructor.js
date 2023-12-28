@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react'
 import {  Button, CurrencyIcon, Tab, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
 import ScrollerConstructor from './scroller-constructor'
 import styles from './burger-constructor.module.css'
+import Modal from '../modal/modal'
+import OrderDetails from '../modal/order-details'
 
 const OfferCouner = ({count}) => {
     return(
@@ -17,8 +19,10 @@ const BurgerConstructor = ({ingredients}) => {
     const [amount, setAmount] = useState(0);
     const [burger, setBurger] = useState({
         head: [],
-        body: []
+        body: [],
     });
+
+    const [isModalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         setBurger({
@@ -35,12 +39,24 @@ const BurgerConstructor = ({ingredients}) => {
         setAmount(defaultBunsAmount + burgerBodyAmount);
     }, [burger]);
 
+    
+    const handleOpenModal = () => {
+        setModalVisible(true);
+      }
+    
+    const handleCloseModal = () => {
+        setModalVisible(false);
+      }
+
+
     return (
         <section className={styles.sidebar}>
-            <h1>Constructor</h1>
             <ScrollerConstructor burger={burger} />
             <div className="p-10" style={{display: 'flex', flexDirection: 'row-reverse'}}>
-                <Button htmlType="button" type="primary" size="large">Оформить заказ</Button>
+                <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal}>Оформить заказ</Button>
+                    {isModalVisible && <Modal onClose={handleCloseModal}>
+                            <OrderDetails orderIndex='034536' />
+                        </Modal>}
                 <OfferCouner count={amount} />
             </div>
         </section>
