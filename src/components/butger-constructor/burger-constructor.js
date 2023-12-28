@@ -1,9 +1,11 @@
 import {useState, useEffect} from 'react'
-import {  Button, CurrencyIcon, Tab, ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components'
+import { Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import ScrollerConstructor from './scroller-constructor'
 import styles from './burger-constructor.module.css'
 import Modal from '../modal/modal'
 import OrderDetails from '../modal/order-details'
+import proptypes from 'prop-types'
+import { IngredientsDataType } from '../../utils/data'
 
 const OfferCouner = ({count}) => {
     return(
@@ -64,6 +66,14 @@ const BurgerConstructor = ({ingredients}) => {
             </div>
         </section>
     );
+}
+
+OfferCouner.propTypes = {
+    count: proptypes.number
+}
+
+BurgerConstructor.propTypes = {
+    ingredients: proptypes.arrayOf(IngredientsDataType)
 }
 
 export default BurgerConstructor;

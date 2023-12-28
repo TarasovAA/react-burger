@@ -1,8 +1,9 @@
+import { IngredientsDataType } from '../../utils/data'
 
 const IngredientDetails = ({item}) => {
     return(<div style={{display: 'flex',  flexDirection: 'column', alignItems: 'center'}}>
        <div>
-            <img src={item.image}/>
+            <img src={item.image} alt={item.name}/>
        </div>
        <p className="text text_type_main-medium">{item.name}</p>
        <div className="text text_type_main-small" style={{display: 'flex',  flexDirection: 'row'}}>
@@ -24,6 +25,10 @@ const IngredientDetails = ({item}) => {
             </div>
        </div>
         </div>);
+}
+
+IngredientDetails.propTypes = {
+    item: IngredientsDataType
 }
 
 export default IngredientDetails; 

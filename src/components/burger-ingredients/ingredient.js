@@ -2,6 +2,7 @@ import Modal from "../modal/modal";
 import {useEffect, useRef, useState} from "react";
 import { CurrencyIcon  } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientDetails from '../modal/ingredient-details'
+import { IngredientsDataType } from '../../utils/data'
 
 const Ingredient = ({item}) =>{
     const ckickRef = useRef(null);
@@ -36,5 +37,9 @@ const Ingredient = ({item}) =>{
           </Modal>}
         </div>);
 }
+
+Ingredient.propTypes = {
+  item: IngredientsDataType
+};
 
 export default Ingredient;

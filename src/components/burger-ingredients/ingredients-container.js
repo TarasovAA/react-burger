@@ -1,7 +1,7 @@
 import Ingredient from './ingredient';
 import styles from './burger-ingredients.module.css';
-import Modal from "../modal/modal";
-import { useEffect } from 'react';
+import { IngredientsDataType } from '../../utils/data'
+import proptypes from 'prop-types'
 
 const IngredientsContainer  = ({ data, name }) => {
     
@@ -13,6 +13,11 @@ const IngredientsContainer  = ({ data, name }) => {
             </div>
         </div>
     );
+}
+
+IngredientsContainer.propTypes = {
+    data: proptypes.arrayOf(IngredientsDataType),
+    name: proptypes.string
 }
 
 export default IngredientsContainer;

@@ -1,13 +1,10 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import {useState} from 'react'
 import style from './burger-constructor.module.css'
-import { within } from '@testing-library/react';
+import proptypes from 'prop-types'
+import { IngredientsDataType } from '../../utils/data'
 
 const ScrollerConstructor = ({burger}) => {
-
     const defaultBun = burger.head.length ? burger.head[0] : null;
-
-    const scrollScc = style.scroller + ' custom-scroll';
     return (
         <div className={style.scroller}>
             {defaultBun && <ConstructorElement
@@ -17,7 +14,7 @@ const ScrollerConstructor = ({burger}) => {
                     price ={defaultBun.price}
                     thumbnail = {defaultBun.image}
               />}
-              <div className={scrollScc}>
+              <div className={`${style.scroller} custom-scroll`}>
                 {burger.body.map((item, index) =>
                 <div key = {index} style={{width: '90%'}}>
                     <ConstructorElement
@@ -37,6 +34,10 @@ const ScrollerConstructor = ({burger}) => {
               />}
         </div>
     );
+}
+
+ScrollerConstructor.propTypes = {
+    ingredients: proptypes.arrayOf(IngredientsDataType)
 }
 
 

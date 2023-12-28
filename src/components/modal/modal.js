@@ -2,6 +2,7 @@ import { createPortal  } from 'react-dom';
 import  styles from './modal.module.css';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Children } from 'react'
+import proptypes from 'prop-types'
 
 const modalRoot = document.getElementById("react-modals");
 
@@ -22,6 +23,12 @@ const Modal = ({onClose, title, children}) =>{
                 </div>
             </div>
       </div>), modalRoot);
+}
+
+Modal.propTypes = {
+    onClose: proptypes.func.isRequired,
+    title: proptypes.string,
+    children: proptypes.object
 }
 
 export default Modal;
