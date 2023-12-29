@@ -4,7 +4,7 @@ import ScrollerConstructor from './scroller-constructor'
 import styles from './burger-constructor.module.css'
 import Modal from '../modal/modal'
 import OrderDetails from '../modal/order-details'
-import proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 
 const OfferCouner = ({count}) => {
@@ -69,11 +69,11 @@ const BurgerConstructor = ({ingredients}) => {
 }
 
 OfferCouner.propTypes = {
-    count: proptypes.number
+    count: PropTypes.number
 }
 
 BurgerConstructor.propTypes = {
-    ingredients: proptypes.arrayOf(IngredientsDataType)
+    ingredients: PropTypes.arrayOf(IngredientsDataType)
 }
 
 export default BurgerConstructor;

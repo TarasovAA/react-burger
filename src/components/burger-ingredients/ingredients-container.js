@@ -1,7 +1,7 @@
 import Ingredient from './ingredient';
 import styles from './burger-ingredients.module.css';
 import { IngredientsDataType } from '../../utils/data'
-import proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const IngredientsContainer  = ({ data, name }) => {
     
@@ -16,8 +16,8 @@ const IngredientsContainer  = ({ data, name }) => {
 }
 
 IngredientsContainer.propTypes = {
-    data: proptypes.arrayOf(IngredientsDataType),
-    name: proptypes.string
+    data: PropTypes.arrayOf(IngredientsDataType),
+    name: PropTypes.string
 }
 
 export default IngredientsContainer;

@@ -1,6 +1,6 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import style from './burger-constructor.module.css'
-import proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 
 const ScrollerConstructor = ({burger}) => {
@@ -38,7 +38,7 @@ const ScrollerConstructor = ({burger}) => {
 }
 
 ScrollerConstructor.propTypes = {
-    ingredients: proptypes.arrayOf(IngredientsDataType)
+    ingredients: PropTypes.arrayOf(IngredientsDataType)
 }
 
 

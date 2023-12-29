@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-import proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 
 import IngredientsContainer from './ingredients-container'
@@ -41,6 +41,6 @@ const BurgerIngredients = ({ingredients}) => {
 }
 
 BurgerIngredients.propTypes = {
-    ingredients: proptypes.arrayOf(IngredientsDataType)}
+    ingredients: PropTypes.arrayOf(IngredientsDataType)}
 
 export default BurgerIngredients;

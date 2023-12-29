@@ -1,5 +1,5 @@
 import { CheckMarkIcon  } from '@ya.praktikum/react-developer-burger-ui-components'
-import proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const OrderDetails = ({orderIndex}) => {
     return(<div style={{display: 'flex',  flexDirection: 'column', alignItems: 'center' }}>
@@ -22,7 +22,7 @@ const OrderDetails = ({orderIndex}) => {
 }
 
 OrderDetails.propTypes = {
-   orderIndex: proptypes.string
+   orderIndex: PropTypes.string
 }
 
 export default OrderDetails; 
