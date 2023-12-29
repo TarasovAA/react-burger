@@ -4,20 +4,23 @@ import PropTypes from 'prop-types'
 
 const ModalOverlay = ({children, onClick}) => {
     return (
-        <div className={styles.overlay} onClick={onClick}>
-            <div className={styles.window} onClick={e => e.stopPropagation()}>
+        <div className={styles.overlay} onClick={e  => { 
+            e.stopPropagation();
+            onClick();
+        }
+        
+        }>
+           
                 {Children.map(children, child => <>
                             {child}
                         </>)}
-            </div>
         </div>
     )
 }
 
 
 ModalOverlay.propTypes = {
-    onClick: PropTypes.func,
-    children: PropTypes.object
+    onClick: PropTypes.func
  }
 
 export default ModalOverlay;

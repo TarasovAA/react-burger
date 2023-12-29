@@ -22,10 +22,10 @@ function App() {
         isLoading: true
       });
 
-      await fetch(url)
+      fetch(url)
         .then(result => {
           if (!result.ok)
-            throw ("Server's returned an unexpected error");
+            return Promise.reject(`Ошибка ${result.status}`);
 
           return result.json();
         })
@@ -56,7 +56,7 @@ function App() {
     <div className={styles.container}>
       <AppHeader />
       {
-        isLoaded && <div className={styles.mainpart}>
+        isLoaded && <div className={styles.main}>
           <BurgerIngredients ingredients={ingredients} />
           <BurgerConstructor ingredients={ingredients} />
         </div>
