@@ -3,6 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import { CurrencyIcon  } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientDetails from '../modal/ingredient-details'
 import { IngredientsDataType } from '../../utils/data'
+import styles from './burger-ingredients.module.css'
 
 const Ingredient = ({item}) =>{
     const ckickRef = useRef(null);
@@ -23,14 +24,12 @@ const Ingredient = ({item}) =>{
         setModelVisebele(false);
       }
 
-    return (<div ref={ckickRef} style={{margin: '5px', padding: '10px', width: 250, height: 250}}>
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <img src={item.image} alt={item.name} />
-        </div>
-        <div className="mt-2" style={{textAlign: 'center'}}>
+    return (<div className={styles.ingredientForm} ref={ckickRef}>
+        <img src={item.image} alt={item.name} />
+        <div className={`${styles.textCenteror} mt-2`}>
           <p className="text text_type_main-medium">{item.price}<CurrencyIcon /></p>
         </div>
-        <p className="text text_type_main-default" style={{textAlign: 'center'}}>{item.name}</p>
+        <p className={`${styles.textCenteror} text text_type_main-default`}>{item.name}</p>
         
         {modelVisebele && <Modal onClose={handleCloseModal} title='Детали игредиента'>
             <IngredientDetails item={item} />

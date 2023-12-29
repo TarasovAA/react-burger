@@ -1,7 +1,7 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import style from './burger-constructor.module.css'
-import PropTypes from 'prop-types'
-import { IngredientsDataType } from '../../utils/data'
+import PropTypes from 'prop-types';
+import { IngredientsDataType } from '../../utils/data';
+import style from './burger-constructor.module.css';
 
 const ScrollerConstructor = ({burger}) => {
     const defaultBun = burger.head.length ? burger.head[0] : null;
@@ -16,8 +16,8 @@ const ScrollerConstructor = ({burger}) => {
               />}
               <div className={`${style.scroller} custom-scroll`}>
                 {burger.body.map((item, index) =>
-                <div className='pr-5' key = {index} style={{width: '90%', display:'flex'}}>
-                    <div style={{margin: 'auto'}} className='pr-3'><DragIcon /> </div>
+                <div className={`${style.scrollerItem} pr-5`} key = {index}>
+                    <div className={`${style.dragIconMarging} pr-3`}><DragIcon /> </div>
                     <ConstructorElement
                         isLocked = {false}
                         text = {item.name}

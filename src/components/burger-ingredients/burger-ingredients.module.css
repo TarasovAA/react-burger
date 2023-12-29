@@ -22,5 +22,17 @@
   max-width: 640px;
 }
 
+.tabs{
+  display: flex
+}
 
-  
+.ingredientForm{
+  margin: 5px;
+  padding: 10px;
+  width: 250px;
+  height: 250px;
+}
+
+.textCenteror{
+  text-align: center;
+}

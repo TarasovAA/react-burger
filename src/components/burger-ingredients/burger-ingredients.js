@@ -22,14 +22,14 @@ const BurgerIngredients = ({ingredients}) => {
             <div className={styles.maincontainer}>
                 <h1>Соберите бургер</h1>
 
-                <div style={{ display: 'flex', width:'100px' }}>
+                <div className={styles.tabs}>
                     <Tab value="buns" active={currentTab === "buns"} onClick={onClickTav}>Булки</Tab>
                     <Tab value="sauces" active={currentTab === "sauces"} onClick={onClickTav}>Соусы</Tab>
                     <Tab value="fillings" active={currentTab === "fillings"}  onClick={onClickTav}>Начинки</Tab>
                 </div>
 
 
-                <div style={{width: '100%'}} className={`${styles.scroller} custom-scroll`}>
+                <div className={`${styles.scroller} custom-scroll`}>
                     <IngredientsContainer name="Булки" data={bungs} />
                     <IngredientsContainer name="Соусы" data={sauces} />
                     <IngredientsContainer name="Начинки" data={fillings} />

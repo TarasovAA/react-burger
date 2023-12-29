@@ -18,4 +18,22 @@
   overflow-y: auto;
   max-height: 812px;
 }
-  
+
+.flexCenterer {
+  display: flex;
+  align-items: center;
+}
+
+.orderButton{
+  display: flex;
+  flex-direction: row-reverse
+}
+
+.scrollerItem{
+  width: 90%;
+  display: flex;
+}
+
+.dragIconMarging{
+  margin: auto;
+}

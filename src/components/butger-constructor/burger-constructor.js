@@ -1,15 +1,15 @@
 import {useState, useEffect} from 'react'
 import { Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
 import ScrollerConstructor from './scroller-constructor'
-import styles from './burger-constructor.module.css'
 import Modal from '../modal/modal'
 import OrderDetails from '../modal/order-details'
 import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
+import styles from './burger-constructor.module.css'
 
-const OfferCouner = ({count}) => {
+const OrderCouner = ({count}) => {
     return(
-        <div className='mr-10' style={{display: 'flex', alignItems: 'center'}}>
+        <div className={`${styles.flexCenterer} mr-10`}>
             <p className="text text_type_digits-medium mr-3">{count}</p>
             <CurrencyIcon />
         </div>
@@ -55,9 +55,9 @@ const BurgerConstructor = ({ingredients}) => {
         <section className={styles.sidebar}>
             <div>
                 <ScrollerConstructor burger={burger} />
-                <div className="p-10" style={{display: 'flex', flexDirection: 'row-reverse'}}>
+                <div className={`${styles.orderButton} p-10`}>
                     <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal}>Оформить заказ</Button>
-                    <OfferCouner count={amount} />
+                    <OrderCouner count={amount} />
                 </div>
 
                 {isModalVisible && <Modal onClose={handleCloseModal}>
@@ -68,7 +68,7 @@ const BurgerConstructor = ({ingredients}) => {
     );
 }
 
-OfferCouner.propTypes = {
+OrderCouner.propTypes = {
     count: PropTypes.number
 }
 

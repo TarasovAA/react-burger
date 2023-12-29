@@ -27,3 +27,34 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .ingredientForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detailsField{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .detailsItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+  }
+
+  .detailsItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+  }
+
+  .orderWindow{
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }

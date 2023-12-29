@@ -1,8 +1,9 @@
 import { CheckMarkIcon  } from '@ya.praktikum/react-developer-burger-ui-components'
-import PropTypes from 'prop-types'
+import proptypes from 'prop-types'
+import style from './modal.module.css'
 
 const OrderDetails = ({orderIndex}) => {
-    return(<div style={{display: 'flex',  flexDirection: 'column', alignItems: 'center' }}>
+    return(<div className={style.orderWindow}>
        <div>
             <p className="text text_type_digits-large  text_color_inactive">{orderIndex}</p>
        </div>
@@ -22,7 +23,7 @@ const OrderDetails = ({orderIndex}) => {
 }
 
 OrderDetails.propTypes = {
-   orderIndex: PropTypes.string
+   orderIndex: proptypes.string
 }
 
 export default OrderDetails; 
