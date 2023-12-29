@@ -3,13 +3,13 @@ import styles from './modal.module.css';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Children } from 'react'
 import PropTypes from 'prop-types'
+import ModalOverlay from '../modal-overlay/modal-overlay'
 
 const modalRoot = document.getElementById("react-modals");
 
 const Modal = ({ onClose, title, children }) => {
     return createPortal(
-        (<div className={styles.overlay} onClick={onClose}>
-            <div className={styles.window} onClick={e => e.stopPropagation()}>
+        (<ModalOverlay>
                 <div className={`${styles.header} pl-10 pr-10 pt-10`}>
                     <div>
                         <p className="text text_type_main-default">{title}</p>
@@ -21,8 +21,7 @@ const Modal = ({ onClose, title, children }) => {
                         {child}
                     </>)}
                 </div>
-            </div>
-        </div>), modalRoot);
+        </ModalOverlay>), modalRoot);
 }
 
 Modal.propTypes = {

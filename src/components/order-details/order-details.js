@@ -1,6 +1,6 @@
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import proptypes from 'prop-types'
-import style from './modal.module.css'
+import style from './modal.module.module.css'
 
 const OrderDetails = ({ orderIndex }) => {
    return (

@@ -1,5 +1,5 @@
 import { IngredientsDataType } from '../../utils/data';
-import styles from './modal.module.css';
+import styles from './ingredient-details.module.css';
 
 const IngredientDetails = ({ item }) => {
     return (<div className={styles.ingredientForm}>

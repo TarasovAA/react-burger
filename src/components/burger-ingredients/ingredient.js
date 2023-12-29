@@ -1,7 +1,7 @@
 import Modal from "../modal/modal";
 import { useEffect, useRef, useState } from "react";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import IngredientDetails from '../modal/ingredient-details'
+import IngredientDetails from '../ingredient-details/ingredient-details'
 import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-ingredients.module.css'
 
