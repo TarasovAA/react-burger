@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import AppHeader from '../app-header/app-header';
 import BurgerConstructor from '../butger-constructor/burger-constructor';
@@ -15,50 +15,50 @@ function App() {
     hasError: false,
   });
 
-  useEffect(() =>{
-    const getIngredientsData = async () =>{
+  useEffect(() => {
+    const getIngredientsData = async () => {
       setState({
         ...state,
         isLoading: true
       });
 
       await fetch(url)
-              .then(result =>{
-                if(!result.ok)
-                  throw("Server's returned an unexpected error"); 
+        .then(result => {
+          if (!result.ok)
+            throw ("Server's returned an unexpected error");
 
-                return result.json();
-              })
-              .then(data => {
-                  console.log(data);
-                  setState({
-                  ...state,
-                  ingredients: data.data,
-                  isLoading: false,
-                  isLoaded: true
-                });
-              })
-              .catch(err => {
-                console.log(err);
-                  setState({
-                  ...state,
-                  isLoading: false,
-                  hasError: true
-              });
-            })
+          return result.json();
+        })
+        .then(data => {
+          console.log(data);
+          setState({
+            ...state,
+            ingredients: data.data,
+            isLoading: false,
+            isLoaded: true
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          setState({
+            ...state,
+            isLoading: false,
+            hasError: true
+          });
+        })
     }
 
     getIngredientsData();
   }, [])
 
-const {ingredients, isLoaded} = state;
+  const { ingredients, isLoaded } = state;
   return (
     <div className={styles.container}>
       <AppHeader />
-      { 
+      {
         isLoaded && <div className={styles.mainpart}>
-            <BurgerIngredients ingredients={[...ingredients]}/>
-            <BurgerConstructor ingredients={[...ingredients]}/>
+          <BurgerIngredients ingredients={ingredients} />
+          <BurgerConstructor ingredients={ingredients} />
         </div>
       }
     </div>

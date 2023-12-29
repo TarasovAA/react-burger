@@ -1,12 +1,12 @@
-.main{
+.main {
   width: 100%;
 }
 
-.maincontainer{
+.maincontainer {
   margin-right: 10px;
 }
 
-.container{
+.container {
   display: flex;
   flex-wrap: wrap;
   width: 90%;
@@ -22,17 +22,17 @@
   max-width: 640px;
 }
 
-.tabs{
+.tabs {
   display: flex
 }
 
-.ingredientForm{
+.ingredientForm {
   margin: 5px;
   padding: 10px;
   width: 250px;
   height: 250px;
 }
 
-.textCenteror{
+.textCenteror {
   text-align: center;
 }
