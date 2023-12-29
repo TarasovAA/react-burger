@@ -3,7 +3,7 @@ import { IngredientsDataType } from '../../utils/data'
 const IngredientDetails = ({item}) => {
     return(<div style={{display: 'flex',  flexDirection: 'column', alignItems: 'center'}}>
        <div>
-            <img src={item.image} alt={item.name}/>
+            <img src={item.image_large} alt={item.name}/>
        </div>
        <p className="text text_type_main-medium">{item.name}</p>
        <div className="text text_type_main-small" style={{display: 'flex',  flexDirection: 'row'}}>
