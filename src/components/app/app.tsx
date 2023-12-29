@@ -23,7 +23,12 @@ function App() {
       });
 
       await fetch(url)
-              .then(result => result.json())
+              .then(result =>{
+                if(!result.ok)
+                  throw("Server's returned an unexpected error"); 
+
+                return result.json();
+              })
               .then(data => {
                   console.log(data);
                   setState({
