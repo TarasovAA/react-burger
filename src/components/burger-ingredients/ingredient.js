@@ -1,5 +1,4 @@
 import Modal from "../modal/modal";
-import { useEffect, useRef, useState } from "react";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import IngredientDetails from '../ingredient-details/ingredient-details'
 import { IngredientsDataType } from '../../utils/data'
@@ -17,9 +16,11 @@ const Ingredient = ({ item }) => {
     </div>
     <p className={`${styles.textCenteror} text text_type_main-default`}>{item.name}</p>
 
-    {isModalOpen && <Modal onClose={closeModal} title='Детали игредиента'>
+    {isModalOpen && (
+    <Modal onClose={closeModal} title='Детали игредиента'>
       <IngredientDetails item={item} />
-    </Modal>}
+    </Modal>
+    )}
   </div>);
 }
 

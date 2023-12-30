@@ -7,13 +7,15 @@ const ScrollerConstructor = ({burger}) => {
     const defaultBun = burger.head.length ? burger.head[0] : null;
     return (
         <div className={style.scroller}>
-            {defaultBun && <ConstructorElement
+            {defaultBun && (
+            <ConstructorElement
                     type='top'
                     isLocked = {true}
                     text = {defaultBun.name + ' (верх)'}
                     price ={defaultBun.price}
                     thumbnail = {defaultBun.image}
-              />}
+              />
+              )}
               <div className={`${style.scroller} custom-scroll`}>
                 {burger.body.map((item, index) =>
                 <div className={`${style.scrollerItem} pr-5`} key = {index}>
@@ -26,13 +28,15 @@ const ScrollerConstructor = ({burger}) => {
                 </div>
                 )}
             </div>
-              {defaultBun && <ConstructorElement
+              {defaultBun && (
+              <ConstructorElement
                     type='bottom'
                     isLocked = {true}
                     text = {defaultBun.name + ' (низ)'}
                     price ={defaultBun.price}
                     thumbnail = {defaultBun.image}
-              />}
+              />
+              )}
         </div>
     );
 }

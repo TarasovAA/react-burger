@@ -8,7 +8,7 @@ import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
 import {useModal} from '../../hooks/useModal'
 
-const OrderCouner = ({ count }) => {
+const OrderCounter = ({ count }) => {
     return (
         <div className={`${styles.flexCenterer} mr-10`}>
             <p className="text text_type_digits-medium mr-3">{count}</p>
@@ -43,12 +43,12 @@ const BurgerConstructor = ({ ingredients }) => {
     }, [burger]);
 
     return (
-        <section className={styles.sidebar}>
+        <section className={styles.orderSidebarSection}>
             <div>
                 <ScrollerConstructor burger={burger} />
                 <div className={`${styles.orderButton} p-10`}>
                     <Button htmlType="button" type="primary" size="large" onClick={openModal}>Оформить заказ</Button>
-                    <OrderCouner count={amount} />
+                    <OrderCounter count={amount} />
                 </div>
 
                 {isModalOpen && (
@@ -61,7 +61,7 @@ const BurgerConstructor = ({ ingredients }) => {
     );
 }
 
-OrderCouner.propTypes = {
+OrderCounter.propTypes = {
     count: PropTypes.number
 }
 

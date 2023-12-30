@@ -56,11 +56,11 @@ function App() {
     <div className={styles.container}>
       <AppHeader />
       {
-        isLoaded && <div className={styles.main}>
+        isLoaded && (<main className={styles.main}>
           <BurgerIngredients ingredients={ingredients} />
           <BurgerConstructor ingredients={ingredients} />
-        </div>
-      }
+        </main>
+      )}
     </div>
   );
 }

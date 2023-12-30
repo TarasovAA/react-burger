@@ -1,4 +1,3 @@
-import { Children } from 'react'
 import styles from './modals-overlay.module.css';
 import PropTypes from 'prop-types'
 
@@ -9,7 +8,7 @@ const ModalOverlay = ({ children, onClick }) => {
             onClick();
         }
         }>
-            {Children.map(children, child => child)}
+            {children}
         </div>
     )
 }

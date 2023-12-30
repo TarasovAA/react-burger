@@ -18,8 +18,8 @@ const BurgerIngredients = ({ ingredients }) => {
     const fillings = ingredients && ingredients.filter(item => item.type === 'main');
 
     return (
-        <main className={`${styles.main}`}>
-            <div className={styles.maincontainer}>
+        <section className={styles.mainIngredientsSection}>
+            <div className={styles.mainContainer}>
                 <h1>Соберите бургер</h1>
 
                 <div className={styles.tabs}>
@@ -36,7 +36,7 @@ const BurgerIngredients = ({ ingredients }) => {
                 </div>
             </div>
 
-        </main>
+        </section>
     );
 }
 
