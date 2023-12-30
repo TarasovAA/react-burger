@@ -6,6 +6,7 @@ import OrderDetails from '../order-details/order-details'
 import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
+import {useModal} from '../../hooks/useModal'
 
 const OrderCouner = ({ count }) => {
     return (
@@ -24,12 +25,12 @@ const BurgerConstructor = ({ ingredients }) => {
         body: [],
     });
 
-    const [isModalVisible, setModalVisible] = useState(false);
+    const { isModalOpen, openModal, closeModal } = useModal();
 
     useEffect(() => {
         setBurger({
-            head: ingredients.filter(d => d.type === 'bun'),
-            body: ingredients.filter(d => d.type !== 'bun')
+            head: ingredients.filter(item => item.type === 'bun'),
+            body: ingredients.filter(item => item.type !== 'bun')
         });
 
     }, []);
@@ -41,27 +42,17 @@ const BurgerConstructor = ({ ingredients }) => {
         setAmount(defaultBunsAmount + burgerBodyAmount);
     }, [burger]);
 
-
-    const handleOpenModal = () => {
-        setModalVisible(true);
-    }
-
-    const handleCloseModal = () => {
-        setModalVisible(false);
-    }
-
-
     return (
         <section className={styles.sidebar}>
             <div>
                 <ScrollerConstructor burger={burger} />
                 <div className={`${styles.orderButton} p-10`}>
-                    <Button htmlType="button" type="primary" size="large" onClick={handleOpenModal}>Оформить заказ</Button>
+                    <Button htmlType="button" type="primary" size="large" onClick={openModal}>Оформить заказ</Button>
                     <OrderCouner count={amount} />
                 </div>
 
-                {isModalVisible && (
-                    <Modal onClose={handleCloseModal}>
+                {isModalOpen && (
+                    <Modal onClose={closeModal}>
                         <OrderDetails orderIndex='034536' />
                     </Modal>
                 )}

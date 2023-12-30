@@ -28,7 +28,7 @@ const Modal = ({ onClose, title, children }) => {
                     <div>
                         <p className="text text_type_main-default">{title}</p>
                     </div>
-                    <CloseIcon onClick={() => {onClose(); console.log('a');}} />
+                    <CloseIcon onClick={onClose} />
                 </div>
                 <div>
                     {Children.map(children, child => child)}
