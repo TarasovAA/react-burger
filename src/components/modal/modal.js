@@ -31,9 +31,7 @@ const Modal = ({ onClose, title, children }) => {
                     <CloseIcon onClick={() => {onClose(); console.log('a');}} />
                 </div>
                 <div>
-                    {Children.map(children, child => <>
-                        {child}
-                    </>)}
+                    {Children.map(children, child => child)}
                 </div>
             </div>
         </ModalOverlay>), modalRoot);

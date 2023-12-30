@@ -7,13 +7,13 @@ import styles from './burger-ingredients.module.css'
 
 const Ingredient = ({ item }) => {
 
-  const [modelVisebele, setModelVisebele] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const handleOpenModal = () => {
-    setModelVisebele(true);
+    setModalVisible(true);
   }
 
   const handleCloseModal = () => {
-    setModelVisebele(false);
+    setModalVisible(false);
   }
 
   return (<div className={styles.ingredientForm} onClick={handleOpenModal}>
@@ -23,7 +23,7 @@ const Ingredient = ({ item }) => {
     </div>
     <p className={`${styles.textCenteror} text text_type_main-default`}>{item.name}</p>
 
-    {modelVisebele && <Modal onClose={handleCloseModal} title='Детали игредиента'>
+    {modalVisible && <Modal onClose={handleCloseModal} title='Детали игредиента'>
       <IngredientDetails item={item} />
     </Modal>}
   </div>);

@@ -13,9 +13,9 @@ const BurgerIngredients = ({ ingredients }) => {
         setCurrentTab(value);
     }
 
-    const bungs = ingredients && ingredients.filter(_ => _.type === 'bun');
-    const sauces = ingredients && ingredients.filter(_ => _.type === 'sauce');
-    const fillings = ingredients && ingredients.filter(_ => _.type === 'main');
+    const bungs = ingredients && ingredients.filter(item => item.type === 'bun');
+    const sauces = ingredients && ingredients.filter(item => item.type === 'sauce');
+    const fillings = ingredients && ingredients.filter(item => item.type === 'main');
 
     return (
         <main className={`${styles.main}`}>

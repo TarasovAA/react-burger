@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import { Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import { useState, useEffect } from 'react'
+import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import ScrollerConstructor from './scroller-constructor'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
@@ -7,8 +7,8 @@ import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
 
-const OrderCouner = ({count}) => {
-    return(
+const OrderCouner = ({ count }) => {
+    return (
         <div className={`${styles.flexCenterer} mr-10`}>
             <p className="text text_type_digits-medium mr-3">{count}</p>
             <CurrencyIcon />
@@ -16,7 +16,7 @@ const OrderCouner = ({count}) => {
     );
 }
 
-const BurgerConstructor = ({ingredients}) => {
+const BurgerConstructor = ({ ingredients }) => {
 
     const [amount, setAmount] = useState(0);
     const [burger, setBurger] = useState({
@@ -41,14 +41,14 @@ const BurgerConstructor = ({ingredients}) => {
         setAmount(defaultBunsAmount + burgerBodyAmount);
     }, [burger]);
 
-    
+
     const handleOpenModal = () => {
         setModalVisible(true);
-      }
-    
+    }
+
     const handleCloseModal = () => {
         setModalVisible(false);
-      }
+    }
 
 
     return (
@@ -60,9 +60,11 @@ const BurgerConstructor = ({ingredients}) => {
                     <OrderCouner count={amount} />
                 </div>
 
-                {isModalVisible && <Modal onClose={handleCloseModal}>
-                                <OrderDetails orderIndex='034536' />
-                            </Modal>}
+                {isModalVisible && (
+                    <Modal onClose={handleCloseModal}>
+                        <OrderDetails orderIndex='034536' />
+                    </Modal>
+                )}
             </div>
         </section>
     );

@@ -1,19 +1,15 @@
 import { Children } from 'react'
-import styles from './models-overlay.module.css';
+import styles from './modals-overlay.module.css';
 import PropTypes from 'prop-types'
 
-const ModalOverlay = ({children, onClick}) => {
+const ModalOverlay = ({ children, onClick }) => {
     return (
-        <div className={styles.overlay} onClick={e  => { 
+        <div className={styles.overlay} onClick={e => {
             e.stopPropagation();
             onClick();
         }
-        
         }>
-           
-                {Children.map(children, child => <>
-                            {child}
-                        </>)}
+            {Children.map(children, child => child)}
         </div>
     )
 }
@@ -21,6 +17,6 @@ const ModalOverlay = ({children, onClick}) => {
 
 ModalOverlay.propTypes = {
     onClick: PropTypes.func
- }
+}
 
 export default ModalOverlay;
