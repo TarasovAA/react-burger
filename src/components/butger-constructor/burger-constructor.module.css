@@ -1,0 +1,39 @@
+.orderSidebarSection{
+  width: 100%;
+  padding-top: 130px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.scroller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  overflow-y: auto;
+  max-height: 812px;
+}
+
+.flexCenterer {
+  display: flex;
+  align-items: center;
+}
+
+.orderButton{
+  display: flex;
+  flex-direction: row-reverse
+}
+
+.scrollerItem{
+  width: 90%;
+  display: flex;
+}
+
+.dragIconMarging{
+  margin: auto;
+}

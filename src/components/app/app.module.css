@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+}
+
+.wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.main {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
