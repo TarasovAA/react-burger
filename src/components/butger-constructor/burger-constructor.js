@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
 import {useModal} from '../../hooks/useModal'
+import { useSelector } from 'react-redux';
 
 const OrderCounter = ({ count }) => {
     return (
@@ -17,23 +18,20 @@ const OrderCounter = ({ count }) => {
     );
 }
 
-const BurgerConstructor = ({ ingredients }) => {
+const BurgerConstructor = () => {
 
     const [amount, setAmount] = useState(0);
-    const [burger, setBurger] = useState({
-        head: [],
-        body: [],
-    });
 
+    const burger = useSelector(store => store.burgerConstructor)
     const { isModalOpen, openModal, closeModal } = useModal();
 
-    useEffect(() => {
-        setBurger({
-            head: ingredients.filter(item => item.type === 'bun'),
-            body: ingredients.filter(item => item.type !== 'bun')
-        });
+    // useEffect(() => {
+    //     setBurger({
+    //         head: ingredients.filter(item => item.type === 'bun'),
+    //         body: ingredients.filter(item => item.type !== 'bun')
+    //     });
 
-    }, []);
+    // }, []);
 
     useEffect(() => {
         const burgerBodyAmount = burger.body.map(i => i.price).reduce((amount, price) => amount + price, 0);
