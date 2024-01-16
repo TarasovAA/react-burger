@@ -1,26 +1,27 @@
-import Modal from "../modal/modal";
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import IngredientDetails from '../ingredient-details/ingredient-details'
 import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-ingredients.module.css'
-import {useModal} from '../../hooks/useModal'
+import { useDispatch } from "react-redux";
+import {SET_VIEWED_INGREDIANT_ITEM} from '../../services/actions'
 
 const Ingredient = ({ item }) => {
 
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const dispatch = useDispatch();
 
-  return (<div className={styles.ingredientForm} onClick={openModal}>
+  const setItemToModal = () => {
+    dispatch({
+      type: SET_VIEWED_INGREDIANT_ITEM,
+      payload: item
+    });
+  
+  }
+  
+  return (<div className={styles.ingredientForm} onClick={setItemToModal}>
     <img src={item.image} alt={item.name} />
     <div className={`${styles.textCenteror} mt-2`}>
       <p className="text text_type_main-medium">{item.price}<CurrencyIcon /></p>
     </div>
     <p className={`${styles.textCenteror} text text_type_main-default`}>{item.name}</p>
-
-    {isModalOpen && (
-    <Modal onClose={closeModal} title='Детали игредиента'>
-      <IngredientDetails item={item} />
-    </Modal>
-    )}
   </div>);
 }
 

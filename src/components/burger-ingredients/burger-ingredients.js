@@ -3,9 +3,14 @@ import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import Modal from "../modal/modal";
+import IngredientDetails from '../ingredient-details/ingredient-details'
 
 import IngredientsContainer from './ingredients-container'
+
+import {CLEAR_VIEWED_INGREDIANT_ITEM} from '../../services/actions'
 
 const BurgerIngredients = () => {
     const [currentTab, setCurrentTab] = useState('buns');
@@ -20,6 +25,16 @@ const BurgerIngredients = () => {
     const bungs = useMemo(() => allIngredients.filter(item => item.type === 'bun'), [allIngredients]);
     const sauces = useMemo(() => allIngredients.filter(item => item.type === 'sauce'), [allIngredients]);
     const fillings = useMemo(() => allIngredients.filter(item => item.type === 'main'), [allIngredients]);
+
+    const {item} = useSelector(store => store.currentViewedIngredient);
+
+    const dispatch = useDispatch();
+    
+    const clearItemModal = () => {
+        dispatch({
+            type: CLEAR_VIEWED_INGREDIANT_ITEM
+        });
+    }
 
     return (
         <section className={styles.mainIngredientsSection}>
@@ -40,6 +55,12 @@ const BurgerIngredients = () => {
                         <IngredientsContainer name="Начинки" data={fillings} />
                     </div>
                 </div>
+            )}
+        {/*TODO: здесь был удалён хук isModal надо будет обдумать, как его более корректно поправить */}
+        {item && (
+            <Modal onClose={clearItemModal} title='Детали игредиента'>
+                <IngredientDetails />
+            </Modal>
             )}
         </section>
     );

@@ -7,7 +7,8 @@ import PropTypes from 'prop-types'
 import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
 import {useModal} from '../../hooks/useModal'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {refreshOrderIndex} from '../../services/actions';
 
 const OrderCounter = ({ count }) => {
     return (
@@ -40,18 +41,23 @@ const BurgerConstructor = () => {
         setAmount(defaultBunsAmount + burgerBodyAmount);
     }, [burger]);
 
+    const {orderIndex} = useSelector(store => store.order);
+    const dispach = useDispatch();
+
     return (
         <section className={styles.orderSidebarSection}>
             <div>
                 <ScrollerConstructor burger={burger} />
                 <div className={`${styles.orderButton} p-10`}>
-                    <Button htmlType="button" type="primary" size="large" onClick={openModal}>Оформить заказ</Button>
+                    <Button htmlType="button" type="primary" size="large" onClick={() => {
+                        dispach(refreshOrderIndex());
+                        openModal();
+                    }}>Оформить заказ</Button>
                     <OrderCounter count={amount} />
                 </div>
-
                 {isModalOpen && (
                     <Modal onClose={closeModal}>
-                        <OrderDetails orderIndex='034536' />
+                        <OrderDetails orderIndex={orderIndex} />
                     </Modal>
                 )}
             </div>

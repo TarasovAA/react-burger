@@ -19,7 +19,7 @@ const Modal = ({ onClose, title, children }) => {
             document.removeEventListener('keydown', closeByEscape);
         }
 
-    }, []);
+    }, [onClose]);
 
     return createPortal(
         (<ModalOverlay onClick={onClose} >
