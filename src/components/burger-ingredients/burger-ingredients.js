@@ -38,9 +38,9 @@ const BurgerIngredients = () => {
     const switchTab = e => {
         const tabCoordinates = tabRef?.current.getBoundingClientRect();
         const saucesCoordinates = saucesContainerRef?.current.getBoundingClientRect();
-        const bunsCoordinates = fillingsContainerRef?.current.getBoundingClientRect();
+        const fillingsCoordinates = fillingsContainerRef?.current.getBoundingClientRect();
 
-        if(bunsCoordinates['y'] - (tabCoordinates['y'] + tabCoordinates['height']) <= 0){
+        if(fillingsCoordinates['y'] - (tabCoordinates['y'] + tabCoordinates['height']) <= 0){
             setCurrentTab("fillings");
         }
         else if(saucesCoordinates['y'] - (tabCoordinates['y'] + tabCoordinates['height']) <= 0){
