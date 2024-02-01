@@ -2,6 +2,7 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import PropTypes from 'prop-types';
 import { IngredientsDataType } from '../../utils/data';
 import style from './burger-constructor.module.css';
+import {BurgerDefaultIngredient} from './burger-default-templates/burger-default-templates';
 
 const ScrollerConstructor = ({burger}) => {
     return (

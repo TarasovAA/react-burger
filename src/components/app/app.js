@@ -13,7 +13,7 @@ function App() {
     dispatch(getIngrediants());
   }, [])
 
-  
+
 
   return (
     <div className={styles.container}>
