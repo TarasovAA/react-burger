@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
-import {ADD_INGREDIANT_DATA} from '../../services/actions/index';
+import {ADD_INGREDIANT_DATA, DELETE_INGREDIANT_DATA} from '../../services/actions/index';
 
 const IngredientsConstructor = () => {
     const burgerBody = useSelector(store => store.burgerConstructor.body);
@@ -24,6 +24,13 @@ const IngredientsConstructor = () => {
         })
     });
 
+    const handleClose = (index) => {
+        dispatch({
+            type: DELETE_INGREDIANT_DATA,
+            index: index
+        });
+    }
+
     return ( <div className={`${style.scroller} p-5 custom-scroll ${isOver && style.isHover}`}
     ref={dropRef}>
 
@@ -35,7 +42,9 @@ const IngredientsConstructor = () => {
                     isLocked = {false}
                     text = {item.name}
                     price ={item.price}
-                    thumbnail = {item.image} />
+                    thumbnail = {item.image}
+                    handleClose = {() => handleClose(index)}
+                     />
             </div>))
             : (
                 <ConstructorElement
