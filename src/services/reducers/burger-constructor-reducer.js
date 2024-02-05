@@ -14,7 +14,10 @@ const BurgerConstructorReducer = (state = initialState, action) => {
         case ADD_INGREDIANT_DATA:{
             return {
                 ...state,
-                body: {...state}.body.push(action.payload)
+                body: [
+                    ...state.body,
+                    action.payload
+                ]
             };
         }
         case DELETE_INGREDIANT_DATA:{
@@ -26,6 +29,10 @@ const BurgerConstructorReducer = (state = initialState, action) => {
         case SET_CONSTRUCTOR_BUNS:{
             return {
                 ...state,
+                head: [
+                    action.payload,
+                    action.payload
+                ]
             };
         }
         case CLEAR_CONSTRUCTOR_BUNS:{

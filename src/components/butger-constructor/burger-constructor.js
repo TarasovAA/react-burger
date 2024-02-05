@@ -26,14 +26,6 @@ const BurgerConstructor = () => {
     const burger = useSelector(store => store.burgerConstructor)
     const { isModalOpen, openModal, closeModal } = useModal();
 
-    // useEffect(() => {
-    //     setBurger({
-    //         head: ingredients.filter(item => item.type === 'bun'),
-    //         body: ingredients.filter(item => item.type !== 'bun')
-    //     });
-
-    // }, []);
-
     useEffect(() => {
         const burgerBodyAmount = burger.body.map(i => i.price).reduce((amount, price) => amount + price, 0);
         const defaultBunsAmount = burger.head.length ? 2 * burger.head[0].price : 0;
@@ -47,7 +39,7 @@ const BurgerConstructor = () => {
     return (
         <section className={styles.orderSidebarSection}>
             <div>
-                <ScrollerConstructor burger={burger} />
+                <ScrollerConstructor />
                 <div className={`${styles.orderButton} p-10`}>
                     <Button htmlType="button" type="primary" size="large" onClick={() => {
                         dispach(refreshOrderIndex());

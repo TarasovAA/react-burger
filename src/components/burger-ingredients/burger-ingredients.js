@@ -52,18 +52,20 @@ const BurgerIngredients = () => {
     }
 
     const onClickTab = value => {
-        switch(value){
-            case "buns":
-                bunsContainerRef?.current.scrollIntoView({behavior: 'smooth'});
-                break;
-            case "sauces":
-                saucesContainerRef?.current.scrollIntoView({behavior: 'smooth'});
-                break;
-            case "fillings":
-                fillingsContainerRef?.current.scrollIntoView({behavior: 'smooth'});
-                break;
-            default:
-                break;
+        if(bunsContainerRef.current && saucesContainerRef.current && fillingsContainerRef.current){
+            switch(value){
+                case "buns":
+                    bunsContainerRef?.current.scrollIntoView({behavior: 'smooth'});
+                    break;
+                case "sauces":
+                    saucesContainerRef?.current.scrollIntoView({behavior: 'smooth'});
+                    break;
+                case "fillings":
+                    fillingsContainerRef?.current.scrollIntoView({behavior: 'smooth'});
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
