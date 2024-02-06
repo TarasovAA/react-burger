@@ -1,13 +1,16 @@
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import proptypes from 'prop-types'
 import style from './modal.module.module.css'
+import { useSelector } from 'react-redux'
 
 const OrderDetails = ({ orderIndex }) => {
+   const {orderNamber} = useSelector(store => store.order)
+
    return (
       <div className={style.orderWindow}>
          <div>
             <p className="text text_type_digits-large  text_color_inactive">
-               {orderIndex}
+               {orderNamber}
             </p>
          </div>
          <div className="mt-8">

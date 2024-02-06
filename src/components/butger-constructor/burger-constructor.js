@@ -42,7 +42,7 @@ const BurgerConstructor = () => {
                 <ScrollerConstructor />
                 <div className={`${styles.orderButton} p-10`}>
                     <Button htmlType="button" type="primary" size="large" onClick={() => {
-                        dispach(refreshOrderIndex());
+                        dispach(refreshOrderIndex(burger));
                         openModal();
                     }}>Оформить заказ</Button>
                     <OrderCounter count={amount} />

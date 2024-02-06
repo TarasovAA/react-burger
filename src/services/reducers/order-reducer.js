@@ -1,16 +1,42 @@
-import {REFRESH_ORDER_INDEX} from '../actions';
+import {CREATE_ORDER_REQUEST,
+        CREATE_ORDER_REQUEST_SUCCESS,
+        CREATE_ORDER_REQUEST_FAILED} from '../actions';
 
 const initialState = {
-    orderIndex: "000000"
+    isCreating: false,
+    isCreated: false,
+    orderNamber: null,
+    name: null,
+    isCreatingError: false,
+    creatingErrorMessage: '',
 }
 
 
 const OrderReducer = (state = initialState, action) => {
     switch(action.type){
-        case REFRESH_ORDER_INDEX:{
+        case CREATE_ORDER_REQUEST:{
             return {
                 ...state,
-                orderIndex: action.payload
+                isCreating: true,
+                isCreatingError: false,
+                creatingErrorMessage: ''
+            }
+        }
+        case CREATE_ORDER_REQUEST_SUCCESS:{
+            return {
+                ...state,
+                orderNamber: action.payload.order.number,
+                name: action.payload.name,
+                isCreating: false,
+                isCreated: true,
+            }
+        }
+        case CREATE_ORDER_REQUEST_FAILED:{
+            return {
+                ...state,
+                isCreating: false,
+                isCreatingError: true,
+                creatingErrorMessage: action.errorMessage
             }
         }
         default:{

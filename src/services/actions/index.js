@@ -13,8 +13,10 @@ export const CLEAR_CONSTRUCTOR_BUNS = 'CLEAR_CONSTRUCTOR_BUNS';
 export const SET_VIEWED_INGREDIANT_ITEM = 'SET_VIEWED_INGREDIANT_ITEM';
 export const CLEAR_VIEWED_INGREDIANT_ITEM = 'CLEAR_VIEWED_INGREDIANT_ITEM';
 
-export const REFRESH_ORDER_INDEX = "REFRESH_ORDER_INDEX";
 
+export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
+export const CREATE_ORDER_REQUEST_SUCCESS = "CREATE_ORDER_REQUEST_SUCCESS";
+export const CREATE_ORDER_REQUEST_FAILED = "CREATE_ORDER_REQUEST_FAILED";
 
 
 export const getIngrediants = () => {
@@ -47,13 +49,53 @@ export const getIngrediants = () => {
     }
 }
 
-export const refreshOrderIndex = () => {
+export const refreshOrderIndex = (burger) => {
     return function(dispatch){
         //обработка данных и получение заказа
-        const orderIndex = Math.floor(Math.random() * (1000000 - 100000 + 1) + 100000);
+        
         dispatch({
-            type: REFRESH_ORDER_INDEX,
-            payload: orderIndex
+            type: CREATE_ORDER_REQUEST
         });
+
+        const requestBody = {
+            ingredients: [
+                burger.head[0],
+                ...burger.body,
+                burger.head[1],
+            ]
+        };
+
+        console.log('requestBody', requestBody);
+        
+        fetch(baseUrl + '/api/orders', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(requestBody)
+        })
+        .then(result => {
+            if(!result.ok)
+                return Promise.reject(`Ошибка ${result.status}`);
+            
+            return result.json();
+        })
+        .then(result => {
+            console.log('CREATE_ORDER_REQUEST_SUCCESS', result);
+            dispatch({
+                type: CREATE_ORDER_REQUEST_SUCCESS,
+                payload: result
+            });
+        })
+        .catch(err => {
+            console.log('CREATE_ORDER_REQUEST_FAILED', err);
+            dispatch({
+                type: CREATE_ORDER_REQUEST_FAILED,
+                errorMessage: err
+            });
+        })
+
+        
     };
 }
