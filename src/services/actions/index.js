@@ -1,4 +1,5 @@
 import {useFetch} from '../../hooks/useFetch'
+import {baseUrl} from '../../constants/common';
 
 export const GET_INGREDIANTS_REQUEST = 'GET_INGREDIANTS_REQUEST';
 export const GET_INGREDIANTS_REQUEST_SUCCESS = 'GET_INGREDIANTS_REQUEST_SUCCESS';
@@ -14,7 +15,7 @@ export const CLEAR_VIEWED_INGREDIANT_ITEM = 'CLEAR_VIEWED_INGREDIANT_ITEM';
 
 export const REFRESH_ORDER_INDEX = "REFRESH_ORDER_INDEX";
 
-const url = 'https://norma.nomoreparties.space/api/ingredients';
+
 
 export const getIngrediants = () => {
     return function (dispatch) {
@@ -22,7 +23,7 @@ export const getIngrediants = () => {
             type: GET_INGREDIANTS_REQUEST
         });
 
-        fetch(url)
+        fetch(baseUrl + '/api/ingredients')
             .then(result => {
                 if (!result.ok)
                     return Promise.reject(`Ошибка ${result.status}`);
