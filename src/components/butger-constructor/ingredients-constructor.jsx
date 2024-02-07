@@ -3,6 +3,7 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
 import {ADD_INGREDIANT_DATA, DELETE_INGREDIANT_DATA} from '../../services/actions/index';
+import {v4  as uuidv4} from 'uuid';
 
 const IngredientsConstructor = () => {
     const burgerBody = useSelector(store => store.burgerConstructor.body);
@@ -35,17 +36,23 @@ const IngredientsConstructor = () => {
     ref={dropRef}>
 
     {burgerBody.length !== 0 ? ( 
-        burgerBody.map((item, index) =>
-            <div className={`${style.scrollerItem} pr-5`} key = {index}>
-                <div className={`${style.dragIconMarging} pr-3`}><DragIcon /> </div>
-                <ConstructorElement
-                    isLocked = {false}
-                    text = {item.name}
-                    price ={item.price}
-                    thumbnail = {item.image}
-                    handleClose = {() => handleClose(index)}
-                     />
-            </div>))
+        burgerBody.map((item) => {
+            const index = uuidv4();
+            return (
+                <div className={`${style.scrollerItem} pr-5`} key = {index}>
+                    <div className={`${style.dragIconMarging} pr-3`}><DragIcon /> </div>
+                    <ConstructorElement
+                        isLocked = {false}
+                        text = {item.name}
+                        price ={item.price}
+                        thumbnail = {item.image}
+                        handleClose = {() => handleClose(index)}
+                        />
+                </div>
+            )
+        }
+            
+            ))
             : (
                 <ConstructorElement
                 text = {'Выберите начинку'} />
