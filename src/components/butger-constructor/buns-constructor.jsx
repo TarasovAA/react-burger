@@ -2,6 +2,7 @@ import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-comp
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import style from './burger-constructor.module.css';
+import { DndDragTypes } from '../../constants/common'
 
 import {SET_CONSTRUCTOR_BUNS} from '../../services/actions/index';
 
@@ -13,7 +14,7 @@ const BunsConstructor = ({children}) => {
     const dispatch = useDispatch();
 
     const [{isOver},dropRef] = useDrop({
-        accept: 'bun',
+        accept: DndDragTypes.BUN,
         drop(item){
             dispatch({
                 type: SET_CONSTRUCTOR_BUNS,

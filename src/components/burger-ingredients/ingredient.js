@@ -3,7 +3,8 @@ import { IngredientsDataType } from '../../utils/data';
 import styles from './burger-ingredients.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import {SET_VIEWED_INGREDIANT_ITEM} from '../../services/actions';
-import { useDrag } from 'react-dnd'
+import { useDrag } from 'react-dnd';
+import {DndDragTypes} from '../../constants/common';
 
 const Ingredient = ({ item }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Ingredient = ({ item }) => {
   
   
   const [{isDrag}, dragRef] = useDrag({
-    type: (type === 'bun') ? 'bun': 'ingredient',
+    type: (type === 'bun') ? DndDragTypes.BUN: DndDragTypes.INGREDIENT,
     item: {_id},
     collect: monitor => ({
       isDrag: monitor.isDragging()
@@ -42,7 +43,7 @@ const Ingredient = ({ item }) => {
             onClick={setItemToModal}
             style={{opacity}}
   >
-    {count !== 0 && <Counter count={count} size="default" extraClass="m-1" />}
+    {!!count && <Counter count={count} size="default" extraClass="m-1" />}
     <img src={item.image} alt={item.name} />
     <div className={`${styles.textCenteror} mt-2`}>
       <p className="text text_type_main-medium">{item.price}<CurrencyIcon /></p>

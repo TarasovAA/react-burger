@@ -1,7 +1,8 @@
 import {ADD_INGREDIANT_DATA,
     DELETE_INGREDIANT_DATA,
     SET_CONSTRUCTOR_BUNS,
-    CLEAR_CONSTRUCTOR_BUNS
+    CLEAR_CONSTRUCTOR_BUNS,
+    RESET_INGREDIANT_DATA
 } from '../actions/index';
 
 const initialState = {
@@ -38,6 +39,12 @@ const BurgerConstructorReducer = (state = initialState, action) => {
         case CLEAR_CONSTRUCTOR_BUNS:{
             return {
                 ...state
+            };
+        }
+        case RESET_INGREDIANT_DATA:{
+            return {
+                ...state,
+                body: action.payload
             };
         }
         default:{

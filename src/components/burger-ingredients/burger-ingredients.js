@@ -90,7 +90,7 @@ const BurgerIngredients = () => {
                     
                 </div>
             )}
-        {/*TODO: здесь был удалён хук isModal надо будет обдумать, как его более корректно поправить */}
+        {/*TODO: здесь был удалён хук isModal надо будет обдумать, как его более корректно вернуть. И нужно ли вообще возвращать ли?! */}
         {item && (
             <Modal onClose={clearItemModal} title='Детали игредиента'>
                 <IngredientDetails />
