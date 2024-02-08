@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useCallback } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
 import PropTypes from 'prop-types'
@@ -36,22 +36,22 @@ const BurgerIngredients = () => {
     const fillingsContainerRef = useRef(null);
 
     const switchTab = e => {
-        const tabCoordinates = tabRef?.current.getBoundingClientRect();
-        const saucesCoordinates = saucesContainerRef?.current.getBoundingClientRect();
-        const fillingsCoordinates = fillingsContainerRef?.current.getBoundingClientRect();
+        const tabBottom = tabRef?.current.getBoundingClientRect().bottom;
 
-        if(fillingsCoordinates['y'] - (tabCoordinates['y'] + tabCoordinates['height']) <= 0){
-            setCurrentTab("fillings");
-        }
-        else if(saucesCoordinates['y'] - (tabCoordinates['y'] + tabCoordinates['height']) <= 0){
-            setCurrentTab("sauces");
-        }
-        else{
-            setCurrentTab("buns");
-        }
+        const bunsTop = bunsContainerRef?.current.getBoundingClientRect().top;
+        const saucesCoordinatesTop = saucesContainerRef?.current.getBoundingClientRect().top;
+        const fillingsCoordinatesTop = fillingsContainerRef?.current.getBoundingClientRect().top;
+    
+
+        const currentSection = [{tab: 'buns', value: Math.abs(bunsTop - tabBottom)}, 
+                {tab: 'sauces', value: Math.abs(saucesCoordinatesTop - tabBottom)}, 
+                {tab: 'fillings', value: Math.abs(fillingsCoordinatesTop - tabBottom)}].reduce((a, b) => a.value < b.value ? a : b)
+
+
+        setCurrentTab(currentSection.tab);
     }
 
-    const onClickTab = value => {
+    const onClickTab = useCallback(value => {
         if(bunsContainerRef.current && saucesContainerRef.current && fillingsContainerRef.current){
             switch(value){
                 case "buns":
@@ -67,7 +67,7 @@ const BurgerIngredients = () => {
                     break;
             }
         }
-    }
+    }, [])
 
     return (
         <section className={styles.mainIngredientsSection}>
