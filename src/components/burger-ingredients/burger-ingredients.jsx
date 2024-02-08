@@ -1,8 +1,6 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-import PropTypes from 'prop-types'
-import { IngredientsDataType } from '../../utils/data'
 import { useSelector, useDispatch } from 'react-redux';
 
 import Modal from "../modal/modal";
@@ -36,6 +34,9 @@ const BurgerIngredients = () => {
     const fillingsContainerRef = useRef(null);
 
     const switchTab = e => {
+        if(!(tabRef.current || bunsContainerRef.current || saucesContainerRef.current || fillingsContainerRef.current))
+            return;
+
         const tabBottom = tabRef?.current.getBoundingClientRect().bottom;
 
         const bunsTop = bunsContainerRef?.current.getBoundingClientRect().top;
@@ -98,10 +99,6 @@ const BurgerIngredients = () => {
             )}
         </section>
     );
-}
-
-BurgerIngredients.propTypes = {
-    ingredients: PropTypes.arrayOf(IngredientsDataType)
 }
 
 export default BurgerIngredients;

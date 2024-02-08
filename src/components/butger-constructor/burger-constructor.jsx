@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import ScrollerConstructor from './scroller-constructor'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import PropTypes from 'prop-types'
-import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
 import {useModal} from '../../hooks/useModal'
 import { useSelector, useDispatch } from 'react-redux';
 import {refreshOrderIndex} from '../../services/actions';
+
+import BunsConstructor from './buns-constructor'
+import IngredientsConstructor from './ingredients-constructor';
+
 
 const OrderCounter = ({ count }) => {
     return (
@@ -39,7 +41,9 @@ const BurgerConstructor = () => {
     return (
         <section className={styles.orderSidebarSection}>
             <div>
-                <ScrollerConstructor />
+                <BunsConstructor>
+                    <IngredientsConstructor />
+                </BunsConstructor>
                 <div className={`${styles.orderButton} p-10`}>
                     <Button htmlType="button" type="primary" size="large" onClick={() => {
                         dispach(refreshOrderIndex(burger));
@@ -59,10 +63,6 @@ const BurgerConstructor = () => {
 
 OrderCounter.propTypes = {
     count: PropTypes.number
-}
-
-BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(IngredientsDataType)
 }
 
 export default BurgerConstructor;

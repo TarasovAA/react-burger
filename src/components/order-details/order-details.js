@@ -1,9 +1,8 @@
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import proptypes from 'prop-types'
 import style from './modal.module.module.css'
 import { useSelector } from 'react-redux'
 
-const OrderDetails = ({ orderIndex }) => {
+const OrderDetails = () => {
    const {orderNamber} = useSelector(store => store.order)
 
    return (
@@ -26,10 +25,6 @@ const OrderDetails = ({ orderIndex }) => {
             <p className="text text_type_main-medium  text_color_inactive">Дождитесь готовности на орибитальной станции</p>
          </div>
       </div>);
-}
-
-OrderDetails.propTypes = {
-   orderIndex: proptypes.string
 }
 
 export default OrderDetails; 

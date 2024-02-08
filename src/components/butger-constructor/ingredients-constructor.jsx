@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import style from './burger-constructor.module.css';
-import { useDrop, useDrag } from 'react-dnd';
+import { useDrop } from 'react-dnd';
 import {ADD_INGREDIANT_DATA,
     DELETE_INGREDIANT_DATA,
     RESET_INGREDIANT_DATA} from '../../services/actions/index';
 import { DndDragTypes } from '../../constants/common'
-import ConstructorIngredient from './constructor-ingredient'
+import IngredientElement from './ingredient-element'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useCallback } from 'react'
 import {v4  as uuidv4} from 'uuid';
@@ -56,8 +56,8 @@ const IngredientsConstructor = () => {
         //TODO: не совсем понял, какова необходимость использоватьэту библиотеку здесь. Буду рад пояснению.
         const guid = uuidv4()
         return (
-            <ConstructorIngredient key={guid}
-                                    item={item}
+            <IngredientElement key={guid}
+                                    ingredient={item}
                                     index={index}
                                     handleClose={deleteIngredient}
                                     moveIngredient={handleDraggingIngredient} />

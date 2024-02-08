@@ -32,6 +32,7 @@
 .scrollerItem{
   width: 90%;
   display: flex;
+  cursor: grab;
 }
 
 .dragIconMarging{

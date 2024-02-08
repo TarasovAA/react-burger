@@ -5,8 +5,10 @@ import { useState, useRef, useEffect } from 'react';
 import {v4  as uuidv4} from 'uuid';
 import { useDrag, useDrop } from 'react-dnd';
 import { DndDragTypes } from '../../constants/common';
+import {PropTypes} from 'prop-types';
+import { IngredientsDataType } from '../../utils/data';
 
-const ConstructorIngredient = ({item, index, handleClose, moveIngredient}) => {
+const IngredientElement = ({ingredient, index, handleClose, moveIngredient}) => {
 
     const [constructorId, serConstructorId] = useState(null);
 
@@ -40,19 +42,19 @@ const ConstructorIngredient = ({item, index, handleClose, moveIngredient}) => {
             if(hoverIndex === draggingIndex)
                 return;
 
-            const {top, bottom} = ref.current.getBoundingClientRect();
+            // const {top, bottom} = ref.current.getBoundingClientRect();
 
-            const hoverElementMiddlePoiny = (bottom - top) / 2;
+            // const hoverElementMiddlePoiny = (bottom - top) / 2;
             
-            const cursorY = monitor.getClientOffset().y;
+            // const cursorY = monitor.getClientOffset().y;
 
-            const dragingPointInHoverCoordinates = cursorY - top;
+            // const dragingPointInHoverCoordinates = cursorY - top;
 
-            if(draggingIndex > hoverIndex && dragingPointInHoverCoordinates > hoverElementMiddlePoiny)
-                return;
+            // if(draggingIndex > hoverIndex && dragingPointInHoverCoordinates > hoverElementMiddlePoiny)
+            //     return;
 
-            if(draggingIndex < hoverIndex && dragingPointInHoverCoordinates < hoverElementMiddlePoiny)
-                return;
+            // if(draggingIndex < hoverIndex && dragingPointInHoverCoordinates < hoverElementMiddlePoiny)
+            //     return;
 
             moveIngredient(draggingIndex, hoverIndex);
 
@@ -67,9 +69,9 @@ const ConstructorIngredient = ({item, index, handleClose, moveIngredient}) => {
         <div className={`${style.dragIconMarging} pr-3`}><DragIcon /> </div>
         <ConstructorElement
             isLocked = {false}
-            text = {item.name}
-            price ={item.price}
-            thumbnail = {item.image}
+            text = {ingredient.name}
+            price ={ingredient.price}
+            thumbnail = {ingredient.image}
             handleClose = {() => handleClose(index)}
             extraClass={isHover && style.isHover}
             />
@@ -77,4 +79,11 @@ const ConstructorIngredient = ({item, index, handleClose, moveIngredient}) => {
     )
 }
 
-export default ConstructorIngredient;
+IngredientElement.propTypes = {
+    ingredient: IngredientsDataType,
+    index: PropTypes.number,
+    handleClose: PropTypes.func,
+    moveIngredient: PropTypes.func
+}
+
+export default IngredientElement;
