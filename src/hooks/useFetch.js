@@ -5,6 +5,8 @@ export const useFetch = (url) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
 
+    let cancelled = false;
+
     useEffect(() => {
         setIsLoading(true);
 		setData(null);
@@ -15,10 +17,15 @@ export const useFetch = (url) => {
             return result.json();
         })
         .then(result => {
-            setData(result.data);
+            if (!cancelled)
+                setData(result.data);
         })
-        .catch(err => setError(err))
-        .finally(() => setIsLoading(false))
+        .catch(err => {if (!cancelled) setError(err)})
+        .finally(() => { if (!cancelled) setIsLoading(false) })
+
+        return () => {
+            cancelled = true;
+        }
     }, [url]);
     
 

@@ -1,6 +1,6 @@
-import {GET_INGREDIANTS_REQUEST,
-    GET_INGREDIANTS_REQUEST_SUCCESS,
-    GET_INGREDIANTS_REQUEST_FAILED}
+import {GET_INGREDIENTS_REQUEST,
+    GET_INGREDIENTS_REQUEST_SUCCESS,
+    GET_INGREDIENTS_REQUEST_FAILED}
     from '../actions/index';
 
 const initialState = {
@@ -12,14 +12,14 @@ const initialState = {
 
 const AllIngredientsReducer = (state = initialState, action) => {
     switch(action.type){
-        case GET_INGREDIANTS_REQUEST: {
+        case GET_INGREDIENTS_REQUEST: {
             return {
                 ...state,
                 allIngredientsRequesting: true,
                 allIngredientsRequested: false,
             };
         }
-        case GET_INGREDIANTS_REQUEST_SUCCESS: {
+        case GET_INGREDIENTS_REQUEST_SUCCESS: {
             return {
                 ...state,
                 allIngredients: action.payload,
@@ -28,7 +28,7 @@ const AllIngredientsReducer = (state = initialState, action) => {
                 allIngredientsRequestFailed: false
             }
         }
-        case GET_INGREDIANTS_REQUEST_FAILED: {
+        case GET_INGREDIENTS_REQUEST_FAILED: {
             return {
                 ...state,
                 errorMessage: action.errorMessage,

@@ -8,7 +8,7 @@ import IngredientDetails from '../ingredient-details/ingredient-details'
 
 import IngredientsContainer from './ingredients-container'
 
-import {CLEAR_VIEWED_INGREDIANT_ITEM} from '../../services/actions'
+import {CLEAR_VIEWED_INGREDIENT_ITEM} from '../../services/actions'
 
 const BurgerIngredients = () => {
     const [currentTab, setCurrentTab] = useState('buns');
@@ -24,7 +24,7 @@ const BurgerIngredients = () => {
     
     const clearItemModal = () => {
         dispatch({
-            type: CLEAR_VIEWED_INGREDIANT_ITEM
+            type: CLEAR_VIEWED_INGREDIENT_ITEM
         });
     }
 

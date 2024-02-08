@@ -2,7 +2,7 @@ import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-c
 import { IngredientsDataType } from '../../utils/data';
 import styles from './burger-ingredients.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import {SET_VIEWED_INGREDIANT_ITEM} from '../../services/actions';
+import {SET_VIEWED_INGREDIENT_ITEM} from '../../services/actions';
 import { useDrag } from 'react-dnd';
 import {DndDragTypes} from '../../constants/common';
 
@@ -31,7 +31,7 @@ const Ingredient = ({ item }) => {
 
   const setItemToModal = () => {
     dispatch({
-      type: SET_VIEWED_INGREDIANT_ITEM,
+      type: SET_VIEWED_INGREDIENT_ITEM,
       payload: item
     });
   

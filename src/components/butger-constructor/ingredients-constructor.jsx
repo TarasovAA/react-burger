@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
-import {ADD_INGREDIANT_DATA,
-    DELETE_INGREDIANT_DATA,
-    RESET_INGREDIANT_DATA} from '../../services/actions/index';
+import {ADD_INGREDIENT_DATA,
+    DELETE_INGREDIENT_DATA,
+    RESET_INGREDIENT_DATA} from '../../services/actions/index';
 import { DndDragTypes } from '../../constants/common'
 import IngredientElement from './ingredient-element'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -22,7 +22,7 @@ const IngredientsConstructor = () => {
         drop(item){
             console.log(allIngredients.find(i => i._id === item._id));
             dispatch({
-                type: ADD_INGREDIANT_DATA,
+                type: ADD_INGREDIENT_DATA,
                 payload: allIngredients.find(i => i._id === item._id)
             });
          },
@@ -33,7 +33,7 @@ const IngredientsConstructor = () => {
     
     const deleteIngredient = useCallback((index) => {
         dispatch({
-            type: DELETE_INGREDIANT_DATA,
+            type: DELETE_INGREDIENT_DATA,
             index: index
             })
         }, []);
@@ -46,7 +46,7 @@ const IngredientsConstructor = () => {
         newBurgerBody[hoverIndex] = value;
 
         dispatch({
-            type: RESET_INGREDIANT_DATA,
+            type: RESET_INGREDIENT_DATA,
             payload: newBurgerBody
         });
         

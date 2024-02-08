@@ -1,18 +1,17 @@
-import {useFetch} from '../../hooks/useFetch'
 import {baseUrl} from '../../constants/common';
 
-export const GET_INGREDIANTS_REQUEST = 'GET_INGREDIANTS_REQUEST';
-export const GET_INGREDIANTS_REQUEST_SUCCESS = 'GET_INGREDIANTS_REQUEST_SUCCESS';
-export const GET_INGREDIANTS_REQUEST_FAILED = 'GET_INGREDIANTS_REQUEST_FAILED';
+export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
+export const GET_INGREDIENTS_REQUEST_SUCCESS = 'GET_INGREDIAETS_REQUEST_SUCCESS';
+export const GET_INGREDIENTS_REQUEST_FAILED = 'GET_INGREDIENTS_REQUEST_FAILED';
 
-export const ADD_INGREDIANT_DATA = 'ADD_CONSTRUCTOR_INGREDIANT';
-export const DELETE_INGREDIANT_DATA = 'DELETE_CONSTRUCTOR_INGREDIANT_DATA';
+export const ADD_INGREDIENT_DATA = 'ADD_CONSTRUCTOR_INGREDIENT';
+export const DELETE_INGREDIENT_DATA = 'DELETE_CONSTRUCTOR_INGREDIENT_DATA';
 export const SET_CONSTRUCTOR_BUNS = 'SET_CONSTRUCTOR_BUNS';
 export const CLEAR_CONSTRUCTOR_BUNS = 'CLEAR_CONSTRUCTOR_BUNS';
-export const RESET_INGREDIANT_DATA = 'RESET_INGREDIANT_DATA'
+export const RESET_INGREDIENT_DATA = 'RESET_INGREDIENT_DATA'
 
-export const SET_VIEWED_INGREDIANT_ITEM = 'SET_VIEWED_INGREDIANT_ITEM';
-export const CLEAR_VIEWED_INGREDIANT_ITEM = 'CLEAR_VIEWED_INGREDIANT_ITEM';
+export const SET_VIEWED_INGREDIENT_ITEM = 'SET_VIEWED_INGREDIENT_ITEM';
+export const CLEAR_VIEWED_INGREDIENT_ITEM = 'CLEAR_VIEWED_INGREDIENT_ITEM';
 
 
 export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
@@ -20,10 +19,10 @@ export const CREATE_ORDER_REQUEST_SUCCESS = "CREATE_ORDER_REQUEST_SUCCESS";
 export const CREATE_ORDER_REQUEST_FAILED = "CREATE_ORDER_REQUEST_FAILED";
 
 
-export const getIngrediants = () => {
+export const getIngredients = () => {
     return function (dispatch) {
         dispatch({
-            type: GET_INGREDIANTS_REQUEST
+            type: GET_INGREDIENTS_REQUEST
         });
 
         fetch(baseUrl + '/api/ingredients')
@@ -34,14 +33,14 @@ export const getIngrediants = () => {
             })
             .then(result => {
                 dispatch({
-                    type: GET_INGREDIANTS_REQUEST_SUCCESS,
+                    type: GET_INGREDIENTS_REQUEST_SUCCESS,
                     payload: result.data
                 });
             })
             .catch(err => {
                 console.log(err);
                 dispatch({
-                    type: GET_INGREDIANTS_REQUEST_FAILED,
+                    type: GET_INGREDIENTS_REQUEST_FAILED,
                     errorMessage: err
                 });
             })
