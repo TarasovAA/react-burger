@@ -80,10 +80,10 @@ const IngredientElement = ({ingredient, index, handleClose, moveIngredient}) => 
 }
 
 IngredientElement.propTypes = {
-    ingredient: IngredientsDataType,
-    index: PropTypes.number,
-    handleClose: PropTypes.func,
-    moveIngredient: PropTypes.func
+    ingredient: IngredientsDataType.isRequired,
+    index: PropTypes.number.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    moveIngredient: PropTypes.func.isRequired
 }
 
 export default IngredientElement;

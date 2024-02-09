@@ -1,4 +1,3 @@
-import { IngredientsDataType } from '../../utils/data';
 import styles from './ingredient-details.module.css';
 import { useSelector } from 'react-redux';
 
@@ -30,10 +29,6 @@ const IngredientDetails = () => {
             </div>
         </div>
     </div>);
-}
-
-IngredientDetails.propTypes = {
-    item: IngredientsDataType
 }
 
 export default IngredientDetails; 

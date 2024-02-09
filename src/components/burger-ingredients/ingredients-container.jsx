@@ -17,7 +17,7 @@ const IngredientsContainer = forwardRef(({ data, name }, ref) => {
 })
 
 IngredientsContainer.propTypes = {
-    data: PropTypes.arrayOf(IngredientsDataType),
+    data: PropTypes.arrayOf(IngredientsDataType).isRequired,
     name: PropTypes.string
 }
 
