@@ -45,7 +45,12 @@ const BurgerConstructor = () => {
                     <IngredientsConstructor />
                 </BunsConstructor>
                 <div className={`${styles.orderButton} p-10`}>
-                    <Button htmlType="button" type="primary" size="large" onClick={() => {
+                    <Button 
+                    htmlType="button" 
+                    type="primary"
+                    size="large"
+                    disabled={!burger.head.length ? true : false}
+                    onClick={() => {
                         dispach(refreshOrderIndex(burger));
                         openModal();
                     }}>Оформить заказ</Button>
