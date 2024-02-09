@@ -23,7 +23,10 @@ const IngredientsConstructor = () => {
             console.log(allIngredients.find(i => i._id === item._id));
             dispatch({
                 type: ADD_INGREDIENT_DATA,
-                payload: allIngredients.find(i => i._id === item._id)
+                payload:{
+                    ...allIngredients.find(i => i._id === item._id),
+                    uniqueId: uuidv4()
+                } 
             });
          },
         collect: monitor => ({
@@ -53,11 +56,10 @@ const IngredientsConstructor = () => {
     }, [burgerBody]);
 
     const renderIngredient = useCallback((item, index) => {
-        //TODO: не совсем понял, какова необходимость использоватьэту библиотеку здесь. Буду рад пояснению.
-        const guid = uuidv4()
+        const {uniqueId, ...ingredient} = item;
         return (
-            <IngredientElement key={guid}
-                                    ingredient={item}
+            <IngredientElement key={uniqueId}
+                                    ingredient={ingredient}
                                     index={index}
                                     handleClose={deleteIngredient}
                                     moveIngredient={handleDraggingIngredient} />
