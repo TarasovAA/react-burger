@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import ScrollerConstructor from './scroller-constructor'
 import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-details'
 import PropTypes from 'prop-types'
-import { IngredientsDataType } from '../../utils/data'
 import styles from './burger-constructor.module.css'
 import {useModal} from '../../hooks/useModal'
+import { useSelector, useDispatch } from 'react-redux';
+import {refreshOrderIndex} from '../../services/actions';
+
+import BunsConstructor from './buns-constructor'
+import IngredientsConstructor from './ingredients-constructor';
+
 
 const OrderCounter = ({ count }) => {
     return (
@@ -17,23 +21,12 @@ const OrderCounter = ({ count }) => {
     );
 }
 
-const BurgerConstructor = ({ ingredients }) => {
+const BurgerConstructor = () => {
 
     const [amount, setAmount] = useState(0);
-    const [burger, setBurger] = useState({
-        head: [],
-        body: [],
-    });
 
+    const burger = useSelector(store => store.burgerConstructor)
     const { isModalOpen, openModal, closeModal } = useModal();
-
-    useEffect(() => {
-        setBurger({
-            head: ingredients.filter(item => item.type === 'bun'),
-            body: ingredients.filter(item => item.type !== 'bun')
-        });
-
-    }, []);
 
     useEffect(() => {
         const burgerBodyAmount = burger.body.map(i => i.price).reduce((amount, price) => amount + price, 0);
@@ -42,18 +35,30 @@ const BurgerConstructor = ({ ingredients }) => {
         setAmount(defaultBunsAmount + burgerBodyAmount);
     }, [burger]);
 
+    const {orderIndex} = useSelector(store => store.order);
+    const dispach = useDispatch();
+
     return (
         <section className={styles.orderSidebarSection}>
             <div>
-                <ScrollerConstructor burger={burger} />
+                <BunsConstructor>
+                    <IngredientsConstructor />
+                </BunsConstructor>
                 <div className={`${styles.orderButton} p-10`}>
-                    <Button htmlType="button" type="primary" size="large" onClick={openModal}>Оформить заказ</Button>
+                    <Button 
+                    htmlType="button" 
+                    type="primary"
+                    size="large"
+                    disabled={!burger.head.length ? true : false}
+                    onClick={() => {
+                        dispach(refreshOrderIndex(burger));
+                        openModal();
+                    }}>Оформить заказ</Button>
                     <OrderCounter count={amount} />
                 </div>
-
                 {isModalOpen && (
                     <Modal onClose={closeModal}>
-                        <OrderDetails orderIndex='034536' />
+                        <OrderDetails orderIndex={orderIndex} />
                     </Modal>
                 )}
             </div>
@@ -63,10 +68,6 @@ const BurgerConstructor = ({ ingredients }) => {
 
 OrderCounter.propTypes = {
     count: PropTypes.number
-}
-
-BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(IngredientsDataType)
 }
 
 export default BurgerConstructor;

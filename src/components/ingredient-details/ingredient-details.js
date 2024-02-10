@@ -1,7 +1,10 @@
-import { IngredientsDataType } from '../../utils/data';
 import styles from './ingredient-details.module.css';
+import { useSelector } from 'react-redux';
 
-const IngredientDetails = ({ item }) => {
+const IngredientDetails = () => {
+
+    const {item} = useSelector(store => store.currentViewedIngredient);
+    
     return (<div className={styles.ingredientForm}>
         <div>
             <img src={item.image_large} alt={item.name} />
@@ -26,10 +29,6 @@ const IngredientDetails = ({ item }) => {
             </div>
         </div>
     </div>);
-}
-
-IngredientDetails.propTypes = {
-    item: IngredientsDataType
 }
 
 export default IngredientDetails; 

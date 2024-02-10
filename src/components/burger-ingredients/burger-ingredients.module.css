@@ -31,6 +31,8 @@
   padding: 10px;
   width: 250px;
   height: 250px;
+  position: sticky;
+  cursor: grab;
 }
 
 .textCenteror {
