@@ -8,6 +8,17 @@ import {getIngredients} from '../../services/actions/index';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Routes, Route} from 'react-router-dom';
+
+import {
+   Login,
+   Register,
+   ForgotPassword,
+   ResetPassword,
+   Profile,
+   Ingredients
+  } from '../../pages';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -22,13 +33,22 @@ function App() {
     <div className={styles.container}>
       <AppHeader />
       {
-        <main className={styles.main}>
-          <DndProvider backend={HTML5Backend}>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </DndProvider>
-         
-        </main>
+        <Routes>
+          <Route path='/' element={ <main className={styles.main}>
+                <DndProvider backend={HTML5Backend}>
+                  <BurgerIngredients />
+                  <BurgerConstructor />
+                </DndProvider>
+              </main>} />
+          <Route path='/*' element={<div>Error</div>} />
+          <Route path='/login ' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/ingredients' element={<Ingredients />} />
+        </Routes>
+      
       }
     </div>
   );
