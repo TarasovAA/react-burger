@@ -16,7 +16,8 @@ import {
    ForgotPassword,
    ResetPassword,
    Profile,
-   Ingredients
+   Ingredients,
+   OrderHistory
   } from '../../pages';
 
 
@@ -41,12 +42,13 @@ function App() {
                 </DndProvider>
               </main>} />
           <Route path='/*' element={<div>Error</div>} />
-          <Route path='/login ' element={<Login />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/reset-password' element={<ResetPassword />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/ingredients' element={<Ingredients />} />
+          <Route path='/profile/orders' element={<OrderHistory />} />
         </Routes>
       
       }

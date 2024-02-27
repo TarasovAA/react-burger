@@ -1,0 +1,9 @@
+.icon {
+    display: inline-flex;
+    color: inherit;
+    text-decoration: inherit;
+  }
+ 
+  .navField{
+    display: inline-block;
+  }
