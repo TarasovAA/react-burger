@@ -1,10 +1,11 @@
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tryResetPassword } from "../../services/actions/auth";
 import { cleaerResetPasswordResponse } from "../../services/reducers/auth";
+import { useForm } from "../../hooks/useForm";
 
 
 const ForgotPassword = () => {
@@ -12,7 +13,9 @@ const ForgotPassword = () => {
 
     const {tryResetPasswordSuccess} = useSelector(store => store.tryResetPasswordReducer);
 
-    const [email, setEmail] = useState(null);
+    const {values, handleChange, setValues} = useForm({
+        email: ''
+    })
 
     useEffect(() => {
         dispatch(cleaerResetPasswordResponse());
@@ -21,7 +24,7 @@ const ForgotPassword = () => {
     const handleSubmition = (e) => {
         e.preventDefault();
 
-        dispatch(tryResetPassword(email));
+        dispatch(tryResetPassword(values.email));
     }
     
     return (<div style={{display: 'flex', height: '50vh', margin: '0 auto', alignItems: 'center'}}>
@@ -33,9 +36,11 @@ const ForgotPassword = () => {
                                 placeholder='укажите e-mail'
                                 isIcon={false} 
                                 autoFocus={true}
-                                onChange={e => setEmail(e.target.value)}
+                                name="email"
+                                value={values.email}
+                                onChange={handleChange}
                                 />
-                <Button disabled={!email}
+                <Button disabled={!values.email}
                  htmlType='submit'>Востановить</Button>
             </form>
 

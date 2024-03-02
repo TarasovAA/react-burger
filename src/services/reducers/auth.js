@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { tryResetPassword, createNewUser, loginUser } from "../actions/auth";
-import { getUserInfo } from "../actions/auth";
+import { getUserInfo, patchUserInfo } from "../actions/auth";
 
 
 const tryResetPasswordSlice = createSlice({
@@ -45,7 +45,8 @@ const userSlice = createSlice({
         errorMessage: '',
 
         user: null,
-        isAuthChecked: false
+        isAuthChecked: false,
+        
     },
     extraReducers: (builder) => {
         builder
@@ -73,6 +74,9 @@ const userSlice = createSlice({
             .addCase(getUserInfo.rejected, (state, action) => {
                 state.isAuthChecked = true;
                 console.log('rejected', action);
+            })
+            .addCase(patchUserInfo.fulfilled, (state, action) => {
+                state.user = action.payload.user;
             })
     }
 })

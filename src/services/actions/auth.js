@@ -66,3 +66,20 @@ export const getUserInfo = createAsyncThunk(
         });
     }
 )
+
+export const patchUserInfo = createAsyncThunk(
+    "auth/patchUserInfo",
+    async (userInfo) => {
+        const token = localStorage.getItem('accessToken');
+        
+        return await fetchWithRefresh(baseUrl + '/api/auth/user', {
+            method: "PATCH",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' +  token
+              },
+              body: JSON.stringify(userInfo)
+        });
+    }
+)

@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from 'react';
 import { loginUser } from '../../services/actions/auth';
+import { useForm } from '../../hooks/useForm';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const {values, handleChange, setValues} = useForm({
+        email: '',
+        password: ''
+    });
 
     const user = useSelector(store => store.user.user);
     const dispatch = useDispatch();
@@ -15,8 +18,8 @@ const Login = () => {
         e.preventDefault();
 
         dispatch(loginUser({
-            email: email,
-            password: password
+            email: values.email,
+            password: values.password
         }));
     }
 
@@ -28,18 +31,19 @@ const Login = () => {
                     extraClass='m-5'
                     placeholder='E-mail'
                     isIcon={false}
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    name='email'
+                    value={values.email}
+                    onChange={handleChange}
                     />
                 <PasswordInput
                     extraClass='m-5'
-                    name='Пароль'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    name='password'
+                    value={values.password}
+                    onChange={handleChange}
                     />
                 <Button
                     htmlType='submit'
-                    disabled={!email || !password}>
+                    disabled={!values.email || !values.password}>
                         Войти
                 </Button>
             </form>

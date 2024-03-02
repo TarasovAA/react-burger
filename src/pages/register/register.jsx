@@ -3,23 +3,27 @@ import { Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser } from '../../services/actions/auth';
+import { useForm } from '../../hooks/useForm';
 
 
 const Register = () => {
-    const [userName, setUserName] = useState('');
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
+    const {values, handleChange, setValues} = useForm({
+        userName: '',
+        userEmail: '',
+        userPassword: ''
+    });
+
 
     const dispatch = useDispatch();
     const user = useSelector(store => store.user.user);
 
-    const clickRegistorButtonHandler = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(createNewUser({
-            email: userEmail,
-            password: userPassword,
-            name: userName
+            email: values.userEmail,
+            password: values.userPassword,
+            name: values.userName
         }));
 
     }
@@ -27,32 +31,32 @@ const Register = () => {
     return (<div style={{display: 'flex', height: '80vh', margin: '0 auto', alignItems: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center'}}>
             {user && <Navigate to="/profile" /> }
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h2 className='text text_type_main-medium m-5'>Регистрация</h2>
                 <Input 
                 extraClass='m-5'
                 placeholder='Имя'
-                isIcon={false}
-                value={userName}
-                onChange={e => setUserName(e.target.value)}
+                name='userName'
+                value={values.userName}
+                onChange={handleChange}
                 />
                 <EmailInput 
                     extraClass='m-5'
                     placeholder='E-mail'
                     isIcon={false}
-                    value={userEmail}
-                    onChange={e => setUserEmail(e.target.value)}
+                    name='userEmail'
+                    value={values.userEmail}
+                    onChange={handleChange}
                     />
                 <PasswordInput
                 extraClass='m-5'
-                name='Пароль'
-                value={userPassword}
-                onChange={e => setUserPassword(e.target.value)}
+                name='userPassword'
+                value={values.userPassword}
+                onChange={handleChange}
                 />
                 <Button 
                     htmlType='submit'
-                    disabled={!userName || !userEmail || !userPassword}
-                    onClick={clickRegistorButtonHandler}
+                    disabled={!values.userName || !values.userEmail || !values.userPassword}
                     >Зарегестрироваться</Button>
             </form>
            
