@@ -1,5 +1,5 @@
 import {baseUrl} from '../../constants/common';
-import { handleRequest } from '../../utils/helpers';
+import { handleRequest, fetchWithRefresh } from '../../utils/helpers';
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_REQUEST_SUCCESS = 'GET_INGREDIAETS_REQUEST_SUCCESS';
@@ -60,17 +60,21 @@ export const refreshOrderIndex = (burger) => {
                 burger.head[1],
             ]
         };
+
+        const token = localStorage.getItem('accessToken');
         
-        handleRequest(baseUrl + '/api/orders', {
+        fetchWithRefresh(baseUrl + '/api/orders', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' +  token
               },
             body: JSON.stringify(requestBody)
         })
         .then(result => {
-            console.log('CREATE_ORDER_REQUEST_SUCCESS', result);
+            console.log(CREATE_ORDER_REQUEST_SUCCESS, result);
+
             dispatch({
                 type: CREATE_ORDER_REQUEST_SUCCESS,
                 payload: result
@@ -81,7 +85,8 @@ export const refreshOrderIndex = (burger) => {
             });
         })
         .catch(err => {
-            console.log('CREATE_ORDER_REQUEST_FAILED', err);
+            console.log(CREATE_ORDER_REQUEST_SUCCESS, err);
+            
             dispatch({
                 type: CREATE_ORDER_REQUEST_FAILED,
                 errorMessage: err

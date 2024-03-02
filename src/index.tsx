@@ -18,15 +18,13 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
 });
 
-root.render(
-    <React.StrictMode>
+root.render(<>
+    <BrowserRouter>
       <Provider store={store}>
-        <BrowserRouter>
           <App />
-        </BrowserRouter>
       </Provider>
-    </React.StrictMode>
-);
+    </BrowserRouter>
+</>);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

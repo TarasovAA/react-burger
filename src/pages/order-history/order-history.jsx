@@ -1,4 +1,4 @@
-import { ProfileNavigation } from "../components/profile-navigation/profile-navigation";
+import { ProfileNavigation } from "../../components/profile-navigation/profile-navigation";
 
 const OrderHistory = () => {
     return (<div>

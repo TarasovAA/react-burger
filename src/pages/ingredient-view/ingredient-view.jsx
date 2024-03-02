@@ -1,9 +1,9 @@
 
 
-const Ingredients = () => {
+const IngredientView = () => {
     return (<div>
         Страница ингредиента
     </div>);
 }
 
-export default Ingredients;
+export default IngredientView;

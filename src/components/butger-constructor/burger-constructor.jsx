@@ -11,6 +11,7 @@ import {refreshOrderIndex} from '../../services/actions';
 import BunsConstructor from './buns-constructor'
 import IngredientsConstructor from './ingredients-constructor';
 
+import { useNavigate } from 'react-router-dom';
 
 const OrderCounter = ({ count }) => {
     return (
@@ -22,10 +23,14 @@ const OrderCounter = ({ count }) => {
 }
 
 const BurgerConstructor = () => {
-
+    const navigate = useNavigate();
     const [amount, setAmount] = useState(0);
 
     const burger = useSelector(store => store.burgerConstructor)
+    const user = useSelector(store => store.user.user)
+    
+    console.log(user);
+
     const { isModalOpen, openModal, closeModal } = useModal();
 
     useEffect(() => {
@@ -38,6 +43,15 @@ const BurgerConstructor = () => {
     const {orderIndex} = useSelector(store => store.order);
     const dispach = useDispatch();
 
+    const createOrderClicklHandler = () => {
+        if(!user){
+            navigate('/login');
+            return;
+        }
+
+        dispach(refreshOrderIndex(burger));
+        openModal();
+    }
     return (
         <section className={styles.orderSidebarSection}>
             <div>
@@ -50,10 +64,7 @@ const BurgerConstructor = () => {
                     type="primary"
                     size="large"
                     disabled={!burger.head.length ? true : false}
-                    onClick={() => {
-                        dispach(refreshOrderIndex(burger));
-                        openModal();
-                    }}>Оформить заказ</Button>
+                    onClick={createOrderClicklHandler}>Оформить заказ</Button>
                     <OrderCounter count={amount} />
                 </div>
                 {isModalOpen && (

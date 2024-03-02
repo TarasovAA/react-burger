@@ -1,8 +1,10 @@
 import { Logo, ProfileIcon, BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './app-header.module.css';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const AppHeader = () => {
+    const {user} = useSelector(store => store.user);
 
     return (
         <header className={styles.header}>
@@ -33,7 +35,7 @@ const AppHeader = () => {
                     {
                         ({isActive}) => (<>
                             <ProfileIcon type={!isActive && "secondary"}/>
-                            <p className={`text text_type_main-default ${!isActive && 'text_color_inactive'} ml-2`}>Личный кабинет</p>
+                            <p className={`text text_type_main-default ${!isActive && 'text_color_inactive'} ml-2`}>{user ? user.name : 'Личный кабинет'}</p>
                         </>)
                     }
                 </NavLink>
