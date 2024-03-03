@@ -4,7 +4,12 @@ import styles from './app.module.css';
 import { useDispatch } from 'react-redux';
 import {getIngredients} from '../../services/actions/index';
 import { getUserInfo } from '../../services/actions/auth';
-import { Routes, Route} from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate} from 'react-router-dom';
+
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredient-details/ingredient-details';
+
+import { CLEAR_VIEWED_INGREDIENT_ITEM } from '../../services/actions/index';
 
 import { ProtectedRouteElement } from '../protected-route-element/protected-route-element';
 
@@ -14,13 +19,19 @@ import {
    ForgotPassword,
    ResetPassword,
    Profile,
-   Ingredients,
    OrderHistory,
-   Home
+   Home,
+   IngredientView
   } from '../../pages';
 
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state;
+
+  console.log(state);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,10 +42,9 @@ function App() {
   return (
     <div className={styles.container}>
       <AppHeader />
-      {
-        <Routes>
+
+      <Routes location={state?.backgroundLocation || location}>
           <Route path='/' element={ <Home /> } />
-          <Route path='/ingredients' element={<Ingredients />} />
           <Route path='/*' element={<div>Error</div>} />
           
           <Route path='/login' element={<ProtectedRouteElement onlyUnAuth={true} component={<Login />} />} />
@@ -44,9 +54,19 @@ function App() {
 
           <Route path='/profile' element={<ProtectedRouteElement component={<Profile />} />} />
           <Route path='/profile/orders' element={<ProtectedRouteElement component={<OrderHistory />} />} />
+
+          <Route path='/ingredients/:id' element={<IngredientView />} />
         </Routes>
-      
-      }
+
+        {
+          state?.backgroundLocation && ( <Routes>
+            <Route path='/ingredients/:id' element={<Modal onClose={() => {
+              navigate(-1);
+          }} title='Детали игредиента'>
+                  <IngredientDetails />
+              </Modal>} />
+          </Routes>)
+        }
     </div>
   );
 }

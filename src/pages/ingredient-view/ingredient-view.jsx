@@ -1,8 +1,9 @@
-
+import IngredientDetails from "../../components/ingredient-details/ingredient-details";
+import style from './ingredient-view.module.css'
 
 const IngredientView = () => {
-    return (<div>
-        Страница ингредиента
+    return (<div className={style.putInCenter}>
+        <IngredientDetails />
     </div>);
 }
 

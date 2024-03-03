@@ -1,11 +1,17 @@
 import styles from './ingredient-details.module.css';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Loader } from '../../local-uikit/components';
+import { useMemo } from 'react';
 
 const IngredientDetails = () => {
+    const {allIngredients} = useSelector(store => store.allIngredients);
 
-    const {item} = useSelector(store => store.currentViewedIngredient);
+    const {id} = useParams();
+
+    const item = useMemo(() => allIngredients.find(i => i._id === id), [allIngredients]);
     
-    return (<div className={styles.ingredientForm}>
+    return (item ? (<div className={styles.ingredientForm}>
         <div>
             <img src={item.image_large} alt={item.name} />
         </div>
@@ -28,7 +34,7 @@ const IngredientDetails = () => {
                 <p>{item.carbohydrates}</p>
             </div>
         </div>
-    </div>);
+    </div>) : <Loader />);
 }
 
 export default IngredientDetails; 

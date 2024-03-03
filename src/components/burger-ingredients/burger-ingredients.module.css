@@ -25,7 +25,7 @@
 .tabs {
   display: flex
 }
-
+ 
 .ingredientForm {
   margin: 5px;
   padding: 10px;
@@ -37,4 +37,9 @@
 
 .textCenteror {
   text-align: center;
+}
+
+.ingredientLink{
+  color: inherit;
+  text-decoration: inherit;
 }

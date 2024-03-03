@@ -1,0 +1,6 @@
+.putInCenter{
+    display: flex;
+    height: 80vh;
+    margin: 0 auto;
+    align-items: center;
+}
