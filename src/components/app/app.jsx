@@ -9,8 +9,6 @@ import { Routes, Route, useLocation, useNavigate} from 'react-router-dom';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 
-import { CLEAR_VIEWED_INGREDIENT_ITEM } from '../../services/actions/index';
-
 import { ProtectedRouteElement } from '../protected-route-element/protected-route-element';
 
 import {

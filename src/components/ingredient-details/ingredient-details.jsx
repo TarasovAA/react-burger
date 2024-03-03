@@ -9,7 +9,7 @@ const IngredientDetails = () => {
 
     const {id} = useParams();
 
-    const item = useMemo(() => allIngredients.find(i => i._id === id), [allIngredients]);
+    const item = useMemo(() => allIngredients.find(i => i._id === id), [allIngredients, id]);
     
     return (item ? (<div className={styles.ingredientForm}>
         <div>
