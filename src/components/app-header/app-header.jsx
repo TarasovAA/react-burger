@@ -1,6 +1,6 @@
 import { Logo, ProfileIcon, BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './app-header.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const AppHeader = () => {
@@ -28,7 +28,9 @@ const AppHeader = () => {
                 </div>
 
                 <div className={styles.icon}>
-                    <Logo />
+                    <Link to='/'>
+                        <Logo />
+                    </Link>
                 </div>
 
                 <NavLink to="/profile" className={styles.icon}>
