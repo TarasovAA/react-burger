@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { resetPassword } from '../../services/actions/auth';
+import '../index.css'
 
 const ResetPassword = () => {
     const dispatch = useDispatch();
@@ -19,8 +20,7 @@ const ResetPassword = () => {
         dispatch(resetPassword({password: values.newPassword, token: values.code}));
     }
 
-    return ((isForgotPasswordEmailSent && !isPasswordSet) ? (<div style={{display: 'flex', height: '50vh', margin: '0 auto', alignItems: 'center'}}>
-    <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center'}}>
+    return ((isForgotPasswordEmailSent && !isPasswordSet) ? (<div className='mainPanel'>
             <form onSubmit={handleSubmit}>
                 <h2 className='text text_type_main-medium m-5'>Востановление пароля</h2>
                 <PasswordInput
@@ -43,7 +43,6 @@ const ResetPassword = () => {
             <div className='text text_type_main-default text_color_inactive p-10'>
                 <span>Вспомнили пароль? <Link to='/login'>Войти</Link></span>
             </div>
-    </div>
     </div>) : (isForgotPasswordEmailSent && isPasswordSet) ? <Navigate to="/login" /> : <Navigate to="/forgot-password" />);
 }
 

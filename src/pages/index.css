@@ -1,0 +1,16 @@
+.mainPanel{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20vh auto;
+}
+
+.profileMainDiv{
+    display: flex;
+}
+
+.saveProfileInfoButtons{
+    margin-top: 20px;
+    margin-left: 35%;
+}

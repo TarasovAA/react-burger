@@ -20,7 +20,8 @@ import {
    OrderHistory,
    Home,
    IngredientView,
-   Exit
+   Exit,
+   ProfileFields
   } from '../../pages';
 
 
@@ -43,7 +44,7 @@ function App() {
       <AppHeader />
 
 
-      <div style={{height: '90vh', display: 'flex', alignItems: 'center'}}>
+      <div className={styles.body}>
         <Routes location={state?.backgroundLocation || location}>
             <Route path='/' element={ <Home /> } />
             <Route path='/*' element={<div>Error</div>} />
@@ -53,9 +54,9 @@ function App() {
             <Route path='/forgot-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ForgotPassword />} />} />
             <Route path='/reset-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ResetPassword />} />} />
 
-            <Route path='/profile' element={<ProtectedRouteElement component={<Profile />} />} />
-            <Route path='/profile/orders' element={<ProtectedRouteElement component={<OrderHistory />} />} />
-            <Route path='/profile/exit' element={<ProtectedRouteElement component={<Exit />} />} />
+            <Route path='/profile' element={<ProtectedRouteElement component={<Profile profileElement={<ProfileFields />} />} />} />
+            <Route path='/profile/orders' element={<ProtectedRouteElement component={<Profile profileElement={<OrderHistory />}/>} />} />
+            <Route path='/profile/exit' element={<ProtectedRouteElement component={<Profile profileElement={<Exit /> } />} />} />
             
 
             <Route path='/ingredients/:id' element={<IngredientView />} />

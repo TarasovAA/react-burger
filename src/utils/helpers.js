@@ -2,12 +2,7 @@ import { baseUrl } from "../constants/common";
 
 export function handleRequest(url, options = {}) {
     return fetch(url, options)
-            .then(result => {
-                if (!result.ok)
-                    return Promise.reject(`Ошибка ${result.status}`);
-
-                return result.json();
-            })
+            .then(checkReponse)
             .then(data => {
                 console.log(data);
 
@@ -48,8 +43,7 @@ export const refreshToken = async () => {
         if (!refreshData.success) {
             return Promise.reject(refreshData);
           }
-        
-          console.log();
+          
         localStorage.setItem("refreshToken", refreshData.refreshToken); 
         localStorage.setItem("accessToken", refreshData.accessToken.split("Bearer ").pop());
 
@@ -63,17 +57,11 @@ const checkReponse = (res) => {
 
   export function handleSighInRequest(url, options = {}) {
     return fetch(url, options)
-            .then(result => {
-                if (!result.ok)
-                    return Promise.reject(`Ошибка ${result.status}`);
-
-                return result.json();
-            })
+            .then(checkReponse)
             .then(data => {
                 localStorage.setItem("refreshToken", data.refreshToken); 
                 localStorage.setItem("accessToken", data.accessToken);
 
                 return data;
             })
-    // тут проверка ответа
 }

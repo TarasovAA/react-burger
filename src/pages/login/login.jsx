@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginUser } from '../../services/actions/auth';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
-import { useState } from 'react';
+import '../index.css';
 
 const Login = () => {
     const {values, handleChange, setValues} = useForm({
@@ -25,8 +25,7 @@ const Login = () => {
         }));
     }
 
-    return (<div style={{display: 'flex', height: '80vh', margin: '0 auto', alignItems: 'center'}}>
-        <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center'}}>
+    return (<div className='mainPanel'>
             <form onSubmit={loginClickHandler}>
                 <h2 className='text text_type_main-medium m-5'>Вход</h2>
                 <EmailInput
@@ -54,9 +53,6 @@ const Login = () => {
                 <p />
                 <span>Забыли пароль? <Link to='/forgot-password'>Востановить пароль</Link></span>
             </div>
-            
-        </div>
-
         <ErrorBlock message={errorMessage} />
     </div>);
 }
