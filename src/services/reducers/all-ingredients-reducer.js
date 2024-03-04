@@ -10,7 +10,7 @@ const initialState = {
     }
     
 
-const AllIngredientsReducer = (state = initialState, action) => {
+const allIngredientsReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_INGREDIENTS_REQUEST: {
             return {
@@ -42,4 +42,4 @@ const AllIngredientsReducer = (state = initialState, action) => {
     }
 }
 
-export default AllIngredientsReducer;
+export default allIngredientsReducer;

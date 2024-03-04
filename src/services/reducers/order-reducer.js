@@ -12,7 +12,7 @@ const initialState = {
 }
 
 
-const OrderReducer = (state = initialState, action) => {
+const orderReducer = (state = initialState, action) => {
     switch(action.type){
         case CREATE_ORDER_REQUEST:{
             return {
@@ -45,4 +45,4 @@ const OrderReducer = (state = initialState, action) => {
     }
 }
 
-export default OrderReducer;
+export default orderReducer;

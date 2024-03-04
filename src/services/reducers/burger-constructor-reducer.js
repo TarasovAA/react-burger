@@ -10,7 +10,7 @@ const initialState = {
     body: [],
 }
 
-const BurgerConstructorReducer = (state = initialState, action) => {
+const burgerConstructorReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_INGREDIENT_DATA:{
             return {
@@ -54,4 +54,4 @@ const BurgerConstructorReducer = (state = initialState, action) => {
     }
 }
 
-export default BurgerConstructorReducer;
+export default burgerConstructorReducer;
