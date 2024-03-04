@@ -8,7 +8,7 @@ const ResetPassword = () => {
     const dispatch = useDispatch();
     const {isForgotPasswordEmailSent, isPasswordSet} = useSelector(store => store.user);
 
-    const {values, handleChange, setValues} = useForm({
+    const {values, handleChange} = useForm({
         newPassword: '',
         code: ''
     });

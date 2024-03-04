@@ -42,32 +42,36 @@ function App() {
     <div className={styles.container}>
       <AppHeader />
 
-      <Routes location={state?.backgroundLocation || location}>
-          <Route path='/' element={ <Home /> } />
-          <Route path='/*' element={<div>Error</div>} />
-          
-          <Route path='/login' element={<ProtectedRouteElement onlyUnAuth={true} component={<Login />} />} />
-          <Route path='/register' element={ <ProtectedRouteElement onlyUnAuth={true} component={<Register />} />} />
-          <Route path='/forgot-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ForgotPassword />} />} />
-          <Route path='/reset-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ResetPassword />} />} />
 
-          <Route path='/profile' element={<ProtectedRouteElement component={<Profile />} />} />
-          <Route path='/profile/orders' element={<ProtectedRouteElement component={<OrderHistory />} />} />
-          <Route path='/profile/exit' element={<ProtectedRouteElement component={<Exit />} />} />
-          
+      <div style={{height: '90vh', display: 'flex', alignItems: 'center'}}>
+        <Routes location={state?.backgroundLocation || location}>
+            <Route path='/' element={ <Home /> } />
+            <Route path='/*' element={<div>Error</div>} />
+            
+            <Route path='/login' element={<ProtectedRouteElement onlyUnAuth={true} component={<Login />} />} />
+            <Route path='/register' element={ <ProtectedRouteElement onlyUnAuth={true} component={<Register />} />} />
+            <Route path='/forgot-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ForgotPassword />} />} />
+            <Route path='/reset-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ResetPassword />} />} />
 
-          <Route path='/ingredients/:id' element={<IngredientView />} />
-        </Routes>
+            <Route path='/profile' element={<ProtectedRouteElement component={<Profile />} />} />
+            <Route path='/profile/orders' element={<ProtectedRouteElement component={<OrderHistory />} />} />
+            <Route path='/profile/exit' element={<ProtectedRouteElement component={<Exit />} />} />
+            
 
-        {
-          state?.backgroundLocation && ( <Routes>
-            <Route path='/ingredients/:id' element={<Modal onClose={() => {
-              navigate(-1);
-          }} title='Детали игредиента'>
-                  <IngredientDetails />
-              </Modal>} />
-          </Routes>)
-        }
+            <Route path='/ingredients/:id' element={<IngredientView />} />
+          </Routes>
+
+          {
+            state?.backgroundLocation && ( <Routes>
+              <Route path='/ingredients/:id' element={<Modal onClose={() => {
+                navigate(-1);
+            }} title='Детали игредиента'>
+                    <IngredientDetails />
+                </Modal>} />
+            </Routes>)
+          }
+      </div>
+    
     </div>
   );
 }

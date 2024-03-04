@@ -41,9 +41,9 @@ const Profile = () => {
 
     const display = (values.name !== user.name || values.email !== user.email || values.password !== '') ? '' : 'none';
 
-    return (<div>
+    return (<div className="p-20" style={{ display: "flex" }}>
             <ProfileNavigation />
-            <div className="mt-20 ml-10" style={{ display: "inline-block" }}>
+            <div style={{ display: "inline-flex" }}>
                 <form onReset={handleReset} onSubmit={handleSubmit}>
                     <Input
                         placeholder="Имя"
@@ -75,10 +75,8 @@ const Profile = () => {
                         htmlType='submit'
                         >Сохранить</Button>
                     </div>
+                    <p className='text text_type_main text_color_inactive mt-5'>В этом разделе вы можете изменить свои персональные данные</p>
                 </form>
-            </div>
-            <div>
-                <p className='text text_type_main text_color_inactive mt-5'>В этом разделе вы можете изменить свои персональные данные</p>
             </div>
     </div>);
 }
