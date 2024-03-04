@@ -1,6 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { tryResetPassword, createNewUser, loginUser } from "../actions/auth";
-import { getUserInfo, patchUserInfo } from "../actions/auth";
+import { createSlice } from "@reduxjs/toolkit";
+import { 
+    getUserInfo, 
+    patchUserInfo,
+    tryResetPassword,
+    createNewUser,
+    loginUser,
+    logoutUser
+} from "../actions/auth";
 
 
 const tryResetPasswordSlice = createSlice({
@@ -45,11 +51,22 @@ const userSlice = createSlice({
         errorMessage: '',
 
         user: null,
-        isAuthChecked: false,
-        
+        isAuthChecked: false
     },
     extraReducers: (builder) => {
         builder
+            .addCase(loginUser.pending, (state) => {
+                state.errorMessage = '';
+            })
+            .addCase(loginUser.fulfilled, (state, action) => {
+                state.user = action.payload;
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.errorMessage = action.error.message;
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.user = null;
+            })
             .addCase(createNewUser.pending, (state) => {state.isCreateNewUserPending = true})
             .addCase(createNewUser.fulfilled, (state, action) => {
                 state.isCreateNewUserPending = false;
@@ -58,12 +75,6 @@ const userSlice = createSlice({
             .addCase(createNewUser.rejected, (state, action) => {
                 state.isCreateNewUserPending = false;
                 state.errorMessage = action.error.message
-            })
-            .addCase(loginUser.fulfilled, (state, action) => {
-                state.user = action.payload.user;
-                
-                localStorage.setItem("refreshToken",  action.payload.refreshToken); 
-                localStorage.setItem("accessToken",  action.payload.accessToken.split("Bearer ").pop());
             })
             .addCase(getUserInfo.pending, (state) => {state.isAuthChecked = false; })
             .addCase(getUserInfo.fulfilled, (state, action) => {

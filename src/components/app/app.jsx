@@ -19,7 +19,8 @@ import {
    Profile,
    OrderHistory,
    Home,
-   IngredientView
+   IngredientView,
+   Exit
   } from '../../pages';
 
 
@@ -52,6 +53,8 @@ function App() {
 
           <Route path='/profile' element={<ProtectedRouteElement component={<Profile />} />} />
           <Route path='/profile/orders' element={<ProtectedRouteElement component={<OrderHistory />} />} />
+          <Route path='/profile/exit' element={<ProtectedRouteElement component={<Exit />} />} />
+          
 
           <Route path='/ingredients/:id' element={<IngredientView />} />
         </Routes>

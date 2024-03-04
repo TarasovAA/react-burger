@@ -1,9 +1,10 @@
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from 'react';
 import { loginUser } from '../../services/actions/auth';
 import { useForm } from '../../hooks/useForm';
+import { ErrorBlock } from '../../local-uikit/components';
+import { useState } from 'react';
 
 const Login = () => {
     const {values, handleChange, setValues} = useForm({
@@ -11,7 +12,8 @@ const Login = () => {
         password: ''
     });
 
-    const user = useSelector(store => store.user.user);
+    const errorMessage = useSelector(store => store.user.errorMessage);
+   
     const dispatch = useDispatch();
 
     const loginClickHandler = (e) => {
@@ -47,7 +49,6 @@ const Login = () => {
                         Войти
                 </Button>
             </form>
-
             <div className='text text_type_main-default text_color_inactive p-10'>
                 <span>Вы - новый пользователь? <Link to='/register'>Зарегестрироваться</Link></span>
                 <p />
@@ -55,6 +56,8 @@ const Login = () => {
             </div>
             
         </div>
+
+        <ErrorBlock message={errorMessage} />
     </div>);
 }
 

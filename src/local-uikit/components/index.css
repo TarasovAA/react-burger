@@ -13,3 +13,20 @@
         transform: rotate(360deg);
     }
 }
+
+.errorBlock{
+    position: absolute;
+    right: 2vw;
+    bottom: 2vh;
+    
+    border: 1px solid rgba(133, 133, 173, 0.4);
+    border-radius: 5px;
+
+    background-color: rgba(0, 0, 0, 0.6);;
+    color: rgb(133, 133, 173);;
+    width: 30vw;
+    height: 10vh;
+
+    word-wrap: break-word;
+    padding: 5px;
+}

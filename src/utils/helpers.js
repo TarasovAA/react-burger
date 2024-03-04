@@ -13,7 +13,6 @@ export function handleRequest(url, options = {}) {
 
                 return data;
             })
-    // тут проверка ответа
 }
 
 export const fetchWithRefresh = async (url, options) => {

@@ -32,21 +32,6 @@ export const createNewUser = createAsyncThunk(
     }
 );
 
-
-export const loginUser = createAsyncThunk(
-    "loginUser",
-    async (userCredentials) => {
-        return await handleRequest(baseUrl + '/api/auth/login', {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-            body: JSON.stringify(userCredentials)
-        });
-    }
-)
-
 export const getUserInfo = createAsyncThunk(
     "auth/getUserInfo",
     async () => {
@@ -81,5 +66,53 @@ export const patchUserInfo = createAsyncThunk(
               },
               body: JSON.stringify(userInfo)
         });
+    }
+)
+
+export const loginUser = createAsyncThunk(
+    "auth/loginUser",
+    async (userCredentials) => {
+        const request = await handleRequest(baseUrl + '/api/auth/login', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(userCredentials)
+        })
+        .then(res =>{
+            localStorage.setItem("refreshToken",  res.refreshToken); 
+            localStorage.setItem("accessToken",  res.accessToken.split("Bearer ").pop());
+
+            return res.user;
+        })
+
+        return request;
+    }
+)
+
+export const logoutUser = createAsyncThunk(
+    "auth/logout",
+    async () => {
+        const request = await handleRequest(baseUrl + '/api/auth/logout', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+            body: JSON.stringify({
+                token: localStorage.getItem("refreshToken")
+            })
+        })
+        .then(res => {
+            if(res.success){
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("accessToken");
+            }
+
+            return res;
+        });
+
+        return request;
     }
 )
