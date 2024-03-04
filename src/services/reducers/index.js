@@ -10,6 +10,5 @@ export const rootReducer = combineReducers({
     allIngredients: AllIngredientsReducer,
     burgerConstructor: BurgerConstructorReducer,
     order: OrderReducer,
-    tryResetPasswordReducer: tryResetPasswordReducer,
     user: userReducer
 });

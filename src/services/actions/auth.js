@@ -3,7 +3,7 @@ import {handleRequest, fetchWithRefresh} from "../../utils/helpers";
 import {baseUrl} from '../../constants/common';
 
 export const tryResetPassword = createAsyncThunk(
-    "tryResetPassword",
+    "auth/tryResetPassword",
     async (email) => {
         const requestBody = {email};
 
@@ -18,19 +18,19 @@ export const tryResetPassword = createAsyncThunk(
     }
 )
 
-export const createNewUser = createAsyncThunk(
-    "createNewUser",
-    async (userCredentials) => {
-        return await handleRequest(baseUrl + '/api/auth/register', {
+export const resetPassword = createAsyncThunk(
+    "auth/resetPassword",
+    async (requestBody) => {
+        return await handleRequest(baseUrl + '/api/password-reset/reset', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify(userCredentials)
+            body: JSON.stringify(requestBody)
         });
     }
-);
+)
 
 export const getUserInfo = createAsyncThunk(
     "auth/getUserInfo",
@@ -86,6 +86,29 @@ export const loginUser = createAsyncThunk(
 
             return res.user;
         })
+
+        return request;
+    }
+)
+
+export const createNewUser = createAsyncThunk(
+    "auth/createNewUser",
+    async (userCredentials) => {
+        
+        const request =  await handleRequest(baseUrl + '/api/auth/register', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(userCredentials)
+        })
+        .then(res =>{
+            localStorage.setItem("refreshToken",  res.refreshToken); 
+            localStorage.setItem("accessToken",  res.accessToken.split("Bearer ").pop());
+
+            return res.user;
+        });
 
         return request;
     }
