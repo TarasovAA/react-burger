@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import style from "./profile-navigation.module.css";
 
 export const ProfileNavigation = () => {
-    return (<div className={`${style.navField}`} style={{width: '20%'}}>
+    return (<div className={style.navField}>
         <NavLink end to='/profile' className={style.icon}>
             {
                 ({isActive}) => (<>

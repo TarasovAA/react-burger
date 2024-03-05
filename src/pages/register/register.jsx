@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser } from '../../services/actions/auth';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
+import '../index.css';
 
 
 const Register = () => {
-    const {values, handleChange, setValues} = useForm({
+    const {values, handleChange} = useForm({
         userName: '',
         userEmail: '',
         userPassword: ''
@@ -28,7 +29,7 @@ const Register = () => {
 
     }
 
-    return (<div style={{display: 'flex', margin: '20vh auto', flexDirection: 'column', alignItems: 'center', textAlign: 'center'}}>
+    return (<div className='mainPanel'>
             {user && <Navigate to="/profile" /> }
             <form onSubmit={handleSubmit}>
                 <h2 className='text text_type_main-medium m-5'>Регистрация</h2>

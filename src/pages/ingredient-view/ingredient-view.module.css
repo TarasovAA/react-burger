@@ -1,6 +1,7 @@
 .putInCenter{
     display: flex;
-    height: 80vh;
-    margin: 0 auto;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    margin: 20vh auto;
 }
