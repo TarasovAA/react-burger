@@ -14,6 +14,11 @@
   flex-direction: column;
 }
 
+.body{
+  height: 90vh;
+  width: 100vw;
+}
+
 .main {
   width: 75%;
   margin: 0 auto;
