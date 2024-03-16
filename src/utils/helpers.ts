@@ -1,6 +1,6 @@
 import { baseUrl } from "../constants/common";
 
-export function handleRequest(url, options = {}) {
+export function handleRequest(url: string, options:RequestInit = {}) : Promise<any> {
     return fetch(url, options)
             .then(checkReponse)
             .then(data => {
@@ -10,13 +10,13 @@ export function handleRequest(url, options = {}) {
             })
 }
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async (url: string, options: any) : Promise<any>=> {
     try{
         const res = await fetch(url, options);
 
         return await checkReponse(res); 
     }
-    catch (err){
+    catch (err: any){
         if (err.message === "jwt expired"){
             const refreshData = await refreshToken();
             
@@ -27,7 +27,7 @@ export const fetchWithRefresh = async (url, options) => {
         }
     }
 }
-export const refreshToken = async () => {
+export const refreshToken = async () : Promise<any> => {
     return await fetch(`${baseUrl}/api/auth/token`,{
         method: "POST",
         headers: {
@@ -51,11 +51,11 @@ export const refreshToken = async () => {
     })
 }
 
-const checkReponse = (res) => {
+const checkReponse = (res: Response): Promise<any> => {
     return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
   };
 
-  export function handleSighInRequest(url, options = {}) {
+  export function handleSighInRequest(url: string, options: any = {}) {
     return fetch(url, options)
             .then(checkReponse)
             .then(data => {

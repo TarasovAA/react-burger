@@ -1,7 +1,12 @@
 import { ProfileNavigation } from "../../components/profile-navigation/profile-navigation";
 import '../index.css';
+import {FC} from "react";
 
-const Profile = ({profileElement}) => {
+interface IProfile{
+    profileElement: JSX.Element
+}
+
+const Profile: FC<IProfile> = ({profileElement}) => {
     return (<div className='p-30 profileMainDiv'>
             <ProfileNavigation />
             <div>

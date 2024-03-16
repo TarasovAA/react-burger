@@ -3,8 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "../../hooks/useForm";
 import { patchUserInfo } from "../../services/actions/auth";
 import '../index.css';
+import React from "react";
+import { TUserInfo } from "../../utils/types";
 
 export const ProfileFields = () => {
+
+    /* @ts-ignore */
     const user = useSelector(store => store.user.user);
     const dispatch = useDispatch();
 
@@ -14,10 +18,10 @@ export const ProfileFields = () => {
         password: ''
     });
 
-    const handleSubmit = e => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        let userInfo = {};
+        let userInfo: TUserInfo = {};
 
         if(values.name !== user.name)
             userInfo.name = values.name;
@@ -28,6 +32,7 @@ export const ProfileFields = () => {
         if(!!values.password)
             userInfo.password = values.password;
 
+        /* @ts-ignore */
         dispatch(patchUserInfo(userInfo));
     }
 
@@ -52,7 +57,6 @@ export const ProfileFields = () => {
             onChange={handleChange}
             />
         <EmailInput
-            icon="EditIcon"
             extraClass="mb-2"
             name='email'
             value={values.email}

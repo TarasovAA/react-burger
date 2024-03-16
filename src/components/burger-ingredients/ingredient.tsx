@@ -4,22 +4,28 @@ import styles from './burger-ingredients.module.css';
 import { useSelector } from "react-redux";
 import { useDrag } from 'react-dnd';
 import {DndDragTypes} from '../../constants/common';
-
 import { Link, useLocation } from 'react-router-dom';
+import { TIngredient } from '../../utils/types';
+import { FC } from 'react';
 
-const Ingredient = ({ item }) => {
+interface IIngredientProps{
+  item: TIngredient
+}
+
+const Ingredient: FC<IIngredientProps> = ({item}) => {
   const location = useLocation();
 
+  /* @ts-ignore */
   const burgerConstructor = useSelector(store => store.burgerConstructor)
   const {_id, type} = item;
 
-  const count = (type === 'bun') ? 
-                  burgerConstructor.head.filter(_ => _._id === item._id).length
-                  :
-                  burgerConstructor.body.filter(_ => _._id === item._id).length;
 
-  
-  
+  console.log("error", burgerConstructor);
+  const count = (type === 'bun') ? 
+                  burgerConstructor.head.filter((_: TIngredient) => _._id === item._id).length
+                  :
+                  burgerConstructor.body.filter((_: TIngredient) => _._id === item._id).length;
+                  
   const [{isDrag}, dragRef] = useDrag({
     type: (type === 'bun') ? DndDragTypes.BUN: DndDragTypes.INGREDIENT,
     item: {_id},
@@ -39,15 +45,11 @@ const Ingredient = ({ item }) => {
         {!!count && <Counter count={count} size="default" extraClass="m-1" />}
         <img src={item.image} alt={item.name} />
         <div className={`${styles.textCenteror} mt-2`}>
-          <p className="text text_type_main-medium">{item.price}<CurrencyIcon /></p>
+          <p className="text text_type_main-medium">{item.price}<CurrencyIcon type='primary' /></p>
         </div>
         <p className={`${styles.textCenteror} text text_type_main-default`}>{item.name}</p>
     </div>
   </Link>);
 }
-
-Ingredient.propTypes = {
-  item: IngredientsDataType.isRequired
-};
 
 export default Ingredient;

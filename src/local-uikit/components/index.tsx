@@ -1,11 +1,15 @@
 import './index.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 
 export const Loader = () => {
     return (<div className='loader' />);
 }
 
-export const ErrorBlock = ({message}) => {
+interface IErrorBlockProps{
+    message: string;
+}
+
+export const ErrorBlock: FC<IErrorBlockProps> = ({message}) => {
     const [visible, setVisible] = useState(false);
     
     useEffect(() => {
@@ -22,7 +26,8 @@ export const ErrorBlock = ({message}) => {
         return () => clearTimeout(timer);
     }, [message]);
 
-    return (visible && (<div className='errorBlock p-5'>
+    //TODO: как сохранить нормальное здесь нормальное описание без возврвта <></> ?
+    return (visible ? (<div className='errorBlock p-5'>
         <p className='text text_type_main text_color_inactive'>{message}</p>
-    </div>));
+    </div>): <></>);
 }

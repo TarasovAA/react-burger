@@ -17,7 +17,7 @@ export const CREATE_ORDER_REQUEST_FAILED = "CREATE_ORDER_REQUEST_FAILED";
 
 
 export const getIngredients = () => {
-    return function (dispatch) {
+    return function (dispatch : any) {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
         });
@@ -41,8 +41,8 @@ export const getIngredients = () => {
     }
 }
 
-export const refreshOrderIndex = (burger) => {
-    return function(dispatch){
+export const refreshOrderIndex = (burger: any) => {
+    return function(dispatch: any){
         //обработка данных и получение заказа
         
         dispatch({

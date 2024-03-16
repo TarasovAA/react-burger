@@ -1,10 +1,10 @@
 import Ingredient from './ingredient';
 import styles from './burger-ingredients.module.css';
-import { IngredientsDataType } from '../../utils/data'
-import PropTypes from 'prop-types'
-import {forwardRef} from 'react'
+import { IngredientsDataType } from '../../utils/data';
+import PropTypes from 'prop-types';
+import React, {forwardRef} from 'react';
 
-const IngredientsContainer = forwardRef(({ data, name }, ref) => {
+const IngredientsContainer = forwardRef<HTMLDivElement,{data: Array<any>, name: string | null}>(({ data, name }, ref: React.ForwardedRef<HTMLDivElement>) => {
 
     return (
         <div ref={ref}>

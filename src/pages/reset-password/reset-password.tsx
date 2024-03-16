@@ -4,9 +4,11 @@ import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { resetPassword } from '../../services/actions/auth';
 import '../index.css'
+import React from 'react';
 
 const ResetPassword = () => {
     const dispatch = useDispatch();
+     /* @ts-ignore */
     const {isForgotPasswordEmailSent, isPasswordSet} = useSelector(store => store.user);
 
     const {values, handleChange} = useForm({
@@ -14,9 +16,10 @@ const ResetPassword = () => {
         code: ''
     });
     
-    const handleSubmit = e => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
+          /* @ts-ignore */
         dispatch(resetPassword({password: values.newPassword, token: values.code}));
     }
 

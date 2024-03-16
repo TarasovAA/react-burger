@@ -5,20 +5,32 @@ import style from './burger-constructor.module.css';
 import { DndDragTypes } from '../../constants/common'
 
 import {SET_CONSTRUCTOR_BUNS} from '../../services/actions/index';
+import React, { FC } from 'react';
+import { TIngredient } from '../../utils/types';
 
-const BunsConstructor = ({children}) => {
+interface IBunsConstructorProps{
+    children: React.ReactNode
+};
+
+interface IDragItem {
+    _id: string
+  }
+
+const BunsConstructor: FC<IBunsConstructorProps> = ({children}) => {
+    {/* @ts-ignore */}
     const burgerHead = useSelector(store => store.burgerConstructor.head);
+     {/* @ts-ignore */}
     const allIngredients = useSelector(store => store.allIngredients.allIngredients);
     
 
     const dispatch = useDispatch();
 
-    const [{isOver},dropRef] = useDrop({
+    const [{isOver}, dropRef] = useDrop<IDragItem, unknown, {isOver: boolean}>({
         accept: DndDragTypes.BUN,
-        drop(item){
+        drop(item: IDragItem): void{
             dispatch({
                 type: SET_CONSTRUCTOR_BUNS,
-                payload: allIngredients.find(i => i._id === item._id)
+                payload: allIngredients.find((i: TIngredient) => i._id === item._id)
             });
          },
         collect: monitor => ({
@@ -44,6 +56,7 @@ const BunsConstructor = ({children}) => {
                     isLocked = {true}
                     text = {'Выберите булку'}
                     thumbnail = {''}
+                    price={0}
                     />
             )}
 
@@ -62,7 +75,8 @@ const BunsConstructor = ({children}) => {
                         type= 'bottom'
                         isLocked = {true}
                         text = {'Выберите булку'}
-                        />
+                        thumbnail = {''}
+                        price={0} />
                 )}
         </div>
     );

@@ -21,6 +21,7 @@ const Exit = () => {
         <Button
             htmlType='button'
             onClick={() => {
+                /* @ts-ignore */
                 dispatch(logoutUser());
                 navigate("/");
             }}>

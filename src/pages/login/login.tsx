@@ -5,6 +5,7 @@ import { loginUser } from '../../services/actions/auth';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
+import React from 'react';
 
 const Login = () => {
     const {values, handleChange, setValues} = useForm({
@@ -12,13 +13,15 @@ const Login = () => {
         password: ''
     });
 
+    /* @ts-ignore */
     const errorMessage = useSelector(store => store.user.errorMessage);
    
     const dispatch = useDispatch();
 
-    const loginClickHandler = (e) => {
+    const loginClickHandler = (e: React.FormEvent) => {
         e.preventDefault();
 
+        /* @ts-ignore */
         dispatch(loginUser({
             email: values.email,
             password: values.password

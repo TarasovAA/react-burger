@@ -1,7 +1,7 @@
 import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {useEffect} from "react";
+import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { tryResetPassword } from "../../services/actions/auth";
 import { cleaerResetPasswordResponse } from "../../services/reducers/auth";
@@ -19,17 +19,20 @@ const ForgotPassword = () => {
     })
 
     useEffect(() => {
+        /* @ts-ignore */
         dispatch(cleaerResetPasswordResponse());
     }, [])
 
-    const handleSubmition = (e) => {
+    const handleSubmition = (e: React.FormEvent) => {
         e.preventDefault();
 
+        /* @ts-ignore */
         dispatch(tryResetPassword(values.email));
 
         
     }
     
+    /* @ts-ignore */
     const {isForgotPasswordEmailSent} = useSelector(store => store.user);
     useEffect(() => {
         if(isForgotPasswordEmailSent)

@@ -1,43 +1,59 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import style from './burger-constructor.module.css';
 
-import { useState, useRef, useEffect } from 'react';
-import {v4  as uuidv4} from 'uuid';
+import { useState, useRef, useEffect, FC } from 'react';
+
+import {v4 as uuidv4} from 'uuid';
 import { useDrag, useDrop } from 'react-dnd';
 import { DndDragTypes } from '../../constants/common';
-import {PropTypes} from 'prop-types';
-import { IngredientsDataType } from '../../utils/data';
+import { Identifier } from 'typescript';
+import { TIngredient } from '../../utils/types';
+import { number } from 'prop-types';
 
-const IngredientElement = ({ingredient, index, handleClose, moveIngredient}) => {
+interface IDragItem {
+    index: number
+    id: string
+    type: string
+  }
 
-    const [constructorId, serConstructorId] = useState(null);
+interface IIngredientElementProps{
+    ingredient: TIngredient;
+    index: number;
+    handleClose: (index: number) => void;
+    moveIngredient: (draggingIndex: number,  hoverIndex: number) => void
+}
+
+const IngredientElement : FC<IIngredientElementProps> = ({ingredient, index, handleClose, moveIngredient}) => {
+
+    const [constructorId, setConstructorId] = useState(null);
 
     useEffect(() => {
-        serConstructorId(uuidv4())
+        {/* @ts-ignore */}
+        setConstructorId(uuidv4())
     }, []);
     
     const ref = useRef(null);
 
-    const [,dragRef] = useDrag({
+    const [,dragRef] = useDrag<{index: number, constructorId: string | null}, unknown, void>({
         type: DndDragTypes.CONSTRUCTOR_INGREDIENT,
         item: {index, constructorId}
     })
 
     //TODO: зачем нужен handlerId и за что отвечает data-handler-id
-    const [{ handlerId, isHover },dropRef] = useDrop({
+    const [{ handlerId, isHover }, dropRef] = useDrop<IDragItem, unknown, {handlerId: Identifier | null, isHover: boolean }>({
         accept: DndDragTypes.CONSTRUCTOR_INGREDIENT,
-        collect(monitor){
+        collect(monitor: any){
             return {
                 handlerId: monitor.getHandlerId(),
                 isHover: monitor.isOver()
               }
         },
-        hover(item, monitor){
+        hover(item: IDragItem, monitor){
             if(!ref.current)
                 return;
 
-            const hoverIndex = index;
-            const draggingIndex = item.index;
+            const hoverIndex: number = index;
+            const draggingIndex: number = item.index;
 
             if(hoverIndex === draggingIndex)
                 return;
@@ -56,6 +72,8 @@ const IngredientElement = ({ingredient, index, handleClose, moveIngredient}) => 
             // if(draggingIndex < hoverIndex && dragingPointInHoverCoordinates < hoverElementMiddlePoiny)
             //     return;
 
+            console.log('b1', draggingIndex);
+            console.log('b2', hoverIndex);
             moveIngredient(draggingIndex, hoverIndex);
 
             item.index = hoverIndex;
@@ -66,24 +84,17 @@ const IngredientElement = ({ingredient, index, handleClose, moveIngredient}) => 
     dropRef(dragRef(ref));
     return (
         <div className={`${style.scrollerItem} pr-5`} ref={ref} data-handler-id={handlerId}>
-        <div className={`${style.dragIconMarging} pr-3`}><DragIcon /> </div>
+        <div className={`${style.dragIconMarging} pr-3`}><DragIcon type='primary' /> </div>
         <ConstructorElement
             isLocked = {false}
             text = {ingredient.name}
             price ={ingredient.price}
             thumbnail = {ingredient.image}
             handleClose = {() => handleClose(index)}
-            extraClass={isHover && style.isHover}
+            extraClass={isHover ? style.isHover : ''}
             />
     </div>
     )
-}
-
-IngredientElement.propTypes = {
-    ingredient: IngredientsDataType.isRequired,
-    index: PropTypes.number.isRequired,
-    handleClose: PropTypes.func.isRequired,
-    moveIngredient: PropTypes.func.isRequired
 }
 
 export default IngredientElement;

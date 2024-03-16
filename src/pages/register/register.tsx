@@ -5,6 +5,7 @@ import { createNewUser } from '../../services/actions/auth';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
+import { TUserInfo } from '../../utils/types';
 
 
 const Register = () => {
@@ -16,16 +17,20 @@ const Register = () => {
 
 
     const dispatch = useDispatch();
+     /* @ts-ignore */
     const {user, errorMessage} = useSelector(store => store.user);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        dispatch(createNewUser({
+        const userInfo: TUserInfo = {
             email: values.userEmail,
             password: values.userPassword,
             name: values.userName
-        }));
+        };
+
+         /* @ts-ignore */
+        dispatch(createNewUser(userInfo));
 
     }
 

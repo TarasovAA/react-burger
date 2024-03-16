@@ -32,7 +32,7 @@ function App() {
 
   console.log(state);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   useEffect(() => {
     dispatch(getUserInfo());

@@ -4,7 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const AppHeader = () => {
-    const {user} = useSelector(store => store.user);
+    const {user} = useSelector((store: any) => store.user);
 
     return (
         <header className={styles.header}>
@@ -13,7 +13,7 @@ const AppHeader = () => {
                     <NavLink to='/' className={`${styles.icon} m-2 pr-5 pl-5 pt-4 pb-4`}>
                         {
                             ({isActive}) => (<>
-                                <BurgerIcon type={!isActive && "secondary"}/>
+                                <BurgerIcon type={!isActive ? "secondary" : "primary"}/>
                                 <p className={`text text_type_main-default ${!isActive && 'text_color_inactive'} ml-2`}>Конструктор</p>
                             </>
 
@@ -36,7 +36,7 @@ const AppHeader = () => {
                 <NavLink to="/profile" className={styles.icon}>
                     {
                         ({isActive}) => (<>
-                            <ProfileIcon type={!isActive && "secondary"}/>
+                            <ProfileIcon type={!isActive ? "secondary" : "primary"}/>
                             <p className={`text text_type_main-default ${!isActive && 'text_color_inactive'} ml-2`}>{user ? user.name : 'Личный кабинет'}</p>
                         </>)
                     }

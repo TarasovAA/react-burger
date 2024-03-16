@@ -9,15 +9,18 @@ import IngredientElement from './ingredient-element'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useCallback } from 'react'
 import {v4  as uuidv4} from 'uuid';
+import { TIngredient, TConstructorIngredient } from '../../utils/types';
 
 
 const IngredientsConstructor = () => {
-    const burgerBody = useSelector(store => store.burgerConstructor.body);
-    const allIngredients = useSelector(store => store.allIngredients.allIngredients);
+    /* @ts-ignore */
+    const burgerBody: Array<TConstructorIngredient> = useSelector(store => store.burgerConstructor.body);
+    /* @ts-ignore */
+    const allIngredients: Array<TIngredient> = useSelector(store => store.allIngredients.allIngredients);
 
     const dispatch = useDispatch();
 
-    const [{isOver},dropRef] = useDrop({
+    const [{isOver},dropRef] = useDrop<{_id: string}, unknown, {isOver: boolean}>({
         accept: DndDragTypes.INGREDIENT,
         drop(item){
             console.log(allIngredients.find(i => i._id === item._id));
@@ -34,20 +37,22 @@ const IngredientsConstructor = () => {
         })
     });
     
-    const deleteIngredient = useCallback((index) => {
+    const deleteIngredient = useCallback((index: number) => {
         dispatch({
             type: DELETE_INGREDIENT_DATA,
             index: index
             })
         }, []);
 
-    const handleDraggingIngredient = useCallback((draggingIndex, hoverIndex) => {
-        const newBurgerBody = [...burgerBody];
+    const handleDraggingIngredient = useCallback((draggingIndex: number, hoverIndex:number) => {
+        const newBurgerBody: Array<TConstructorIngredient> = [...burgerBody];
 
         const value = newBurgerBody[draggingIndex];
         newBurgerBody[draggingIndex] = newBurgerBody[hoverIndex];
         newBurgerBody[hoverIndex] = value;
 
+        console.log('a1', draggingIndex);
+        console.log('a2', hoverIndex);
         dispatch({
             type: RESET_INGREDIENT_DATA,
             payload: newBurgerBody
@@ -55,7 +60,7 @@ const IngredientsConstructor = () => {
         
     }, [burgerBody]);
 
-    const renderIngredient = useCallback((item, index) => {
+    const renderIngredient = useCallback((item: TConstructorIngredient, index: number) => {
         const {uniqueId, ...ingredient} = item;
         return (
             <IngredientElement key={uniqueId}
@@ -78,8 +83,10 @@ const IngredientsConstructor = () => {
         }
             ))
             : (
+                 /* @ts-ignore */
                 <ConstructorElement
-                text = {'Выберите начинку'} />
+                text = {'Выберите начинку'}
+                />
             )}
     </div>);
 }

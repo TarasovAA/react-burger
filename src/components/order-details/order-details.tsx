@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Loader } from '../../local-uikit/components';
 
 const OrderDetails = () => {
+   {/* @ts-ignore */}
    const {orderNamber, isCreating} = useSelector(store => store.order)
    
    return (
@@ -20,7 +21,8 @@ const OrderDetails = () => {
                   <p className="text text_type_main-large">индентификатор заказа</p>
                </div>
                <div className="mt-15">
-                  <CheckMarkIcon />
+                  <CheckMarkIcon
+                   type='primary'/>
                </div>
                <div className='mt-15'>
                   <p className="text text_type_main-medium ">Ваш заказ начали говить</p>
