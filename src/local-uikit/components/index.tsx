@@ -10,7 +10,7 @@ interface IErrorBlockProps{
 }
 
 export const ErrorBlock: FC<IErrorBlockProps> = ({message}) => {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState<boolean>(false);
     
     useEffect(() => {
         if(!message){

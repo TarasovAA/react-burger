@@ -29,7 +29,7 @@ const OrderCounter: FC<IOrderCounterProps> = ({ count }) => {
 
 const BurgerConstructor = () => {
     const navigate = useNavigate();
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState<number>(0);
 
     {/* @ts-ignore */}
     const burger = useSelector(store => store.burgerConstructor)

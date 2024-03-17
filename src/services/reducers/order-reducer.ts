@@ -1,8 +1,25 @@
+import { TOrderResponseBody } from '../../utils/types';
 import {CREATE_ORDER_REQUEST,
         CREATE_ORDER_REQUEST_SUCCESS,
         CREATE_ORDER_REQUEST_FAILED} from '../actions';
 
-const initialState = {
+interface IOrderState{
+    isCreating: boolean;
+    isCreated: boolean;
+    orderNamber: number | null | unknown;
+    name: string | null;
+    isCreatingError: boolean;
+    creatingErrorMessage: string | null | undefined;
+}
+
+interface IOrderAction{
+    type: typeof CREATE_ORDER_REQUEST | typeof CREATE_ORDER_REQUEST_SUCCESS | typeof CREATE_ORDER_REQUEST_FAILED;
+    payload: TOrderResponseBody;
+    errorMessage: string | null | undefined;
+}
+
+
+const initialState: IOrderState = {
     isCreating: false,
     isCreated: false,
     orderNamber: null,
@@ -12,7 +29,7 @@ const initialState = {
 }
 
 
-const orderReducer = (state = initialState, action) => {
+const orderReducer = (state: IOrderState = initialState, action: IOrderAction) => {
     switch(action.type){
         case CREATE_ORDER_REQUEST:{
             return {

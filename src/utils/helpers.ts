@@ -1,6 +1,6 @@
 import { baseUrl } from "../constants/common";
 
-export function handleRequest(url: string, options:RequestInit = {}) : Promise<any> {
+export function handleRequest<T>(url: string, options:RequestInit = {}) : Promise<T> {
     return fetch(url, options)
             .then(checkReponse)
             .then(data => {

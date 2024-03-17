@@ -4,7 +4,7 @@ import allIngredientsReducer from './all-ingredients-reducer';
 import burgerConstructorReducer from './burger-constructor-reducer';
 import orderReducer from './order-reducer';
 
-import {tryResetPasswordReducer, userReducer} from './auth';
+import {userReducer} from './auth';
 
 export const rootReducer = combineReducers({
     allIngredients: allIngredientsReducer,

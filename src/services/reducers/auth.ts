@@ -8,19 +8,36 @@ import {
     logoutUser,
     resetPassword
 } from "../actions/auth";
+import { TUserInfo } from "../../utils/types";
+
+interface IUserState{
+    isCreateNewUserPending: boolean;
+    errorMessage: string | null | undefined;
+    isForgotPasswordEmailSent: boolean;
+    isPasswordSet: boolean;
+    user: TUserInfo | null;
+    isAuthChecked: boolean;
+    message: string | null;
+
+    tryResetPasswordSuccess: string | null;
+}
+
+const initialState : IUserState = {
+    isCreateNewUserPending: false,
+    errorMessage: '',
+
+    isForgotPasswordEmailSent: false,
+    isPasswordSet: false,
+    user: null,
+    isAuthChecked: false,
+    message: null,
+
+    tryResetPasswordSuccess: null
+}
 
 const userSlice = createSlice({
     name:"auth/user",
-    initialState: {
-        isCreateNewUserPending: false,
-        errorMessage: '',
-
-        isForgotPasswordEmailSent: false,
-        isPasswordSet: false,
-        user: null,
-        isAuthChecked: false
-    },
-
+    initialState,
     reducers: {
         cleaerResetPasswordResponse(state, action) {
             state.tryResetPasswordSuccess = null;
@@ -80,4 +97,4 @@ const userSlice = createSlice({
 
 export const userReducer = userSlice.reducer;
 
-export const {checkAuth, cleaerResetPasswordResponse} = userSlice.actions;
+export const {cleaerResetPasswordResponse} = userSlice.actions;

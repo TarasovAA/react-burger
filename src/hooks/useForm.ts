@@ -1,7 +1,11 @@
 import { ChangeEvent, useState } from "react";
 
-export const useForm = (props: { [name: string]: string}) => {
-    const [values, setValues] = useState({
+interface IFormProps{
+    [name: string]: string;
+}
+
+export const useForm = (props: IFormProps) => {
+    const [values, setValues] = useState<{[tk in keyof IFormProps]: string}>({
         ...props
     });
 

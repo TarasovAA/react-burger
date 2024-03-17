@@ -1,13 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {handleRequest, fetchWithRefresh} from "../../utils/helpers";
 import {baseUrl} from '../../constants/common';
+import { TResponseBody, TUserLogInResponseBody } from "../../utils/types";
+
+
 
 export const tryResetPassword = createAsyncThunk(
     "auth/tryResetPassword",
     async (email) => {
         const requestBody = {email};
 
-        return await handleRequest(baseUrl + '/api/password-reset', {
+        return await handleRequest<TResponseBody>(baseUrl + '/api/password-reset', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -21,7 +24,7 @@ export const tryResetPassword = createAsyncThunk(
 export const resetPassword = createAsyncThunk(
     "auth/resetPassword",
     async (requestBody) => {
-        return await handleRequest(baseUrl + '/api/password-reset/reset', {
+        return await handleRequest<TResponseBody>(baseUrl + '/api/password-reset/reset', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -72,7 +75,7 @@ export const patchUserInfo = createAsyncThunk(
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async (userCredentials) => {
-        const request = await handleRequest(baseUrl + '/api/auth/login', {
+        const request = await handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/login', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -81,8 +84,10 @@ export const loginUser = createAsyncThunk(
             body: JSON.stringify(userCredentials)
         })
         .then(res =>{
+            let accessToken: string = res.accessToken.split("Bearer ").pop() || '';
+
             localStorage.setItem("refreshToken",  res.refreshToken); 
-            localStorage.setItem("accessToken",  res.accessToken.split("Bearer ").pop());
+            localStorage.setItem("accessToken",  accessToken);
 
             return res.user;
         })
@@ -95,7 +100,7 @@ export const createNewUser = createAsyncThunk(
     "auth/createNewUser",
     async (userCredentials) => {
         
-        const request =  await handleRequest(baseUrl + '/api/auth/register', {
+        const request =  await handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/register', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -104,8 +109,10 @@ export const createNewUser = createAsyncThunk(
             body: JSON.stringify(userCredentials)
         })
         .then(res =>{
+            let accessToken: string = res.accessToken.split("Bearer ").pop() || '';
+
             localStorage.setItem("refreshToken",  res.refreshToken); 
-            localStorage.setItem("accessToken",  res.accessToken.split("Bearer ").pop());
+            localStorage.setItem("accessToken",  accessToken);
 
             return res.user;
         });
@@ -117,7 +124,7 @@ export const createNewUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
     "auth/logout",
     async () => {
-        const request = await handleRequest(baseUrl + '/api/auth/logout', {
+        const request = await handleRequest<TResponseBody>(baseUrl + '/api/auth/logout', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

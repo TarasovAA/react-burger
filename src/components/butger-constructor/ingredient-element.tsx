@@ -25,14 +25,14 @@ interface IIngredientElementProps{
 
 const IngredientElement : FC<IIngredientElementProps> = ({ingredient, index, handleClose, moveIngredient}) => {
 
-    const [constructorId, setConstructorId] = useState(null);
+    const [constructorId, setConstructorId] = useState<string|null>(null);
 
     useEffect(() => {
         {/* @ts-ignore */}
         setConstructorId(uuidv4())
     }, []);
     
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     const [,dragRef] = useDrag<{index: number, constructorId: string | null}, unknown, void>({
         type: DndDragTypes.CONSTRUCTOR_INGREDIENT,

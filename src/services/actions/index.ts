@@ -1,8 +1,9 @@
 import {baseUrl} from '../../constants/common';
 import { handleRequest, fetchWithRefresh } from '../../utils/helpers';
+import { TGetIngredientsResponseBody, TIngredient } from '../../utils/types';
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
-export const GET_INGREDIENTS_REQUEST_SUCCESS = 'GET_INGREDIAETS_REQUEST_SUCCESS';
+export const GET_INGREDIENTS_REQUEST_SUCCESS = 'GET_INGREDIENTS_REQUEST_SUCCESS';
 export const GET_INGREDIENTS_REQUEST_FAILED = 'GET_INGREDIENTS_REQUEST_FAILED';
 
 export const ADD_INGREDIENT_DATA = 'ADD_CONSTRUCTOR_INGREDIENT';
@@ -15,14 +16,19 @@ export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
 export const CREATE_ORDER_REQUEST_SUCCESS = "CREATE_ORDER_REQUEST_SUCCESS";
 export const CREATE_ORDER_REQUEST_FAILED = "CREATE_ORDER_REQUEST_FAILED";
 
+export interface IBurgerConstructorState{
+    head: Array<TIngredient>
+    body: Array<TIngredient>
+}
 
 export const getIngredients = () => {
-    return function (dispatch : any) {
+    /* @ts-ignore */
+    return function (dispatch) {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
         });
 
-        handleRequest(baseUrl + '/api/ingredients')
+        handleRequest<TGetIngredientsResponseBody>(baseUrl + '/api/ingredients')
             .then(result => {
                 dispatch({
                     type: GET_INGREDIENTS_REQUEST_SUCCESS,
@@ -41,8 +47,9 @@ export const getIngredients = () => {
     }
 }
 
-export const refreshOrderIndex = (burger: any) => {
-    return function(dispatch: any){
+export const refreshOrderIndex = (burger: IBurgerConstructorState) => {
+    /* @ts-ignore */
+    return function(dispatch){
         //обработка данных и получение заказа
         
         dispatch({
