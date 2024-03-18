@@ -1,7 +1,12 @@
+import { FC } from 'react';
 import styles from './modals-overlay.module.css';
-import PropTypes from 'prop-types'
 
-const ModalOverlay = ({ children, onClick }) => {
+interface IModalOverlayProps{
+    children?: React.ReactNode;
+    onClick: () => void;
+}
+
+const ModalOverlay: FC<IModalOverlayProps> = ({ children, onClick }) => {
     return (
         <div className={styles.overlay} onClick={e => {
             e.stopPropagation();
@@ -11,11 +16,6 @@ const ModalOverlay = ({ children, onClick }) => {
             {children}
         </div>
     )
-}
-
-
-ModalOverlay.propTypes = {
-    onClick: PropTypes.func.isRequired
 }
 
 export default ModalOverlay;

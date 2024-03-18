@@ -1,7 +1,5 @@
 import Ingredient from './ingredient';
 import styles from './burger-ingredients.module.css';
-import { IngredientsDataType } from '../../utils/data';
-import PropTypes from 'prop-types';
 import React, {forwardRef} from 'react';
 
 const IngredientsContainer = forwardRef<HTMLDivElement,{data: Array<any>, name: string | null}>(({ data, name }, ref: React.ForwardedRef<HTMLDivElement>) => {
@@ -15,10 +13,5 @@ const IngredientsContainer = forwardRef<HTMLDivElement,{data: Array<any>, name: 
         </div>
     );
 })
-
-IngredientsContainer.propTypes = {
-    data: PropTypes.arrayOf(IngredientsDataType).isRequired,
-    name: PropTypes.string
-}
 
 export default IngredientsContainer;

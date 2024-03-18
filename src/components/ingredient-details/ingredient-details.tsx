@@ -3,13 +3,15 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Loader } from '../../local-uikit/components';
 import { useMemo } from 'react';
+import { TIngredient } from '../../utils/types';
 
 const IngredientDetails = () => {
+    {/* @ts-ignore */}
     const {allIngredients} = useSelector(store => store.allIngredients);
 
     const {id} = useParams();
 
-    const item = useMemo(() => allIngredients.find(i => i._id === id), [allIngredients, id]);
+    const item = useMemo(() => allIngredients.find((i: TIngredient) => i._id === id), [allIngredients, id]);
     
     return (item ? (<div className={styles.ingredientForm}>
         <div>
