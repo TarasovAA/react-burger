@@ -4,7 +4,13 @@ interface IFormProps{
     [name: string]: string;
 }
 
-export const useForm = (props: IFormProps) => {
+interface IUseForm{
+    values: {[tk in keyof IFormProps]: string};
+    handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    setValues: (props: {[tk in keyof IFormProps]: string}) => void;
+}
+
+export const useForm = (props: IFormProps): IUseForm => {
     const [values, setValues] = useState<{[tk in keyof IFormProps]: string}>({
         ...props
     });
