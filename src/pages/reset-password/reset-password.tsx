@@ -16,7 +16,7 @@ const ResetPassword = () => {
         code: ''
     });
     
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
           /* @ts-ignore */

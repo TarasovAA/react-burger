@@ -20,7 +20,7 @@ const Register = () => {
      /* @ts-ignore */
     const {user, errorMessage} = useSelector(store => store.user);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const userInfo: TUserInfo = {

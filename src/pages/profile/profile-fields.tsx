@@ -18,7 +18,7 @@ export const ProfileFields = () => {
         password: ''
     });
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         let userInfo: TUserInfo = {};

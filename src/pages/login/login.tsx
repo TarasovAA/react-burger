@@ -18,7 +18,7 @@ const Login = () => {
    
     const dispatch = useDispatch();
 
-    const loginClickHandler = (e: React.FormEvent) => {
+    const loginClickHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         /* @ts-ignore */

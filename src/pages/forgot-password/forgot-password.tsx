@@ -23,7 +23,7 @@ const ForgotPassword = () => {
         dispatch(cleaerResetPasswordResponse());
     }, [])
 
-    const handleSubmition = (e: React.FormEvent) => {
+    const handleSubmition = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         /* @ts-ignore */
