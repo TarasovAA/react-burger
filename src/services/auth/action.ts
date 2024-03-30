@@ -1,24 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api";
 
-
-
 export const tryResetPassword = createAsyncThunk(
-    "user/tryResetPassword",
+    "auth/tryResetPassword",
     async (email) => {
         return await api.startResetingPassword({email});
     }
 )
 
 export const resetPassword = createAsyncThunk(
-    "user/resetPassword",
+    "auth/resetPassword",
     async (requestBody) => {
         return await api.finishResettinPassword(requestBody);
     }
 )
 
 export const getUserInfo = createAsyncThunk(
-    "user/getUserInfo",
+    "auth/getUserInfo",
     async () => {
         const token = localStorage.getItem('accessToken');
 
@@ -31,7 +29,7 @@ export const getUserInfo = createAsyncThunk(
 )
 
 export const patchUserInfo = createAsyncThunk(
-    "user/patchUserInfo",
+    "auth/patchUserInfo",
     async (userInfo) => {
         const token = localStorage.getItem('accessToken');
         
