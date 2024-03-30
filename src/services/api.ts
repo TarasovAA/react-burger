@@ -7,7 +7,9 @@ import {
     TGetIngredientsResponseBody,
     TUserLogInResponseBody,
     TResponseBody,
-    TOrderResponseBody
+    TOrderResponseBody,
+    TGetUserResponseBody,
+    TRefreshUserResponseBody
 } from "../utils/types";
 
 import { baseUrl } from "../constants/common";
@@ -72,8 +74,8 @@ export class Api{
     }
 
     //user
-    getUser = (token: string): Promise<any> => {
-        return fetchWithRefresh(baseUrl + '/api/auth/user', {
+    getUser = (token: string): Promise<TGetUserResponseBody> => {
+        return fetchWithRefresh<TGetUserResponseBody>(baseUrl + '/api/auth/user', {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -83,8 +85,8 @@ export class Api{
         });
     }
 
-    refreshUser = (userInfo: any, token: string): Promise<any> => {
-        return fetchWithRefresh(baseUrl + '/api/auth/user', {
+    refreshUser = (userInfo: any, token: string): Promise<TGetUserResponseBody> => {
+        return fetchWithRefresh<TRefreshUserResponseBody>(baseUrl + '/api/auth/user', {
             method: "PATCH",
             headers: {
                 'Accept': 'application/json',
@@ -103,7 +105,7 @@ export class Api{
 
 
     createOrders = (requestBody: any, token: string): Promise<TOrderResponseBody>  => {
-        return fetchWithRefresh(baseUrl + '/api/orders', {
+        return fetchWithRefresh<TOrderResponseBody>(baseUrl + '/api/orders', {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

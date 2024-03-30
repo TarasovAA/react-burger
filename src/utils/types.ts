@@ -42,17 +42,19 @@ export type TResponseBody<TDataKey extends string = '', TDataType = {}> = {
   message?: string;
 }
 
-  export type TOrderResponseBody = TResponseBody<'order', TOrder> & { name: string; }
+export type TOrderResponseBody = TResponseBody<'order', TOrder> & { name: string; }
 
-  export type TUserLogInResponseBody = TResponseBody<'user', Omit<TUserInfo, 'password'>> & {
+export type TUserLogInResponseBody = TResponseBody<'user', Omit<TUserInfo, 'password'>> & {
     accessToken: string,
     refreshToken: string,
   }
 
-  export type TGetIngredientsResponseBody = TResponseBody<'data', Array<TIngredient>>;
+export type TGetIngredientsResponseBody = TResponseBody<'data', Array<TIngredient>>;
 
+export type TGetUserResponseBody = TResponseBody<'user', Omit<TUserInfo, 'password'>>
 
-  
+export type TRefreshUserResponseBody = TResponseBody<'user', TUserInfo>
+
 interface CustomBody<T extends any> extends Body {
   json(): Promise<T>;
 }

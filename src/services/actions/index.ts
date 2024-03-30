@@ -2,19 +2,25 @@ import { TIngredient } from '../../utils/types';
 
 import api from "../api";
 
-export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
-export const GET_INGREDIENTS_REQUEST_SUCCESS = 'GET_INGREDIENTS_REQUEST_SUCCESS';
-export const GET_INGREDIENTS_REQUEST_FAILED = 'GET_INGREDIENTS_REQUEST_FAILED';
+const ingredients = "INGREDIENTS";
 
-export const ADD_INGREDIENT_DATA = 'ADD_CONSTRUCTOR_INGREDIENT';
-export const DELETE_INGREDIENT_DATA = 'DELETE_CONSTRUCTOR_INGREDIENT_DATA';
-export const SET_CONSTRUCTOR_BUNS = 'SET_CONSTRUCTOR_BUNS';
-export const RESET_INGREDIENT_DATA = 'RESET_INGREDIENT_DATA'
-export const CLEAR_CONSTRUCTOR = 'CLEAR_CONSTRUCTOR';
+export const GET_INGREDIENTS_REQUEST = `${ingredients}/GET_REQUEST`;
+export const GET_INGREDIENTS_REQUEST_SUCCESS = `${ingredients}/GET_INGREDIENTS_SUCCESS`;
+export const GET_INGREDIENTS_REQUEST_FAILED = `${ingredients}/GET_REQUEST_FAILED`;
 
-export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
-export const CREATE_ORDER_REQUEST_SUCCESS = "CREATE_ORDER_REQUEST_SUCCESS";
-export const CREATE_ORDER_REQUEST_FAILED = "CREATE_ORDER_REQUEST_FAILED";
+const constructor = "CONSTRUCTOR";
+
+export const ADD_INGREDIENT_DATA = `${constructor}/ADD_INGREDIENT`;
+export const DELETE_INGREDIENT_DATA = `${constructor}/DELETE_INGREDIENT`;
+export const SET_CONSTRUCTOR_BUNS = `${constructor}/SET_BUNS`;
+export const RESET_INGREDIENT_DATA = `${constructor}/RESET_INGREDIENT`;
+export const CLEAR_CONSTRUCTOR = `${constructor}/CLEAR`;
+
+const order = "ORDER";
+
+export const CREATE_ORDER_REQUEST = `${order}/CREATE_REQUEST`;
+export const CREATE_ORDER_REQUEST_SUCCESS = `${order}/CREATE_REQUEST_SUCCESS`;
+export const CREATE_ORDER_REQUEST_FAILED = `${order}/CREATE_REQUEST_FAILED`;
 
 
 export interface IBurgerConstructorState{
@@ -92,7 +98,5 @@ export const refreshOrderIndex = (burger: IBurgerConstructorState) => {
                 errorMessage: err
             });
         })
-
-        
     };
 }
