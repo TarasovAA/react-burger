@@ -4,7 +4,7 @@ import { useDrop } from 'react-dnd';
 import style from './burger-constructor.module.css';
 import { DndDragTypes } from '../../constants/common'
 
-import {SET_CONSTRUCTOR_BUNS} from '../../services/actions/index';
+import {SET_CONSTRUCTOR_BUNS} from '../../services/constructor/action';
 import React, { FC } from 'react';
 import { TIngredient } from '../../utils/types';
 

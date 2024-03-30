@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { tryResetPassword } from "../../services/actions/auth";
-import { cleaerResetPasswordResponse } from "../../services/reducers/auth";
+import { tryResetPassword } from "../../services/auth/action";
+import { cleaerResetPasswordResponse } from "../../services/auth/reducer";
 import { useForm } from "../../hooks/useForm";
 import '../index.css'
 

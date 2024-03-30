@@ -4,21 +4,21 @@ import api from "../api";
 
 
 export const tryResetPassword = createAsyncThunk(
-    "auth/tryResetPassword",
+    "user/tryResetPassword",
     async (email) => {
         return await api.startResetingPassword({email});
     }
 )
 
 export const resetPassword = createAsyncThunk(
-    "auth/resetPassword",
+    "user/resetPassword",
     async (requestBody) => {
         return await api.finishResettinPassword(requestBody);
     }
 )
 
 export const getUserInfo = createAsyncThunk(
-    "auth/getUserInfo",
+    "user/getUserInfo",
     async () => {
         const token = localStorage.getItem('accessToken');
 
@@ -31,7 +31,7 @@ export const getUserInfo = createAsyncThunk(
 )
 
 export const patchUserInfo = createAsyncThunk(
-    "auth/patchUserInfo",
+    "user/patchUserInfo",
     async (userInfo) => {
         const token = localStorage.getItem('accessToken');
         
@@ -60,8 +60,8 @@ export const loginUser = createAsyncThunk(
     }
 )
 
-export const createNewUser = createAsyncThunk(
-    "auth/createNewUser",
+export const registerNewUser = createAsyncThunk(
+    "auth/registerNewUser",
     async (userCredentials) => {
         
         const request =  await api.sighUp(userCredentials)

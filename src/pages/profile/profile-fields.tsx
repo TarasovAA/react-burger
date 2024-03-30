@@ -1,7 +1,7 @@
 import { Input, EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "../../hooks/useForm";
-import { patchUserInfo } from "../../services/actions/auth";
+import { patchUserInfo } from "../../services/auth/action";
 import '../index.css';
 import React from "react";
 import { TUserInfo } from "../../utils/types";

@@ -1,7 +1,7 @@
 import { TOrderResponseBody } from '../../utils/types';
 import {CREATE_ORDER_REQUEST,
         CREATE_ORDER_REQUEST_SUCCESS,
-        CREATE_ORDER_REQUEST_FAILED} from '../actions';
+        CREATE_ORDER_REQUEST_FAILED} from '../order/action';
 
 interface IOrderState{
     isCreating: boolean;

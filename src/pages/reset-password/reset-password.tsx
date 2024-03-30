@@ -2,7 +2,7 @@ import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burg
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
-import { resetPassword } from '../../services/actions/auth';
+import { resetPassword } from '../../services/auth/action';
 import '../index.css'
 import React from 'react';
 

@@ -1,12 +1,11 @@
-import { useState, useEffect, FC } from 'react'
-import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
-import PropTypes from 'prop-types'
-import styles from './burger-constructor.module.css'
-import {useModal} from '../../hooks/useModal'
+import { useState, useEffect, FC } from 'react';
+import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
+import styles from './burger-constructor.module.css';
+import {useModal} from '../../hooks/useModal';
 import { useSelector, useDispatch } from 'react-redux';
-import {refreshOrderIndex} from '../../services/actions';
+import {refreshOrderIndex} from '../../services/order/action';
 
 import BunsConstructor from './buns-constructor'
 import IngredientsConstructor from './ingredients-constructor';

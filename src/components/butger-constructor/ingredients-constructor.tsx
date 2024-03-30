@@ -3,7 +3,7 @@ import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
 import {ADD_INGREDIENT_DATA,
     DELETE_INGREDIENT_DATA,
-    RESET_INGREDIENT_DATA} from '../../services/actions/index';
+    RESET_INGREDIENT_DATA} from '../../services/constructor/action';
 import { DndDragTypes } from '../../constants/common'
 import IngredientElement from './ingredient-element'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';

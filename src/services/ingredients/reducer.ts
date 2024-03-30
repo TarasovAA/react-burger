@@ -2,7 +2,7 @@ import { TIngredient } from '../../utils/types';
 import {GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_REQUEST_SUCCESS,
     GET_INGREDIENTS_REQUEST_FAILED}
-    from '../actions/index';
+    from './action';
 
 interface IAllIngredientsIngredientAction{
     type: typeof GET_INGREDIENTS_REQUEST | typeof GET_INGREDIENTS_REQUEST_SUCCESS | typeof GET_INGREDIENTS_REQUEST_FAILED,

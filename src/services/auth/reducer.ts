@@ -3,11 +3,11 @@ import {
     getUserInfo, 
     patchUserInfo,
     tryResetPassword,
-    createNewUser,
+    registerNewUser,
     loginUser,
     logoutUser,
     resetPassword
-} from "../actions/auth";
+} from "./action";
 import { TUserInfo } from "../../utils/types";
 
 interface IUserState{
@@ -58,15 +58,15 @@ const userSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state) => {
                 state.user = null;
             })
-            .addCase(createNewUser.pending, (state) => {
+            .addCase(registerNewUser.pending, (state) => {
                 state.isCreateNewUserPending = true;
                 state.errorMessage = '';
             })
-            .addCase(createNewUser.fulfilled, (state, action) => {
+            .addCase(registerNewUser.fulfilled, (state, action) => {
                 state.isCreateNewUserPending = false;
                 state.user = action.payload;
             })
-            .addCase(createNewUser.rejected, (state, action) => {
+            .addCase(registerNewUser.rejected, (state, action) => {
                 state.isCreateNewUserPending = false;
                 state.errorMessage = action.error.message;
             })

@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import AppHeader from '../app-header/app-header';
 import styles from './app.module.css';
 import { useDispatch } from 'react-redux';
-import {getIngredients} from '../../services/actions/index';
-import { getUserInfo } from '../../services/actions/auth';
+import {getIngredients} from '../../services/ingredients/action';
+import { getUserInfo } from '../../services/auth/action';
 import { Routes, Route, useLocation, useNavigate} from 'react-router-dom';
 
 import Modal from '../modal/modal';

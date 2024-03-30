@@ -1,7 +1,7 @@
 import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createNewUser } from '../../services/actions/auth';
+import { registerNewUser } from '../../services/auth/action';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
@@ -30,7 +30,7 @@ const Register = () => {
         };
 
          /* @ts-ignore */
-        dispatch(createNewUser(userInfo));
+        dispatch(registerNewUser(userInfo));
 
     }
 

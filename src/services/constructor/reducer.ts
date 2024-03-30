@@ -5,7 +5,7 @@ import {ADD_INGREDIENT_DATA,
     CLEAR_CONSTRUCTOR,
     RESET_INGREDIENT_DATA,
     IBurgerConstructorState
-} from '../actions/index';
+} from '../constructor/action';
 
 
 

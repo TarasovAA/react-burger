@@ -1,6 +1,6 @@
 import {Button} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../../../services/actions/auth";
+import { logoutUser } from "../../../services/auth/action";
 import { useDispatch } from "react-redux";
 
 const Exit = () => {
