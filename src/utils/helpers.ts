@@ -27,6 +27,8 @@ export const fetchWithRefresh = async (url: string, options: any) : Promise<any>
         }
     }
 }
+
+//TODO: почему то не могу поменять any на T
 export const refreshToken = async () : Promise<any> => {
     return await fetch(`${baseUrl}/api/auth/token`,{
         method: "POST",

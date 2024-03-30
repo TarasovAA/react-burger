@@ -1,6 +1,6 @@
-import {baseUrl} from '../../constants/common';
-import { handleRequest, fetchWithRefresh } from '../../utils/helpers';
-import { TGetIngredientsResponseBody, TIngredient } from '../../utils/types';
+import { TIngredient } from '../../utils/types';
+
+import api from "../api";
 
 export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS_REQUEST';
 export const GET_INGREDIENTS_REQUEST_SUCCESS = 'GET_INGREDIENTS_REQUEST_SUCCESS';
@@ -16,6 +16,7 @@ export const CREATE_ORDER_REQUEST = "CREATE_ORDER_REQUEST";
 export const CREATE_ORDER_REQUEST_SUCCESS = "CREATE_ORDER_REQUEST_SUCCESS";
 export const CREATE_ORDER_REQUEST_FAILED = "CREATE_ORDER_REQUEST_FAILED";
 
+
 export interface IBurgerConstructorState{
     head: Array<TIngredient>
     body: Array<TIngredient>
@@ -28,7 +29,7 @@ export const getIngredients = () => {
             type: GET_INGREDIENTS_REQUEST
         });
 
-        handleRequest<TGetIngredientsResponseBody>(baseUrl + '/api/ingredients')
+        api.getIngredients()
             .then(result => {
                 dispatch({
                     type: GET_INGREDIENTS_REQUEST_SUCCESS,
@@ -66,15 +67,11 @@ export const refreshOrderIndex = (burger: IBurgerConstructorState) => {
 
         const token = localStorage.getItem('accessToken');
         
-        fetchWithRefresh(baseUrl + '/api/orders', {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' +  token
-              },
-            body: JSON.stringify(requestBody)
-        })
+        if(!token){
+            return Promise.reject("empty token");
+        }
+
+        api.createOrders(requestBody, token)
         .then(result => {
             console.log(CREATE_ORDER_REQUEST_SUCCESS, result);
 
