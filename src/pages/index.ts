@@ -1,12 +1,13 @@
-import ForgotPassword from './forgot-password/forgot-password';
-import IngredientView from './ingredient-view/ingredient-view';
-import Login from './login/login';
-import Profile from './profile/profile';
-import Register from './register/register';
-import ResetPassword from './reset-password/reset-password';
-import OrderHistory from './profile/order-history/order-history';
-import Home from './home/home';
-import Exit from './profile/exit/exit'
-import { ProfileFields } from './profile/profile-fields';
+import ForgotPasswordPage from './forgot-password/forgot-password-page';
+import IngredientViewPage from './ingredient-view/ingredient-view-page';
+import LoginPage from './login/login-page';
+import ProfilePage from './profile/profile-page';
+import RegisterPage from './register/register-page';
+import ResetPasswordPage from './reset-password/reset-password-page';
+import OrderHistoryPage from './profile/order-history/order-history-page';
+import HomePage from './home/home-page';
+import ExitPage from './profile/exit/exit-page'
+import FeedPage from './feed/feed-page';
+import { ProfileFieldsPage } from './profile/profile-fields-page';
 
-export {ForgotPassword, IngredientView, Login, Profile, ProfileFields, Register, ResetPassword, OrderHistory, Home, Exit};
+export {ForgotPasswordPage, IngredientViewPage, LoginPage, ProfilePage, ProfileFieldsPage, RegisterPage, ResetPasswordPage, OrderHistoryPage, HomePage, ExitPage, FeedPage};

@@ -4,7 +4,7 @@ import BurgerIngredients from "../../components/burger-ingredients/burger-ingred
 import { HTML5Backend } from "react-dnd-html5-backend";
 import style from './home.module.css';
 
-const Home = () => {
+const HomePage = () => {
     return (<main className={style.main}>
         <DndProvider backend={HTML5Backend}>
           <BurgerIngredients />
@@ -13,4 +13,4 @@ const Home = () => {
       </main>)
 }
 
-export default Home;
+export default HomePage;

@@ -11,7 +11,7 @@ import '../index.css'
 import { IsForgotPasswordEmailSent } from "../../services/auth/selectors";
 
 
-const ForgotPassword = () => {
+const ForgotPasswordPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -62,4 +62,4 @@ const ForgotPassword = () => {
     </div>);
 }
 
-export default ForgotPassword;
+export default ForgotPasswordPage;

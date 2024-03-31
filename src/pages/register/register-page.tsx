@@ -10,7 +10,7 @@ import { TUserInfo } from '../../utils/types';
 import { GetUserInfo, GetUserErrorMessage } from '../../services/auth/selectors';
 
 
-const Register = () => {
+const RegisterPage = () => {
     const {values, handleChange} = useForm({
         userName: '',
         userEmail: '',
@@ -75,4 +75,4 @@ const Register = () => {
     </div>);
 }
 
-export default Register;
+export default RegisterPage;

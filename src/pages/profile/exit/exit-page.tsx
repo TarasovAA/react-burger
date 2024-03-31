@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../../services/auth/action";
 import { useDispatch } from "react-redux";
 
-const Exit = () => {
+const ExitPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -30,4 +30,4 @@ const Exit = () => {
     </div>);
 }
 
-export default Exit;
+export default ExitPage;

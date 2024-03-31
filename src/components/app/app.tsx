@@ -12,16 +12,17 @@ import IngredientDetails from '../ingredient-details/ingredient-details';
 import { ProtectedRouteElement } from '../protected-route-element/protected-route-element';
 
 import {
-   Login,
-   Register,
-   ForgotPassword,
-   ResetPassword,
-   Profile,
-   OrderHistory,
-   Home,
-   IngredientView,
-   Exit,
-   ProfileFields
+   LoginPage,
+   RegisterPage,
+   ForgotPasswordPage,
+   ResetPasswordPage,
+   ProfilePage,
+   OrderHistoryPage,
+   HomePage,
+   IngredientViewPage,
+   ExitPage,
+   ProfileFieldsPage,
+   FeedPage
   } from '../../pages';
 
 
@@ -46,20 +47,21 @@ function App() {
 
       <div className={styles.body}>
         <Routes location={state?.backgroundLocation || location}>
-            <Route path='/' element={ <Home /> } />
+            <Route path='/' element={ <HomePage /> } />
             <Route path='/*' element={<div>Error</div>} />
             
-            <Route path='/login' element={<ProtectedRouteElement onlyUnAuth={true} component={<Login />} />} />
-            <Route path='/register' element={ <ProtectedRouteElement onlyUnAuth={true} component={<Register />} />} />
-            <Route path='/forgot-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ForgotPassword />} />} />
-            <Route path='/reset-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ResetPassword />} />} />
+            <Route path='/login' element={<ProtectedRouteElement onlyUnAuth={true} component={<LoginPage />} />} />
+            <Route path='/register' element={ <ProtectedRouteElement onlyUnAuth={true} component={<RegisterPage />} />} />
+            <Route path='/forgot-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ForgotPasswordPage />} />} />
+            <Route path='/reset-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ResetPasswordPage />} />} />
 
-            <Route path='/profile' element={<ProtectedRouteElement component={<Profile profileElement={<ProfileFields />} />} />} />
-            <Route path='/profile/orders' element={<ProtectedRouteElement component={<Profile profileElement={<OrderHistory />}/>} />} />
-            <Route path='/profile/exit' element={<ProtectedRouteElement component={<Profile profileElement={<Exit /> } />} />} />
+            <Route path='/profile' element={<ProtectedRouteElement component={<ProfilePage profileElement={<ProfileFieldsPage />} />} />} />
+            <Route path='/profile/orders' element={<ProtectedRouteElement component={<ProfilePage profileElement={<OrderHistoryPage />}/>} />} />
+            <Route path='/profile/exit' element={<ProtectedRouteElement component={<ProfilePage profileElement={<ExitPage /> } />} />} />
             
+            <Route path='/feed' element={<FeedPage />} />
 
-            <Route path='/ingredients/:id' element={<IngredientView />} />
+            <Route path='/ingredients/:id' element={<IngredientViewPage />} />
           </Routes>
 
           {

@@ -8,7 +8,7 @@ import React from 'react';
 
 import { IsPasswordSet, IsForgotPasswordEmailSent } from '../../services/auth/selectors';
 
-const ResetPassword = () => {
+const ResetPasswordPage = () => {
     const dispatch = useDispatch();
 
     const isForgotPasswordEmailSent = IsForgotPasswordEmailSent();
@@ -52,4 +52,4 @@ const ResetPassword = () => {
     </div>) : (isForgotPasswordEmailSent && isPasswordSet) ? <Navigate to="/login" /> : <Navigate to="/forgot-password" />);
 }
 
-export default ResetPassword;
+export default ResetPasswordPage;

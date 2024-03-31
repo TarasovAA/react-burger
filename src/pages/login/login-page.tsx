@@ -9,7 +9,7 @@ import React from 'react';
 
 import { GetUserErrorMessage } from '../../services/auth/selectors';
 
-const Login = () => {
+const LoginPage = () => {
     const {values, handleChange} = useForm({
         email: '',
         password: ''
@@ -61,4 +61,4 @@ const Login = () => {
     </div>);
 }
 
-export default Login;
+export default LoginPage;

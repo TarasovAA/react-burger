@@ -2,11 +2,11 @@ import IngredientDetails from "../../components/ingredient-details/ingredient-de
 import style from './ingredient-view.module.css'
 import '../index.css';
 
-const IngredientView = () => {
+const IngredientViewPage = () => {
     return (<div className={style.putInCenter}>
         <h2 className='text text_type_main-medium m-5'>Детали ингредиента</h2>
         <IngredientDetails />
     </div>);
 }
 
-export default IngredientView;
+export default IngredientViewPage;

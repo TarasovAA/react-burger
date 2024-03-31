@@ -7,7 +7,7 @@ import React from "react";
 import { TUserInfo } from "../../utils/types";
 import { GetUserInfo } from "../../services/auth/selectors";
 
-export const ProfileFields = () => {
+export const ProfileFieldsPage = () => {
     const user = GetUserInfo();
     const dispatch = useDispatch();
 
