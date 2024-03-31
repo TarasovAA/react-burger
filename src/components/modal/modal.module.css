@@ -15,8 +15,8 @@
 
 .window {
   display: inline-block;
-  width: 800px;
-  height: 700px;
+  width: auto;
+  height: auto;
   margin-bottom: 16px;
   border-radius: 24px;
   background-color: var(--background-alt);

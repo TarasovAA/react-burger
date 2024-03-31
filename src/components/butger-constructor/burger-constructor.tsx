@@ -76,7 +76,7 @@ const BurgerConstructor = () => {
                     <OrderCounter count={amount} />
                 </div>
                 {isModalOpen && (
-                    <Modal onClose={closeModal}>
+                    <Modal title='Оформление заказа' onClose={closeModal}>
                         <OrderDetails />
                     </Modal>
                 )}
