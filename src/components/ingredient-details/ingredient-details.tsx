@@ -1,13 +1,12 @@
 import styles from './ingredient-details.module.css';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Loader } from '../../local-uikit/components';
 import { useMemo } from 'react';
 import { TIngredient } from '../../utils/types';
+import { GetAllIngredients } from '../../services/ingredients/selectors';
 
 const IngredientDetails = () => {
-    {/* @ts-ignore */}
-    const {allIngredients} = useSelector(store => store.allIngredients);
+    const allIngredients = GetAllIngredients();
 
     const {id} = useParams();
 

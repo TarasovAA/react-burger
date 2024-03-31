@@ -12,18 +12,18 @@ interface IAllIngredientsIngredientAction{
 
 interface IInitialState{
     allIngredients: Array<IInitialState>;
-    allIngredientsRequesting: boolean;
-    allIngredientsRequested: boolean;
+    isAllIngredientsRequesting: boolean;
+    isAllIngredientsRequested: boolean;
 
-    allIngredientsRequestFailed: boolean;
+    isAllIngredientsRequestFailed: boolean;
     errorMessage: string | null | undefined;
 }
 
 const initialState: IInitialState = {
         allIngredients: [],
-        allIngredientsRequesting: false,
-        allIngredientsRequested: false,
-        allIngredientsRequestFailed: false,
+        isAllIngredientsRequesting: false,
+        isAllIngredientsRequested: false,
+        isAllIngredientsRequestFailed: false,
         errorMessage: null
     }
     

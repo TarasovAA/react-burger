@@ -1,15 +1,18 @@
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { resetPassword } from '../../services/auth/action';
 import '../index.css'
 import React from 'react';
 
+import { IsPasswordSet, IsForgotPasswordEmailSent } from '../../services/auth/selectors';
+
 const ResetPassword = () => {
     const dispatch = useDispatch();
-     /* @ts-ignore */
-    const {isForgotPasswordEmailSent, isPasswordSet} = useSelector(store => store.user);
+
+    const isForgotPasswordEmailSent = IsForgotPasswordEmailSent();
+    const isPasswordSet = IsPasswordSet();
 
     const {values, handleChange} = useForm({
         newPassword: '',

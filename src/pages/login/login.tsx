@@ -1,20 +1,21 @@
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from '../../services/auth/action';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
 import React from 'react';
 
+import { GetUserErrorMessage } from '../../services/auth/selectors';
+
 const Login = () => {
-    const {values, handleChange, setValues} = useForm({
+    const {values, handleChange} = useForm({
         email: '',
         password: ''
     });
 
-    /* @ts-ignore */
-    const errorMessage = useSelector(store => store.user.errorMessage);
+    const errorMessage = GetUserErrorMessage();
    
     const dispatch = useDispatch();
 

@@ -1,11 +1,13 @@
 import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Navigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerNewUser } from '../../services/auth/action';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
 import { TUserInfo } from '../../utils/types';
+
+import { GetUserInfo, GetUserErrorMessage } from '../../services/auth/selectors';
 
 
 const Register = () => {
@@ -17,8 +19,8 @@ const Register = () => {
 
 
     const dispatch = useDispatch();
-     /* @ts-ignore */
-    const {user, errorMessage} = useSelector(store => store.user);
+    const user = GetUserInfo();
+    const errorMessage = GetUserErrorMessage();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

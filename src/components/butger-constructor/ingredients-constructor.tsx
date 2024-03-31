@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
 import {ADD_INGREDIENT_DATA,
@@ -11,12 +11,13 @@ import { useCallback } from 'react'
 import {v4  as uuidv4} from 'uuid';
 import { TIngredient, TConstructorIngredient } from '../../utils/types';
 
+import { GetBurgerConstructorBody } from '../../services/constructor/selectors';
+import { GetAllIngredients } from '../../services/ingredients/selectors';
+
 
 const IngredientsConstructor = () => {
-    /* @ts-ignore */
-    const burgerBody: Array<TConstructorIngredient> = useSelector(store => store.burgerConstructor.body);
-    /* @ts-ignore */
-    const allIngredients: Array<TIngredient> = useSelector(store => store.allIngredients.allIngredients);
+    const burgerBody: Array<TConstructorIngredient> = GetBurgerConstructorBody();
+    const allIngredients: Array<TIngredient> = GetAllIngredients();
 
     const dispatch = useDispatch();
 

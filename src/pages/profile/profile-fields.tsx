@@ -1,15 +1,14 @@
 import { Input, EmailInput, PasswordInput, Button} from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "../../hooks/useForm";
 import { patchUserInfo } from "../../services/auth/action";
 import '../index.css';
 import React from "react";
 import { TUserInfo } from "../../utils/types";
+import { GetUserInfo } from "../../services/auth/selectors";
 
 export const ProfileFields = () => {
-
-    /* @ts-ignore */
-    const user = useSelector(store => store.user.user);
+    const user = GetUserInfo();
     const dispatch = useDispatch();
 
     const {values, handleChange, setValues} = useForm({

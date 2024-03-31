@@ -4,14 +4,18 @@ import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import styles from './burger-constructor.module.css';
 import {useModal} from '../../hooks/useModal';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {refreshOrderIndex} from '../../services/order/action';
 
 import BunsConstructor from './buns-constructor'
 import IngredientsConstructor from './ingredients-constructor';
 
 import { useNavigate } from 'react-router-dom';
-import { TIngredient } from '../../utils/types'
+import { TIngredient } from '../../utils/types';
+
+import { GetBurgerConstructor } from '../../services/constructor/selectors';
+import { GetUserInfo } from '../../services/auth/selectors';
+
 
 interface IOrderCounterProps{
     count: number;
@@ -30,10 +34,8 @@ const BurgerConstructor = () => {
     const navigate = useNavigate();
     const [amount, setAmount] = useState<number>(0);
 
-    {/* @ts-ignore */}
-    const burger = useSelector(store => store.burgerConstructor)
-    {/* @ts-ignore */}
-    const user = useSelector(store => store.user.user)
+    const burger = GetBurgerConstructor();
+    const user = GetUserInfo()
     
     console.log(user);
 
