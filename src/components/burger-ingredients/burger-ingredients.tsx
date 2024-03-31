@@ -73,7 +73,7 @@ const BurgerIngredients = () => {
         <section className={styles.mainIngredientsSection}>
             {allIngredientsRequested && (
                 <div className={styles.mainContainer}>
-                    <h1>Соберите бургер</h1>
+                    <h1 className="text text_type_main-medium mt-5">Соберите бургер</h1>
 
                     <div>
                         <div className={styles.tabs} ref={tabRef}>
