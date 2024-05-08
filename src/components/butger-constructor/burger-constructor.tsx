@@ -1,7 +1,7 @@
 import { useState, useEffect, FC } from 'react';
 import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal';
-import OrderDetails from '../order-details/order-details';
+import OrderDetails from '../order-creation-details/order-details';
 import styles from './burger-constructor.module.css';
 import {useModal} from '../../hooks/useModal';
 import { useDispatch } from 'react-redux';

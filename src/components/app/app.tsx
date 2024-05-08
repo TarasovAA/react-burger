@@ -22,7 +22,8 @@ import {
    IngredientViewPage,
    ExitPage,
    ProfileFieldsPage,
-   FeedPage
+   FeedOrdersPage,
+   FeedOrderInfoPage
   } from '../../pages';
 
 
@@ -56,12 +57,17 @@ function App() {
             <Route path='/reset-password' element={<ProtectedRouteElement onlyUnAuth={true} component={<ResetPasswordPage />} />} />
 
             <Route path='/profile' element={<ProtectedRouteElement component={<ProfilePage profileElement={<ProfileFieldsPage />} />} />} />
-            <Route path='/profile/orders' element={<ProtectedRouteElement component={<ProfilePage profileElement={<OrderHistoryPage />}/>} />} />
             <Route path='/profile/exit' element={<ProtectedRouteElement component={<ProfilePage profileElement={<ExitPage /> } />} />} />
             
-            <Route path='/feed' element={<FeedPage />} />
-
             <Route path='/ingredients/:id' element={<IngredientViewPage />} />
+
+
+            <Route path='/feed' element={<FeedOrdersPage />} />
+            <Route path='/feed/:id' element={<FeedOrderInfoPage />} />
+
+            <Route path='/profile/orders' element={<ProtectedRouteElement component={<ProfilePage profileElement={<OrderHistoryPage />}/>} />} />
+            <Route path='/profile/orders/:id' element={<ProtectedRouteElement component={<ProfilePage profileElement={<FeedOrderInfoPage />}/>} />} />
+
           </Routes>
 
           {

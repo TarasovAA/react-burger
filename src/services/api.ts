@@ -9,7 +9,8 @@ import {
     TResponseBody,
     TOrderResponseBody,
     TGetUserResponseBody,
-    TRefreshUserResponseBody
+    TRefreshUserResponseBody,
+    TAllOrdersResponseBody
 } from "../utils/types";
 
 import { baseUrl } from "../constants/common";
@@ -114,6 +115,11 @@ export class Api{
             },
             body: JSON.stringify(requestBody)
             });
+    }
+
+    
+    getOrderInfo = (orderId: string): Promise<TAllOrdersResponseBody> => {
+        return handleRequest<TAllOrdersResponseBody>(baseUrl + '/api/orders/' + orderId);
     }
 }
 

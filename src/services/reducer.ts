@@ -5,10 +5,12 @@ import burgerConstructorReducer from './constructor/reducer';
 import orderReducer from './order/reducer';
 
 import {userReducer} from './auth/reducer';
+import { feedReducer } from "./feed/reducer";
 
 export const rootReducer = combineReducers({
     allIngredients: allIngredientsReducer,
     burgerConstructor: burgerConstructorReducer,
     order: orderReducer,
-    user: userReducer
+    user: userReducer,
+    feed: feedReducer
 });

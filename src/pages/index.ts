@@ -7,7 +7,22 @@ import ResetPasswordPage from './reset-password/reset-password-page';
 import OrderHistoryPage from './profile/order-history/order-history-page';
 import HomePage from './home/home-page';
 import ExitPage from './profile/exit/exit-page'
-import FeedPage from './feed/feed-page';
+import FeedOrdersPage from './feed-orders/feed-orders-page';
+import FeedOrderInfoPage from './feed-order-info/feed-order-info-page';
+
 import { ProfileFieldsPage } from './profile/profile-fields-page';
 
-export {ForgotPasswordPage, IngredientViewPage, LoginPage, ProfilePage, ProfileFieldsPage, RegisterPage, ResetPasswordPage, OrderHistoryPage, HomePage, ExitPage, FeedPage};
+export {
+    ForgotPasswordPage,
+    IngredientViewPage,
+    LoginPage,
+    ProfilePage,
+    ProfileFieldsPage,
+    RegisterPage,
+    ResetPasswordPage,
+    OrderHistoryPage,
+    HomePage,
+    ExitPage,
+    FeedOrdersPage,
+    FeedOrderInfoPage
+};

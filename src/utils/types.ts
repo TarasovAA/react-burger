@@ -21,12 +21,12 @@ export type TUserInfo = {
 }
 
 export type TOrder = {
-    createdAt: Date | unknown;
+    createdAt: Date;
     ingredients: Array<TIngredient>;
-    name: string | unknown;
+    name: string;
     owner: TOwner;
-    price: number | unknown;
-    status: string | unknown;
+    price: number;
+    status: string;
     number: number;
 }
 
@@ -70,3 +70,26 @@ export interface CustomResponse<T> extends CustomBody<T> {
   readonly url: string;
   clone(): Response;
 }
+
+export type TFeed = {
+  _id: string;
+  number: number;
+  name: string;
+  status: string;
+  updatedAt: Date;
+  createdAt: Date;
+  ingredients: Array<string>;
+}
+
+export type TOrderA = {
+  createdAt: Date;
+  ingredients: Array<string>;
+  name: string;
+  owner: TOwner;
+  price: number;
+  status: string;
+  number: number;
+}
+
+
+export type TAllOrdersResponseBody = TResponseBody<'orders', Array<TOrderA>> & { name: string; }
