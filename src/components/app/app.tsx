@@ -8,6 +8,7 @@ import { Routes, Route, useLocation, useNavigate} from 'react-router-dom';
 
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import { FeedOrderInfo } from '../feed-order-info/feed-order-info';
 
 import { ProtectedRouteElement } from '../protected-route-element/protected-route-element';
 
@@ -73,10 +74,16 @@ function App() {
           {
             state?.backgroundLocation && ( <Routes>
               <Route path='/ingredients/:id' element={<Modal onClose={() => {
-                navigate(-1);
-            }} title='Детали игредиента'>
-                    <IngredientDetails />
-                </Modal>} />
+                  navigate(-1);
+                }} title='Детали игредиента'>
+                      <IngredientDetails />
+                  </Modal>} />
+
+              <Route path='/feed/:id' element={<Modal onClose={() => {
+                  navigate(-1);
+                }} title='Детали игредиента'>
+                      <FeedOrderInfo />
+                  </Modal>} />
             </Routes>)
           }
       </div>

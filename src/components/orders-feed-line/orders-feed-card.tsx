@@ -4,10 +4,12 @@ import { FC } from 'react';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import { GetIngredientsByIds } from '../../services/ingredients/selectors';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 export const OrderFeedCard: FC<TFeed> =  (props) => {
+    const location = useLocation();
+
     const {number, name, createdAt, ingredients, _id} = props;
 
     const ingredientsInfo: Array<TIngredient> = GetIngredientsByIds(ingredients);
@@ -15,8 +17,10 @@ export const OrderFeedCard: FC<TFeed> =  (props) => {
     0);
 
     return (<Link className={`${style.card} p-5`}
+        state={{ backgroundLocation:  location}} 
         key={_id}
-        to={`/feed/${number}`}>
+        to={`/feed/${number}`}
+        >
         <div style={{width: '100%', height: '30%', display: 'flex'}}>
             <div style={{width: '20%'}}><p className='text text_type_digits-default'>#{number}</p></div>
             <div style={{width: '60%'}}></div>
