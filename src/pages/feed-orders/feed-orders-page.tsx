@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { TFeed } from "../../utils/types";
 
 const FeedOrdersPage = () => {
-    const [orders, setOrders] = useState<Array<TFeed>>([]);
+    const [orders, setOrders] = useState<Array<TFeed> | null>(null);
     const [feedLineInfo, setfeedLineInfo] = useState<OrdersFeedStatusLineProps>({});
     
     useEffect(() => {
@@ -46,6 +46,7 @@ const FeedOrdersPage = () => {
 
     return <div style={{width: '100%', height: '100%', display: 'flex'}}>
         <div style={{width: '50%'}}>
+            <h1 className="text text_type_main-medium m-5">Лента заказов</h1>
             <OrdersFeedLine orders={orders} />
         </div>
         <div style={{width: '50%'}}>

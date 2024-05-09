@@ -10,7 +10,7 @@ export interface OrdersFeedStatusLineProps{
 }
 
 export const OrdersFeedStatusLine = ({done, inProgress, total, totalToday} : OrdersFeedStatusLineProps) => {
-    return (<div style={{height: '100%'}}>
+    return (<div className='p-10' style={{height: '100%'}}>
         <div style={{width: '100%', height: '30%', display: 'flex'}}>
            <div className='p-5' style={{width: '50%'}}>
                 <p className="text text_type_main-medium">Готовы</p>

@@ -7,7 +7,7 @@ const ExitPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    return (<div>
+    return (<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
          <p className='text text_type_main-medium text_color_inactive mt-5'>Вы точно хотите выйти?</p>
          <br />
          <Button

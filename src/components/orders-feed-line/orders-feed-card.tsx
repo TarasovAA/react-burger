@@ -5,12 +5,18 @@ import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-component
 import { GetIngredientsByIds } from '../../services/ingredients/selectors';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, useLocation } from 'react-router-dom';
+import { link } from 'fs';
 
+interface OrderFeedCardProps{
+    feedInfo: TFeed;
+    link?: string;
+};
 
-export const OrderFeedCard: FC<TFeed> =  (props) => {
+export const OrderFeedCard: FC<OrderFeedCardProps> = (props) => {
     const location = useLocation();
 
-    const {number, name, createdAt, ingredients, _id} = props;
+    const {number, name, createdAt, ingredients, _id} = props.feedInfo;
+    const link = props.link
 
     const ingredientsInfo: Array<TIngredient> = GetIngredientsByIds(ingredients);
     const orderCost = ingredientsInfo.reduce((acc, ingredient) => acc + ingredient.price * (ingredient.type === "bun" ? 2 : 1),
@@ -19,7 +25,7 @@ export const OrderFeedCard: FC<TFeed> =  (props) => {
     return (<Link className={`${style.card} p-5`}
         state={{ backgroundLocation:  location}} 
         key={_id}
-        to={`/feed/${number}`}
+        to={link ? `${link}/${number}` : `/feed/${number}`}
         >
         <div style={{width: '100%', height: '30%', display: 'flex'}}>
             <div style={{width: '20%'}}><p className='text text_type_digits-default'>#{number}</p></div>

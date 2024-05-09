@@ -45,7 +45,7 @@ export const ProfileFieldsPage = () => {
 
     const display = (values.name !== user.name || values.email !== user.email || values.password !== '') ? '' : 'none';
 
-    return (<div style={{display: 'flex'}}>
+    return (<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
     <form onReset={handleReset} onSubmit={handleSubmit}>
         <Input
             placeholder="Имя"

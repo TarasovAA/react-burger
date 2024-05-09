@@ -9,7 +9,7 @@ interface IProfile{
 const ProfilePage: FC<IProfile> = ({profileElement}) => {
     return (<div className='p-30 profileMainDiv'>
             <ProfileNavigation />
-            <div>
+            <div style={{width: '100%'}}>
                 {profileElement}
             </div>
            

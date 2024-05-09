@@ -67,7 +67,7 @@ function App() {
             <Route path='/feed/:id' element={<FeedOrderInfoPage />} />
 
             <Route path='/profile/orders' element={<ProtectedRouteElement component={<ProfilePage profileElement={<OrderHistoryPage />}/>} />} />
-            <Route path='/profile/orders/:id' element={<ProtectedRouteElement component={<ProfilePage profileElement={<FeedOrderInfoPage />}/>} />} />
+            <Route path='/profile/orders/:id' element={<ProtectedRouteElement component={<FeedOrderInfoPage />}/>} />
 
           </Routes>
 
@@ -81,7 +81,13 @@ function App() {
 
               <Route path='/feed/:id' element={<Modal onClose={() => {
                   navigate(-1);
-                }} title='Детали игредиента'>
+                }} title='Информация о заказе'>
+                      <FeedOrderInfo />
+                  </Modal>} />
+
+              <Route path='/profile/orders/:id' element={<Modal onClose={() => {
+                  navigate(-1);
+                }} title='Информация о заказе'>
                       <FeedOrderInfo />
                   </Modal>} />
             </Routes>)
