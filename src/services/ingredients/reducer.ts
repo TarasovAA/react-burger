@@ -2,33 +2,14 @@ import { TIngredient } from '../../utils/types';
 import {GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_REQUEST_SUCCESS,
     GET_INGREDIENTS_REQUEST_FAILED}
-    from './action';
+    from './constants';
 
-interface IAllIngredientsIngredientAction{
-    type: typeof GET_INGREDIENTS_REQUEST | typeof GET_INGREDIENTS_REQUEST_SUCCESS | typeof GET_INGREDIENTS_REQUEST_FAILED,
-    payload: TIngredient | unknown | undefined;
-    errorMessage: string | undefined;
-}
-
-interface IInitialState{
-    allIngredients: Array<IInitialState>;
-    isAllIngredientsRequesting: boolean;
-    isAllIngredientsRequested: boolean;
-
-    isAllIngredientsRequestFailed: boolean;
-    errorMessage: string | null | undefined;
-}
-
-const initialState: IInitialState = {
-        allIngredients: [],
-        isAllIngredientsRequesting: false,
-        isAllIngredientsRequested: false,
-        isAllIngredientsRequestFailed: false,
-        errorMessage: null
-    }
+import { TIngredientsAction,
+     IGetIngredientsSuccessAction,
+     IGetIngredientsFailedAction} from './action';
     
 
-const allIngredientsReducer = (state: IInitialState = initialState, action: IAllIngredientsIngredientAction) => {
+const allIngredientsReducer = (state: IInitialState = initialState, action: TIngredientsAction) => {
     switch(action.type){
         case GET_INGREDIENTS_REQUEST: {
             return {
@@ -59,5 +40,22 @@ const allIngredientsReducer = (state: IInitialState = initialState, action: IAll
         }
     }
 }
+
+interface IInitialState{
+    allIngredients: Array<IInitialState>;
+    isAllIngredientsRequesting: boolean;
+    isAllIngredientsRequested: boolean;
+
+    isAllIngredientsRequestFailed: boolean;
+    errorMessage: string | null | undefined;
+}
+
+const initialState: IInitialState = {
+        allIngredients: [],
+        isAllIngredientsRequesting: false,
+        isAllIngredientsRequested: false,
+        isAllIngredientsRequestFailed: false,
+        errorMessage: null
+    }
 
 export default allIngredientsReducer;

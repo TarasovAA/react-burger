@@ -1,10 +1,31 @@
+import { TIngredient } from "../../utils/types";
 import api from "../api";
 
-const ingredients = "INGREDIENTS";
+import {
+    GET_INGREDIENTS_REQUEST,
+    GET_INGREDIENTS_REQUEST_SUCCESS,
+    GET_INGREDIENTS_REQUEST_FAILED
+} from './constants';
 
-export const GET_INGREDIENTS_REQUEST = `${ingredients}/GET_REQUEST`;
-export const GET_INGREDIENTS_REQUEST_SUCCESS = `${ingredients}/GET_INGREDIENTS_SUCCESS`;
-export const GET_INGREDIENTS_REQUEST_FAILED = `${ingredients}/GET_REQUEST_FAILED`;
+
+
+export interface IGetIngredientsAction{
+    readonly type: typeof GET_INGREDIENTS_REQUEST;
+}
+
+export interface IGetIngredientsSuccessAction{
+    readonly type: typeof GET_INGREDIENTS_REQUEST_SUCCESS;
+    readonly payload: Array<TIngredient>;
+}
+
+
+export interface IGetIngredientsFailedAction{
+    readonly type: typeof GET_INGREDIENTS_REQUEST_FAILED;
+    readonly errorMessage: string;
+}
+
+export type TIngredientsAction = IGetIngredientsAction | IGetIngredientsSuccessAction | IGetIngredientsFailedAction;
+
 
 
 export const getIngredients = () => {
