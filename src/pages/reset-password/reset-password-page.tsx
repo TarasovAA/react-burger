@@ -1,5 +1,5 @@
 import { Input, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
 import { resetPassword } from '../../services/auth/action';

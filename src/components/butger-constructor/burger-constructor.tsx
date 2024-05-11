@@ -4,7 +4,7 @@ import Modal from '../modal/modal';
 import OrderDetails from '../order-creation-details/order-details';
 import styles from './burger-constructor.module.css';
 import {useModal} from '../../hooks/useModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import {refreshOrderIndex} from '../../services/order/action';
 
 import BunsConstructor from './buns-constructor'

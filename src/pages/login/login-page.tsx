@@ -1,6 +1,6 @@
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch } from '../../services/hooks';
 import { loginUser } from '../../services/auth/action';
 import { useForm } from '../../hooks/useForm';
 import { ErrorBlock } from '../../local-uikit/components';

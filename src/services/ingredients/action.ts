@@ -7,7 +7,7 @@ import {
     GET_INGREDIENTS_REQUEST_FAILED
 } from './constants';
 
-
+import { AppDispatch, AppThunk } from "../types";
 
 export interface IGetIngredientsAction{
     readonly type: typeof GET_INGREDIENTS_REQUEST;
@@ -26,11 +26,8 @@ export interface IGetIngredientsFailedAction{
 
 export type TIngredientsAction = IGetIngredientsAction | IGetIngredientsSuccessAction | IGetIngredientsFailedAction;
 
-
-
-export const getIngredients = () => {
-    /* @ts-ignore */
-    return function (dispatch) {
+export const getIngredients: AppThunk = () => {
+    return function (dispatch: AppDispatch) {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
         });

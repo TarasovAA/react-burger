@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
 import {ADD_INGREDIENT_DATA,

@@ -1,49 +1,47 @@
-import { TIngredient } from '../../utils/types';
 import {ADD_INGREDIENT_DATA,
     DELETE_INGREDIENT_DATA,
     SET_CONSTRUCTOR_BUNS,
     CLEAR_CONSTRUCTOR,
     RESET_INGREDIENT_DATA,
-    IBurgerConstructorState
+} from '../constructor/constants';
+
+import {
+    IBurgerConstructorState,
+    IAddIngredientDataAction,
+    IDeleteIngredientDataAction,
+    ISetConstructorBunsAction,
+    IResetIngredientDataAction,
+    TConstructorAction
 } from '../constructor/action';
-
-
-
-
-interface IBurgerConstructorAction{
-    type: typeof ADD_INGREDIENT_DATA | typeof DELETE_INGREDIENT_DATA | typeof SET_CONSTRUCTOR_BUNS | typeof CLEAR_CONSTRUCTOR | typeof RESET_INGREDIENT_DATA,
-    payload: Array<TIngredient> | TIngredient;
-    index: number;
-}
 
 const initialState: IBurgerConstructorState = {
     head: [],
     body: [],
 }
 
-const burgerConstructorReducer = (state = initialState, action: IBurgerConstructorAction) => {
+const burgerConstructorReducer = (state = initialState, action: TConstructorAction): IBurgerConstructorState => {
     switch(action.type){
         case ADD_INGREDIENT_DATA:{
             return {
                 ...state,
                 body: [
                     ...state.body,
-                    action.payload
+                    (action as IAddIngredientDataAction).payload
                 ]
             };
         }
         case DELETE_INGREDIENT_DATA:{
             return {
                 ...state,
-                body: {...state}.body.filter((_, key) => key !== action.index)
+                body: {...state}.body.filter((_, key) => key !== (action as IDeleteIngredientDataAction).index)
             };
         }
         case SET_CONSTRUCTOR_BUNS:{
             return {
                 ...state,
                 head: [
-                    action.payload,
-                    action.payload
+                    (action as ISetConstructorBunsAction).payload,
+                    (action as ISetConstructorBunsAction).payload
                 ]
             };
         }
@@ -56,7 +54,7 @@ const burgerConstructorReducer = (state = initialState, action: IBurgerConstruct
         case RESET_INGREDIENT_DATA:{
             return {
                 ...state,
-                body: action.payload
+                body: (action as IResetIngredientDataAction).payload
             };
         }
         default:{

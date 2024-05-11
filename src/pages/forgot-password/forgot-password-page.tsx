@@ -2,7 +2,7 @@ import { EmailInput, Button } from "@ya.praktikum/react-developer-burger-ui-comp
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React,{useEffect} from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "../../services/hooks";
 import { tryResetPassword } from "../../services/auth/action";
 import { cleaerResetPasswordResponse } from "../../services/auth/reducer";
 import { useForm } from "../../hooks/useForm";

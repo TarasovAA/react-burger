@@ -1,23 +1,34 @@
-
-
 import { IBurgerConstructorState } from "../constructor/action";
 import { CLEAR_CONSTRUCTOR } from "../constructor/action";
 import api from "../api";
+import { AppDispatch, AppThunk } from "../types";
 
-const order = "ORDER";
+import { 
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_REQUEST_SUCCESS,
+    CREATE_ORDER_REQUEST_FAILED
+ } from "./constants";
 
-export const CREATE_ORDER_REQUEST = `${order}/CREATE_REQUEST`;
-export const CREATE_ORDER_REQUEST_SUCCESS = `${order}/CREATE_REQUEST_SUCCESS`;
-export const CREATE_ORDER_REQUEST_FAILED = `${order}/CREATE_REQUEST_FAILED`;
+export {CREATE_ORDER_REQUEST, CREATE_ORDER_REQUEST_SUCCESS, CREATE_ORDER_REQUEST_FAILED};
 
-export const GET_ORDER_INFO_REQUEST = `${order}/GET_ORDER_INFO_REQUEST`;
-export const GET_ORDER_INFO_REQUEST_SUCCESS = `${order}/CREATE_REQUEST_SUCCESS`;
-export const GET_ORDER_INFO_REQUEST_FAILED = `${order}/CREATE_REQUEST_FAILED`;
+export interface ICreateOrderRequestAction{
+    readonly type: typeof CREATE_ORDER_REQUEST;
+}
 
+export interface ICreateOrderRequestSuccessAction{
+    readonly type: typeof CREATE_ORDER_REQUEST_SUCCESS;
+}
 
-export const refreshOrderIndex = (burger: IBurgerConstructorState) => {
-    /* @ts-ignore */
-    return function(dispatch){
+export interface ICreateOrderRequestFailedAction{
+    readonly type: typeof CREATE_ORDER_REQUEST_FAILED;
+}
+
+export type TOrderAction = ICreateOrderRequestAction
+                        | ICreateOrderRequestSuccessAction
+                        | ICreateOrderRequestFailedAction;
+
+export const refreshOrderIndex: AppThunk = (burger: IBurgerConstructorState) => {
+    return function(dispatch: AppDispatch){
         //обработка данных и получение заказа
         
         dispatch({

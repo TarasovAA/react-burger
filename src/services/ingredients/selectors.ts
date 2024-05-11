@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "../hooks";
+import { RootState } from "../types";
 
 export const GetAllIngredientsRequestData = ()  => {
-    return useSelector((store: any) => store.allIngredients);
+    return useSelector((store: RootState) => store.allIngredients);
 }
 
 export const GetAllIngredients = ()  => {
-    return useSelector((store: any) => store.allIngredients.allIngredients);
+    return useSelector((store: RootState) => store.allIngredients.allIngredients);
 }
 
 export const GetIngredientsByIds = (ids: Array<string>) => {
-    return useSelector((store: any) => store.allIngredients.allIngredients.filter((i: any) => ids.includes(i._id)));
+    return useSelector((store: RootState) => store.allIngredients.allIngredients.filter((i: any) => ids.includes(i._id)));
 }

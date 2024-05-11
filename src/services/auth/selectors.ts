@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "../hooks";
 
 export const GetUserInfo = ()  => useSelector((store: any) => store.user.user);
 

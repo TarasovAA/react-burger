@@ -1,4 +1,3 @@
-import { TIngredient } from '../../utils/types';
 import {GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_REQUEST_SUCCESS,
     GET_INGREDIENTS_REQUEST_FAILED}
@@ -7,9 +6,27 @@ import {GET_INGREDIENTS_REQUEST,
 import { TIngredientsAction,
      IGetIngredientsSuccessAction,
      IGetIngredientsFailedAction} from './action';
+import { TIngredient } from '../../utils/types';
     
+interface IInitialState{
+        allIngredients: Array<TIngredient>;
+        allIngredientsRequesting: boolean;
+        allIngredientsRequested: boolean;
+    
+        allIngredientsRequestFailed: boolean;
+        errorMessage: string | null | undefined;
+    }
+    
+const initialState: IInitialState = {
+            allIngredients: [],
+            allIngredientsRequesting: false,
+            allIngredientsRequested: false,
+            allIngredientsRequestFailed: false,
+            errorMessage: null
+        }
 
-const allIngredientsReducer = (state: IInitialState = initialState, action: TIngredientsAction) => {
+
+const allIngredientsReducer = (state: IInitialState = initialState, action: TIngredientsAction) : IInitialState => {
     switch(action.type){
         case GET_INGREDIENTS_REQUEST: {
             return {
@@ -21,7 +38,7 @@ const allIngredientsReducer = (state: IInitialState = initialState, action: TIng
         case GET_INGREDIENTS_REQUEST_SUCCESS: {
             return {
                 ...state,
-                allIngredients: action.payload,
+                allIngredients: (action as IGetIngredientsSuccessAction).payload,
                 allIngredientsRequesting: false,
                 allIngredientsRequested: true,
                 allIngredientsRequestFailed: false
@@ -30,7 +47,7 @@ const allIngredientsReducer = (state: IInitialState = initialState, action: TIng
         case GET_INGREDIENTS_REQUEST_FAILED: {
             return {
                 ...state,
-                errorMessage: action.errorMessage,
+                errorMessage:  (action as IGetIngredientsFailedAction).errorMessage,
                 allIngredientsRequesting: false,
                 allIngredientsRequestFailed: true
             }
@@ -40,22 +57,5 @@ const allIngredientsReducer = (state: IInitialState = initialState, action: TIng
         }
     }
 }
-
-interface IInitialState{
-    allIngredients: Array<IInitialState>;
-    isAllIngredientsRequesting: boolean;
-    isAllIngredientsRequested: boolean;
-
-    isAllIngredientsRequestFailed: boolean;
-    errorMessage: string | null | undefined;
-}
-
-const initialState: IInitialState = {
-        allIngredients: [],
-        isAllIngredientsRequesting: false,
-        isAllIngredientsRequested: false,
-        isAllIngredientsRequestFailed: false,
-        errorMessage: null
-    }
 
 export default allIngredientsReducer;

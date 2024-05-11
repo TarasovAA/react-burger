@@ -1,5 +1,5 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import { useDrop } from 'react-dnd';
 import style from './burger-constructor.module.css';
 import { DndDragTypes } from '../../constants/common'

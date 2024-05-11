@@ -1,12 +1,9 @@
 import { TOrderResponseBody } from '../../utils/types';
-import {CREATE_ORDER_REQUEST,
-        CREATE_ORDER_REQUEST_SUCCESS,
-        CREATE_ORDER_REQUEST_FAILED,
-        GET_ORDER_INFO_REQUEST,
-        GET_ORDER_INFO_REQUEST_SUCCESS,
-        GET_ORDER_INFO_REQUEST_FAILED
-        }
-    from '../order/action';
+import {
+    CREATE_ORDER_REQUEST,
+    CREATE_ORDER_REQUEST_SUCCESS,
+    CREATE_ORDER_REQUEST_FAILED
+} from '../order/action';
 
 interface IOrderState{
     isCreating: boolean;
@@ -51,30 +48,6 @@ const orderReducer = (state: IOrderState = initialState, action: IOrderAction) =
                 name: action.payload.name,
                 isCreating: false,
                 isCreated: true,
-            }
-        }
-        case CREATE_ORDER_REQUEST_FAILED:{
-            return {
-                ...state,
-                isCreating: false,
-                isCreatingError: true,
-                creatingErrorMessage: action.errorMessage
-            }
-        }
-        case CREATE_ORDER_REQUEST_FAILED:{
-            return {
-                ...state,
-                isCreating: false,
-                isCreatingError: true,
-                creatingErrorMessage: action.errorMessage
-            }
-        }
-        case CREATE_ORDER_REQUEST_FAILED:{
-            return {
-                ...state,
-                isCreating: false,
-                isCreatingError: true,
-                creatingErrorMessage: action.errorMessage
             }
         }
         case CREATE_ORDER_REQUEST_FAILED:{

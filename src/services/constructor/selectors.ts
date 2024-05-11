@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "../hooks";
 
 export const GetBurgerConstructor = () => useSelector((store: any) => store.burgerConstructor);
 
