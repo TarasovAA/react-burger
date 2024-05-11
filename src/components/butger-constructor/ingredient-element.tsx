@@ -28,7 +28,6 @@ const IngredientElement : FC<IIngredientElementProps> = ({ingredient, index, han
     const [constructorId, setConstructorId] = useState<string|null>(null);
 
     useEffect(() => {
-        {/* @ts-ignore */}
         setConstructorId(uuidv4())
     }, []);
     

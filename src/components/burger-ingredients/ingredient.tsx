@@ -14,7 +14,6 @@ interface IIngredientProps{
 const Ingredient: FC<IIngredientProps> = ({item}) => {
   const location = useLocation();
 
-  /* @ts-ignore */
   const burgerConstructor = GetBurgerConstructor();
   const {_id, type} = item;
 

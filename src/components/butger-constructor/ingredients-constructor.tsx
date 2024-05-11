@@ -13,6 +13,7 @@ import { TIngredient, TConstructorIngredient } from '../../utils/types';
 
 import { GetBurgerConstructorBody } from '../../services/constructor/selectors';
 import { GetAllIngredients } from '../../services/ingredients/selectors';
+import empty from '../../images/Empty.png';
 
 
 const IngredientsConstructor = () => {
@@ -84,9 +85,10 @@ const IngredientsConstructor = () => {
         }
             ))
             : (
-                 /* @ts-ignore */
                 <ConstructorElement
-                text = {'Выберите начинку'}
+                    text = {'Выберите начинку'}
+                    thumbnail={empty}
+                    price={0}
                 />
             )}
     </div>);

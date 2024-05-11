@@ -9,6 +9,7 @@ import React, { FC } from 'react';
 import { TIngredient } from '../../utils/types';
 import { GetBurgerConstructor } from '../../services/constructor/selectors';
 import { GetAllIngredientsRequestData } from '../../services/ingredients/selectors';
+import empty from '../../images/Empty.png';
 
 interface IBunsConstructorProps{
     children: React.ReactNode
@@ -54,7 +55,7 @@ const BunsConstructor: FC<IBunsConstructorProps> = ({children}) => {
                     type= 'top'
                     isLocked = {true}
                     text = {'Выберите булку'}
-                    thumbnail = {''}
+                    thumbnail = {empty}
                     price={0}
                     />
             )}
@@ -74,7 +75,7 @@ const BunsConstructor: FC<IBunsConstructorProps> = ({children}) => {
                         type= 'bottom'
                         isLocked = {true}
                         text = {'Выберите булку'}
-                        thumbnail = {''}
+                        thumbnail = {empty}
                         price={0} />
                 )}
         </div>

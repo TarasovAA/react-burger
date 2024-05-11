@@ -1,4 +1,4 @@
-import { TIngredient } from "../../utils/types";
+import { TIngredient, TConstructorIngredient } from "../../utils/types";
 
 import { 
     ADD_INGREDIENT_DATA,
@@ -12,7 +12,7 @@ export {ADD_INGREDIENT_DATA, DELETE_INGREDIENT_DATA, SET_CONSTRUCTOR_BUNS, RESET
 
 export interface IAddIngredientDataAction{
     readonly type: typeof ADD_INGREDIENT_DATA;
-    readonly payload: TIngredient;
+    readonly payload: TConstructorIngredient;
 }
 
 export interface IDeleteIngredientDataAction{
@@ -27,7 +27,7 @@ export interface ISetConstructorBunsAction{
 
 export interface IResetIngredientDataAction{
     readonly type: typeof RESET_INGREDIENT_DATA;
-    readonly payload: Array<TIngredient>;
+    readonly payload: Array<TConstructorIngredient>;
 }
 
 export interface IClearConstructorAction{
@@ -42,5 +42,5 @@ export type TConstructorAction = IAddIngredientDataAction
 
 export interface IBurgerConstructorState{
     head: Array<TIngredient>
-    body: Array<TIngredient>
+    body: Array<TConstructorIngredient>
 }

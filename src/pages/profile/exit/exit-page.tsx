@@ -21,7 +21,6 @@ const ExitPage = () => {
         <Button
             htmlType='button'
             onClick={() => {
-                /* @ts-ignore */
                 dispatch(logoutUser());
                 navigate("/");
             }}>

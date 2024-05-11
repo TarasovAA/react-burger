@@ -56,7 +56,6 @@ const BurgerConstructor = () => {
             return;
         }
 
-        {/* @ts-ignore */}
         dispach(refreshOrderIndex(burger));
         openModal();
     }
