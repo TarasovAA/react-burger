@@ -22,7 +22,6 @@ const LoginPage = () => {
     const loginClickHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        /* @ts-ignore */
         dispatch(loginUser({
             email: values.email,
             password: values.password

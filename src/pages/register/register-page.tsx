@@ -31,7 +31,6 @@ const RegisterPage = () => {
             name: values.userName
         };
 
-         /* @ts-ignore */
         dispatch(registerNewUser(userInfo));
 
     }

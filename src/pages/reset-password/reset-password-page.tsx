@@ -22,7 +22,6 @@ const ResetPasswordPage = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-          /* @ts-ignore */
         dispatch(resetPassword({password: values.newPassword, token: values.code}));
     }
 

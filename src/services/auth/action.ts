@@ -1,16 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api";
+import { TUserInfo, NewPasswordRequestBody } from "../../utils/types";
 
 export const tryResetPassword = createAsyncThunk(
     "auth/tryResetPassword",
-    async (email) => {
+    async (email: string) => {
         return await api.startResetingPassword({email});
     }
 )
 
 export const resetPassword = createAsyncThunk(
     "auth/resetPassword",
-    async (requestBody) => {
+    async (requestBody: NewPasswordRequestBody) => {
         return await api.finishResettinPassword(requestBody);
     }
 )
@@ -30,7 +31,7 @@ export const getUserInfo = createAsyncThunk(
 
 export const patchUserInfo = createAsyncThunk(
     "auth/patchUserInfo",
-    async (userInfo) => {
+    async (userInfo: TUserInfo) => {
         const token = localStorage.getItem('accessToken');
         
         if(!token){
@@ -43,7 +44,7 @@ export const patchUserInfo = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
-    async (userCredentials) => {
+    async (userCredentials: Omit<TUserInfo, 'name'>) => {
         const request = await api.sighIn(userCredentials)
                                     .then(res =>{
                                         let accessToken: string = res.accessToken.split("Bearer ").pop() || '';
@@ -60,7 +61,7 @@ export const loginUser = createAsyncThunk(
 
 export const registerNewUser = createAsyncThunk(
     "auth/registerNewUser",
-    async (userCredentials) => {
+    async (userCredentials: TUserInfo) => {
         
         const request =  await api.sighUp(userCredentials)
                                         .then(res =>{

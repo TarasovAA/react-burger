@@ -39,7 +39,7 @@ const userSlice = createSlice({
     name:"auth/user",
     initialState,
     reducers: {
-        cleaerResetPasswordResponse(state, action) {
+        cleaerResetPasswordResponse(state) {
             state.tryResetPasswordSuccess = null;
             state.message = '';
         }

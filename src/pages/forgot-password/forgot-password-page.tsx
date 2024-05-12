@@ -21,14 +21,12 @@ const ForgotPasswordPage = () => {
     })
 
     useEffect(() => {
-        /* @ts-ignore */
         dispatch(cleaerResetPasswordResponse());
     }, [])
 
     const handleSubmition = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        /* @ts-ignore */
+        
         dispatch(tryResetPassword(values.email));
 
         

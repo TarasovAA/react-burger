@@ -31,7 +31,6 @@ export const ProfileFieldsPage = () => {
         if(!!values.password)
             userInfo.password = values.password;
 
-        /* @ts-ignore */
         dispatch(patchUserInfo(userInfo));
     }
 

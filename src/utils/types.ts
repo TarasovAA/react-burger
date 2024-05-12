@@ -14,10 +14,18 @@ export type TIngredient = {
 
 export type TConstructorIngredient = TIngredient & {uniqueId: string}
 
+//TODO: переделать что бы параметры были обязательными!
 export type TUserInfo = {
     name?: string;
     email?: string;
     password?: string;
+}
+
+export type TUserShortInfo =  Omit<TUserInfo, 'name'>;
+
+export type NewPasswordRequestBody = {
+  password: string;
+  token: string;
 }
 
 export type TOrder = {
@@ -93,3 +101,12 @@ export type TOrderA = {
 
 
 export type TAllOrdersResponseBody = TResponseBody<'orders', Array<TOrderA>> & { name: string; }
+
+export interface IUserCredentials{
+  email: string;
+  password: string;
+}
+
+export interface IUserFullCredentials extends IUserCredentials{
+  name: string;
+}
