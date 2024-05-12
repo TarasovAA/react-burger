@@ -17,7 +17,7 @@ export const OrdersFeedLine = ({orders, link} : OrdersFeedLineProps) => {
             <div className="p-10" style={{maxWidth: '1000px', maxHeight: '912px', overflowY: 'auto'}}>
              <div style={{display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center'}}>
                  {orders && (<>
-                     {orders.map((item) => (
+                     {orders.map(item => (
                          <OrderFeedCard key={item._id} feedInfo={item} link={link} />
                      ))}
                  </>)}

@@ -5,8 +5,8 @@ import { Loader } from '../../local-uikit/components';
 export interface OrdersFeedStatusLineProps{
     done?: Array<string>;
     inProgress?: Array<string>;
-    total?: string;
-    totalToday?: string;
+    total?: number;
+    totalToday?: number;
 }
 
 export const OrdersFeedStatusLine = ({done, inProgress, total, totalToday} : OrdersFeedStatusLineProps) => {

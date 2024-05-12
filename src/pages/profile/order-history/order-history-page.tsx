@@ -1,41 +1,40 @@
 import { OrdersFeedLine } from "../../../components/orders-feed-line/orders-feed-line";
 import { useState, useEffect } from "react";
 import { TFeed } from "../../../utils/types";
+import { useDispatch } from "../../../services/hooks";
+
+import { GetWsMessages } from "../../../services/web-socket/selector";
+import { 
+    WS_CONNECTION_START,
+    WS_CONNECTION_CLOSING
+ } from "../../../services/web-socket/wsActionType";
 
 const OrderHistoryPage = () => {
+    const dispatch = useDispatch();
     const [orders, setOrders] = useState<Array<TFeed> | null>(null);
+    const wsMesages = GetWsMessages();
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
-        const ws = new WebSocket(`wss://norma.nomoreparties.space/orders?token=${accessToken}`);
+       
 
-        ws.onopen = (event: Event) => {
-            console.log("Соединение установлено");
-
-            ws.send('');
-        }
-
-        ws.onmessage = async (event: MessageEvent) => {
-            console.log(`Получены данные: ${event.data}`)
-            var data = await JSON.parse(event.data);
-            console.log(data.orders)
-
-            setOrders(data.orders);
-        }
-
-        ws.onclose =  (event: Event) => {
-            console.log("Соединение закрыто");
-        }
-
-        ws.onerror = (event: Event) => {
-            console.log(`Ошибка ${event}`)
-        }
+        dispatch({
+            type: WS_CONNECTION_START,
+            wsUrl: `wss://norma.nomoreparties.space/orders?token=${accessToken}`
+        });
 
         return () => {
-            ws.close();
+            dispatch({
+                type: WS_CONNECTION_CLOSING
+            });
         }
-
     }, []);
+
+    useEffect(() => {
+        if(wsMesages){
+            setOrders(wsMesages.orders);
+        }
+    }, [wsMesages])
 
     return (<>
         <OrdersFeedLine orders={orders} link="/profile/orders"/>

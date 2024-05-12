@@ -5,13 +5,15 @@ import { Action, ActionCreator, Dispatch } from 'redux';
 import { TIngredientsAction } from './ingredients/action';
 import { TConstructorAction } from './constructor/action';
 import { TOrderAction } from './order/action';
+import { WsConnectionAction } from './web-socket/wsActionType';
 
 export type RootState = ReturnType<typeof store.getState>;
 
 // Типизация всех экшенов приложения
 export type TApplicationActions = TIngredientsAction
                                 | TConstructorAction
-                                | TOrderAction;
+                                | TOrderAction
+                                | WsConnectionAction;
 
 // Типизация thunk'ов в нашем приложении
 
