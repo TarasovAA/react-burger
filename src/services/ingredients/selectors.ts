@@ -12,7 +12,7 @@ export const GetAllIngredients = ()  => {
 
 const allIngredients = (store: RootState) => store.allIngredients.allIngredients;
 
-export const GetMemoFilteredIngredients = createSelector([allIngredients, (allIngredients, ids: Array<string>)=>ids], (allIngredients, ids) => allIngredients.filter((i: any) => ids.includes(i._id)))
+export const GetMemoFilteredIngredients = createSelector([allIngredients, (allIngredients, ids: Array<string>)=>ids], (allIngredients, ids) => allIngredients.filter(i => ids.includes(i._id)))
 
 export const GetIngredientsByIds = (ingredients: Array<string>) => {
     return useSelector((store: RootState) => GetMemoFilteredIngredients(store, ingredients));

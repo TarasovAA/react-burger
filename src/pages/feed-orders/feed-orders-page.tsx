@@ -35,8 +35,8 @@ const FeedOrdersPage = () => {
             setOrders(wsMesages.orders);
 
             setfeedLineInfo({
-                done: wsMesages.orders.filter((value: any) => value.status === 'done').splice(0, 10).map((value: any) => value.number),
-                inProgress: wsMesages.orders.filter((value: any) => value.status !== 'done').splice(0, 10).map((value: any) => value.number),
+                done: wsMesages.orders.filter(value => value.status === 'done').splice(0, 10).map(value => value.number),
+                inProgress: wsMesages.orders.filter(value => value.status !== 'done').splice(0, 10).map(value => value.number),
                 total: wsMesages.total,
                 totalToday: wsMesages.totalToday
             })

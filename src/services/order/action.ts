@@ -1,7 +1,7 @@
 import { IBurgerConstructorState } from "../constructor/action";
 import { CLEAR_CONSTRUCTOR } from "../constructor/action";
 import api from "../api";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 import { 
     CREATE_ORDER_REQUEST,

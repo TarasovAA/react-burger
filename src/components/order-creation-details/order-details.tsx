@@ -13,7 +13,7 @@ const OrderDetails = () => {
             ( <>
                <div>
                   <p className="text text_type_digits-large  text_color_inactive">
-                     {orderNamber}
+                     {orderNamber && orderNamber}
                   </p>
                </div>
                <div className="mt-8">

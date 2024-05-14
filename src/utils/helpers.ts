@@ -1,4 +1,5 @@
 import { baseUrl } from "../constants/common";
+import { TUserLogInResponseBody } from "./types";
 
 export function handleRequest<T>(url: string, options:RequestInit = {}) : Promise<T> {
     return fetch(url, options)
@@ -31,8 +32,7 @@ export async function fetchWithRefresh<T>(url: string, options: RequestInit = {}
     }
 }
 
-//TODO: почему то не могу поменять any на T
-export const refreshToken = async () : Promise<any> => {
+export async function refreshToken() : Promise<TUserLogInResponseBody>{
     return await fetch(`${baseUrl}/api/auth/token`,{
         method: "POST",
         headers: {
@@ -52,7 +52,7 @@ export const refreshToken = async () : Promise<any> => {
         localStorage.setItem("refreshToken", refreshData.refreshToken); 
         localStorage.setItem("accessToken", refreshData.accessToken.split("Bearer ").pop());
 
-        return refreshData;
+        return refreshData as TUserLogInResponseBody;
     })
 }
 
@@ -69,26 +69,4 @@ const checkReponse = (res: Response): Promise<any> => {
 
                 return data;
             })
-}
-
-const handleWebSocketConnection = (wsUrl: string): void => {
-    const ws = new WebSocket(wsUrl);
-
-    ws.onopen = (event: Event) => {
-        console.log("Соединение установлено");
-
-        
-    }
-
-    ws.onclose =  (event: Event) => {
-        console.log("Соединение закрыто");
-    }
-
-    ws.onmessage = (event: MessageEvent) => {
-        console.log(`Получены данные: ${event.data}`)
-    }
-
-    ws.onerror = (event: Event) => {
-        console.log(`Ошибка ${event}`)
-    }
 }

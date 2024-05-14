@@ -12,14 +12,17 @@ import {
     TRefreshUserResponseBody,
     TAllOrdersResponseBody,
     NewPasswordRequestBody,
-    TUserInfoWithEmptyFields
+    TUserInfoWithEmptyFields,
+    TUserInfo,
+    TUserShortInfo,
+    TIngredient
 } from "../utils/types";
 
 import { baseUrl } from "../constants/common";
 
 class Api{
     //auth
-    sighUp = (userCredentials: any): Promise<TUserLogInResponseBody> => {
+    sighUp = (userCredentials: TUserInfo): Promise<TUserLogInResponseBody> => {
         return handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/register', {
             method: "POST",
             headers: {
@@ -30,7 +33,7 @@ class Api{
         });
     }
 
-    sighIn = (userCredentials: any): Promise<TUserLogInResponseBody> => {
+    sighIn = (userCredentials: TUserShortInfo): Promise<TUserLogInResponseBody> => {
         return handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/login', {
             method: "POST",
             headers: {
@@ -107,7 +110,7 @@ class Api{
     }
 
 
-    createOrders = (requestBody: any, token: string): Promise<TOrderResponseBody>  => {
+    createOrders = (requestBody: { ingredients: Array<TIngredient> }, token: string): Promise<TOrderResponseBody>  => {
         return fetchWithRefresh<TOrderResponseBody>(baseUrl + '/api/orders', {
             method: "POST",
             headers: {

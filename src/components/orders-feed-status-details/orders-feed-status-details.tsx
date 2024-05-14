@@ -1,10 +1,9 @@
-import { publicDecrypt } from 'crypto';
 import style from './orders-feed-status-details.module.css'
 import { Loader } from '../../local-uikit/components';
 
 export interface OrdersFeedStatusLineProps{
-    done?: Array<string>;
-    inProgress?: Array<string>;
+    done?: Array<number>;
+    inProgress?: Array<number>;
     total?: number;
     totalToday?: number;
 }

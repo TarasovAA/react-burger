@@ -8,7 +8,7 @@ import {
 interface IOrderState{
     isCreating: boolean;
     isCreated: boolean;
-    orderNamber: number | null | unknown;
+    orderNamber: number | null;
     name: string | null;
     isCreatingError: boolean;
     creatingErrorMessage: string | null | undefined;
