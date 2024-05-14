@@ -1,6 +1,16 @@
 import { WsConnectionAction } from "./wsActionType";
 import { IFeedMessage } from "./wsTypes";
 
+import { 
+    WS_CONNECTION_START,
+    WS_CONNECTION_SUCCESS,
+    WS_CONNECTION_ERROR,
+    WS_CONNECTION_CLOSED,
+    WS_CONNECTION_CLOSING,
+    WS_GET_MESSAGE,
+    WS_SEND_MESSAGE
+ } from "./wsActionType";
+
 type TWSState = {
     wsUrl: string | null;
     wsConnected: boolean;
@@ -17,31 +27,31 @@ const initialState: TWSState = {
 
 export const wsReducer = (state = initialState, action: WsConnectionAction) => {
     switch (action.type){
-        case "FEED/WS_CONNECTION_START":
+        case WS_CONNECTION_START:
             return {
                 ...state,
                 wsUrl: action.wsUrl
             };
-        case "FEED/WS_CONNECTION_SUCCESS":
+        case WS_CONNECTION_SUCCESS:
             return {
                 ...state,
                 error: undefined,
                 wsConnected: true
             };
-        case "FEED/WS_CONNECTION_ERROR":
+        case WS_CONNECTION_ERROR:
             return {
                 ...state,
                 error: action.payload,
                 wsConnected: false
             };
-        case "FEED/WS_CONNECTION_CLOSED":
+        case WS_CONNECTION_CLOSED:
             return {
                 ...state,
                 error: undefined,
                 wsConnected: false,
                 wsUrl: null
             }
-        case "FEED/WS_GET_MESSAGE":
+        case WS_GET_MESSAGE:
             return {
                 ...state,
                 error: undefined,
