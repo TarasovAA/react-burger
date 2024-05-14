@@ -38,3 +38,7 @@ const feedSlice = createSlice({
 export const feedReducer = feedSlice.reducer;
 
 export const {pending, updateFeedData} = feedSlice.actions;
+
+type TFeedActionCreator = typeof feedSlice.actions;
+
+export type TFeedAction  = ReturnType<TFeedActionCreator[keyof TFeedActionCreator]>;

@@ -5,6 +5,8 @@ import { TIngredientsAction } from './ingredients/action';
 import { TConstructorAction } from './constructor/action';
 import { TOrderAction } from './order/action';
 import { WsConnectionAction } from './web-socket/wsActionType';
+import { TFeedAction } from './feed/reducer';
+import { TUserInfoAction } from './auth/reducer';
 
 export type RootState = ReturnType<typeof store.getState>;
 
@@ -12,7 +14,9 @@ export type RootState = ReturnType<typeof store.getState>;
 export type TApplicationActions = TIngredientsAction
                                 | TConstructorAction
                                 | TOrderAction
-                                | WsConnectionAction;
+                                | WsConnectionAction
+                                | TFeedAction
+                                | TUserInfoAction;
 
 // Типизация thunk'ов в нашем приложении
 

@@ -98,3 +98,7 @@ const userSlice = createSlice({
 export const userReducer = userSlice.reducer;
 
 export const {cleaerResetPasswordResponse} = userSlice.actions;
+
+type TUserInfoActionCreator = typeof userSlice.actions;
+
+export type TUserInfoAction  = ReturnType<TUserInfoActionCreator[keyof TUserInfoActionCreator]>;
