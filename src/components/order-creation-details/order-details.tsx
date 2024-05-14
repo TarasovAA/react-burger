@@ -1,10 +1,10 @@
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import style from './modal.module.module.css';
 import { Loader } from '../../local-uikit/components';
-import { GetOrderRequestData } from '../../services/order/selector';
+import { getOrderRequestData } from '../../services/order/selector';
 
 const OrderDetails = () => {
-   const {orderNamber, isCreating} = GetOrderRequestData();
+   const {orderNamber, isCreating} = getOrderRequestData();
    
    return (
       <div className={style.orderWindow}>

@@ -5,10 +5,10 @@ import { patchUserInfo } from "../../services/auth/action";
 import '../index.css';
 import React from "react";
 import { TUserInfoWithEmptyFields } from "../../utils/types";
-import { GetUserInfo } from "../../services/auth/selectors";
+import { getUserInfo } from "../../services/auth/selectors";
 
 export const ProfileFieldsPage = () => {
-    const user = GetUserInfo();
+    const user = getUserInfo();
     const dispatch = useDispatch();
 
     const {values, handleChange, setValues} = useForm({

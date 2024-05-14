@@ -1,4 +1,5 @@
 import { useSelector } from "../hooks";
 import { RootState } from "../types";
 
-export const GetFeedData = ()  => useSelector((store: RootState) => store.feed.data);
+/* eslint-disable */ 
+export const getFeedData = ()  => useSelector((store: RootState) => store.feed.data);

@@ -8,7 +8,7 @@ import { cleaerResetPasswordResponse } from "../../services/auth/reducer";
 import { useForm } from "../../hooks/useForm";
 import '../index.css'
 
-import { IsForgotPasswordEmailSent } from "../../services/auth/selectors";
+import { isForgotPasswordEmailSent } from "../../services/auth/selectors";
 
 
 const ForgotPasswordPage = () => {
@@ -32,12 +32,13 @@ const ForgotPasswordPage = () => {
         
     }
     
-    const isForgotPasswordEmailSent = IsForgotPasswordEmailSent();
+    const forgotPasswordEmailSent = isForgotPasswordEmailSent();
+    
     useEffect(() => {
-        if(isForgotPasswordEmailSent)
+        if(forgotPasswordEmailSent)
             navigate('/reset-password');
         
-    }, [isForgotPasswordEmailSent, navigate])
+    }, [forgotPasswordEmailSent, navigate])
 
     return (<div className='mainPanel'>
             <form onSubmit={handleSubmition}>

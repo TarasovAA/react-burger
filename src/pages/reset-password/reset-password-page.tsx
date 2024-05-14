@@ -6,13 +6,13 @@ import { resetPassword } from '../../services/auth/action';
 import '../index.css'
 import React from 'react';
 
-import { IsPasswordSet, IsForgotPasswordEmailSent } from '../../services/auth/selectors';
+import { isPasswordSet, isForgotPasswordEmailSent } from '../../services/auth/selectors';
 
 const ResetPasswordPage = () => {
     const dispatch = useDispatch();
 
-    const isForgotPasswordEmailSent = IsForgotPasswordEmailSent();
-    const isPasswordSet = IsPasswordSet();
+    const forgotPasswordEmailSent = isForgotPasswordEmailSent();
+    const passwordSet = isPasswordSet();
 
     const {values, handleChange} = useForm({
         newPassword: '',
@@ -25,7 +25,7 @@ const ResetPasswordPage = () => {
         dispatch(resetPassword({password: values.newPassword, token: values.code}));
     }
 
-    return ((isForgotPasswordEmailSent && !isPasswordSet) ? (<div className='mainPanel'>
+    return ((forgotPasswordEmailSent && !passwordSet) ? (<div className='mainPanel'>
             <form onSubmit={handleSubmit}>
                 <h2 className='text text_type_main-medium m-5'>Востановление пароля</h2>
                 <PasswordInput
@@ -48,7 +48,7 @@ const ResetPasswordPage = () => {
             <div className='text text_type_main-default text_color_inactive p-10'>
                 <span>Вспомнили пароль? <Link to='/login'>Войти</Link></span>
             </div>
-    </div>) : (isForgotPasswordEmailSent && isPasswordSet) ? <Navigate to="/login" /> : <Navigate to="/forgot-password" />);
+    </div>) : (forgotPasswordEmailSent && isPasswordSet) ? <Navigate to="/login" /> : <Navigate to="/forgot-password" />);
 }
 
 export default ResetPasswordPage;

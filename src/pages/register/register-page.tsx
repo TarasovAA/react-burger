@@ -7,7 +7,7 @@ import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
 import { TUserInfo } from '../../utils/types';
 
-import { GetUserInfo, GetUserErrorMessage } from '../../services/auth/selectors';
+import { getUserInfo, getUserErrorMessage } from '../../services/auth/selectors';
 
 
 const RegisterPage = () => {
@@ -19,8 +19,8 @@ const RegisterPage = () => {
 
 
     const dispatch = useDispatch();
-    const user = GetUserInfo();
-    const errorMessage = GetUserErrorMessage();
+    const user = getUserInfo();
+    const errorMessage = getUserErrorMessage();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

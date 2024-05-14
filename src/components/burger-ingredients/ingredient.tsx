@@ -5,7 +5,7 @@ import {DndDragTypes} from '../../constants/common';
 import { Link, useLocation } from 'react-router-dom';
 import { TIngredient } from '../../utils/types';
 import { FC } from 'react';
-import { GetBurgerConstructor } from '../../services/constructor/selectors';
+import { getBurgerConstructor } from '../../services/constructor/selectors';
 
 interface IIngredientProps{
   item: TIngredient
@@ -14,7 +14,7 @@ interface IIngredientProps{
 const Ingredient: FC<IIngredientProps> = ({item}) => {
   const location = useLocation();
 
-  const burgerConstructor = GetBurgerConstructor();
+  const burgerConstructor = getBurgerConstructor();
   const {_id, type} = item;
 
 

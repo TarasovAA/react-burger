@@ -3,7 +3,7 @@ import { OrdersFeedStatusLine, OrdersFeedStatusLineProps } from "../../component
 import { useState, useEffect } from "react";
 import { TFeed } from "../../utils/types";
 import { useDispatch } from "../../services/hooks";
-import { GetWsMessages } from "../../services/web-socket/selector";
+import { getWsMessages } from "../../services/web-socket/selector";
 
 import { 
     WS_CONNECTION_START,
@@ -15,7 +15,7 @@ const FeedOrdersPage = () => {
     const [feedLineInfo, setfeedLineInfo] = useState<OrdersFeedStatusLineProps>({});
 
     const dispatch = useDispatch();
-    const wsMesages = GetWsMessages();
+    const wsMesages = getWsMessages();
     
     useEffect(() => {
         dispatch({

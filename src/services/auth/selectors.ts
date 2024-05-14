@@ -1,12 +1,13 @@
 import { useSelector } from "../hooks";
 import { RootState } from "../types";
 
-export const GetUserInfo = ()  => useSelector((store: RootState) => store.user.user);
+/* eslint-disable */ 
+export const getUserInfo = () => useSelector((store: RootState) => store.user.user);
 
-export const IsAuthChecked = ()  => useSelector((store: RootState) => store.user.isAuthChecked);
+export const isAuthChecked = ()  => useSelector((store: RootState) => store.user.isAuthChecked);
 
-export const IsForgotPasswordEmailSent = () => useSelector((store: RootState) => store.user.isForgotPasswordEmailSent);
+export const isForgotPasswordEmailSent = () => useSelector((store: RootState) => store.user.isForgotPasswordEmailSent);
 
-export const IsPasswordSet = () => useSelector((store: RootState) => store.user.isPasswordSet);
+export const isPasswordSet = () => useSelector((store: RootState) => store.user.isPasswordSet);
 
-export const GetUserErrorMessage = () => useSelector((store: RootState) => store.user.errorMessage);
+export const getUserErrorMessage = () => useSelector((store: RootState) => store.user.errorMessage);

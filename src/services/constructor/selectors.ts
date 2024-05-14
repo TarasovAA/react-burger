@@ -1,6 +1,7 @@
 import { useSelector } from "../hooks";
 import { RootState } from "../types";
 
-export const GetBurgerConstructor = () => useSelector((store: RootState) => store.burgerConstructor);
+/* eslint-disable */ 
+export const getBurgerConstructor = () => useSelector((store: RootState) => store.burgerConstructor);
 
-export const GetBurgerConstructorBody = () => useSelector((store: RootState) => store.burgerConstructor.body);
+export const getBurgerConstructorBody = () => useSelector((store: RootState) => store.burgerConstructor.body);

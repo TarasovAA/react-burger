@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { Loader } from "../../local-uikit/components/index";
 import { FC } from "react";
-import { IsAuthChecked, GetUserInfo } from "../../services/auth/selectors";
+import { isAuthChecked, getUserInfo } from "../../services/auth/selectors";
 
 interface IProtectedRouteElement{
     onlyUnAuth?: boolean;
@@ -11,12 +11,12 @@ interface IProtectedRouteElement{
 export const ProtectedRouteElement: FC<IProtectedRouteElement> = ({ onlyUnAuth = false, component}) => {
     //const accessToken = localStorage.getItem('accessToken');
     
-    const isAuthChecked = IsAuthChecked();
-    const user = GetUserInfo();
+    const authChecked = isAuthChecked();
+    const user = getUserInfo();
 
     const location = useLocation();
 
-    if(!isAuthChecked)
+    if(!authChecked)
         return <Loader />
 
     if(!onlyUnAuth && !user)

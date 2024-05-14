@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { TFeed } from "../../../utils/types";
 import { useDispatch } from "../../../services/hooks";
 
-import { GetWsMessages } from "../../../services/web-socket/selector";
+import { getWsMessages } from "../../../services/web-socket/selector";
 import { 
     WS_CONNECTION_START,
     WS_CONNECTION_CLOSING
@@ -12,7 +12,7 @@ import {
 const OrderHistoryPage = () => {
     const dispatch = useDispatch();
     const [orders, setOrders] = useState<Array<TFeed> | null>(null);
-    const wsMesages = GetWsMessages();
+    const wsMesages = getWsMessages();
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');

@@ -1,10 +1,10 @@
 import { Logo, ProfileIcon, BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './app-header.module.css';
 import { NavLink, Link } from 'react-router-dom';
-import { GetUserInfo } from '../../services/auth/selectors';
+import { getUserInfo } from '../../services/auth/selectors';
 
 const AppHeader = () => {
-    const user = GetUserInfo();
+    const user = getUserInfo();
 
     return (
         <header className={styles.header}>
