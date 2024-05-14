@@ -27,8 +27,8 @@ export type TOrderAction = ICreateOrderRequestAction
                         | ICreateOrderRequestSuccessAction
                         | ICreateOrderRequestFailedAction;
 
-export const refreshOrderIndex: AppThunk = (burger: IBurgerConstructorState) => {
-    return function(dispatch: AppDispatch){
+export const refreshOrderIndex = (burger: IBurgerConstructorState): AppThunk => {
+    return function(dispatch){
         //обработка данных и получение заказа
         
         dispatch({

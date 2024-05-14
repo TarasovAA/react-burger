@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TFeed } from "../../utils/types";
+import { PayloadAction } from "@reduxjs/toolkit";
 
 interface IFeedData{
     data: Array<TFeed>;
@@ -25,7 +26,7 @@ const feedSlice = createSlice({
             state.errorMessage = null;
             state.isConnected = false;
         },
-        updateFeedData(state, action) {
+        updateFeedData(state, action: PayloadAction<Array<TFeed>>) {
             state.data = action.payload;
 
             state.isConnecting = false;
