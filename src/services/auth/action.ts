@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api";
-import { TUserInfo, NewPasswordRequestBody } from "../../utils/types";
+import { TUserInfo, NewPasswordRequestBody, TUserInfoWithEmptyFields } from "../../utils/types";
 
 export const tryResetPassword = createAsyncThunk(
     "auth/tryResetPassword",
@@ -31,7 +31,7 @@ export const getUserInfo = createAsyncThunk(
 
 export const patchUserInfo = createAsyncThunk(
     "auth/patchUserInfo",
-    async (userInfo: TUserInfo) => {
+    async (userInfo: TUserInfoWithEmptyFields) => {
         const token = localStorage.getItem('accessToken');
         
         if(!token){

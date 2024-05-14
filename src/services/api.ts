@@ -10,12 +10,14 @@ import {
     TOrderResponseBody,
     TGetUserResponseBody,
     TRefreshUserResponseBody,
-    TAllOrdersResponseBody
+    TAllOrdersResponseBody,
+    NewPasswordRequestBody,
+    TUserInfoWithEmptyFields
 } from "../utils/types";
 
 import { baseUrl } from "../constants/common";
 
-export class Api{
+class Api{
     //auth
     sighUp = (userCredentials: any): Promise<TUserLogInResponseBody> => {
         return handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/register', {
@@ -52,7 +54,7 @@ export class Api{
         });
     }
 
-    startResetingPassword = (requestBody: any): Promise<any> => {
+    startResetingPassword = (requestBody: {email: string}): Promise<TResponseBody> => {
         return handleRequest<TResponseBody>(baseUrl + '/api/password-reset', {
             method: "POST",
             headers: {
@@ -63,7 +65,7 @@ export class Api{
         });
     }
 
-    finishResettinPassword = (requestBody: any): Promise<any> => {
+    finishResettinPassword = (requestBody: NewPasswordRequestBody): Promise<TResponseBody> => {
         return handleRequest<TResponseBody>(baseUrl + '/api/password-reset/reset', {
             method: "POST",
             headers: {
@@ -86,7 +88,7 @@ export class Api{
         });
     }
 
-    refreshUser = (userInfo: any, token: string): Promise<TGetUserResponseBody> => {
+    refreshUser = (userInfo: TUserInfoWithEmptyFields, token: string): Promise<TGetUserResponseBody> => {
         return fetchWithRefresh<TRefreshUserResponseBody>(baseUrl + '/api/auth/user', {
             method: "PATCH",
             headers: {
@@ -123,4 +125,5 @@ export class Api{
     }
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new Api();

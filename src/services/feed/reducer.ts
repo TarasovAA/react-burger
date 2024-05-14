@@ -21,12 +21,12 @@ const feedSlice = createSlice({
     name:"feed/",
     initialState,
     reducers: {
-        pending(state){
+        pending(state: IFeedData){
             state.isConnecting = true;
             state.errorMessage = null;
             state.isConnected = false;
         },
-        updateFeedData(state, action: PayloadAction<Array<TFeed>>) {
+        updateFeedData(state: IFeedData, action: PayloadAction<Array<TFeed>>) {
             state.data = action.payload;
 
             state.isConnecting = false;

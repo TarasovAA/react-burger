@@ -6,7 +6,7 @@ export const Loader = () => {
 }
 
 interface IErrorBlockProps{
-    message: string;
+    message?: string | null;
 }
 
 export const ErrorBlock: FC<IErrorBlockProps> = ({message}) => {

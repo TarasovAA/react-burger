@@ -16,9 +16,15 @@ export type TConstructorIngredient = TIngredient & {uniqueId: string}
 
 //TODO: переделать что бы параметры были обязательными!
 export type TUserInfo = {
-    name?: string;
-    email?: string;
+    name: string;
+    email: string;
     password?: string;
+}
+
+export type TUserInfoWithEmptyFields = {
+  name?: string;
+  email?: string;
+  password?: string;
 }
 
 export type TUserShortInfo =  Omit<TUserInfo, 'name'>;
