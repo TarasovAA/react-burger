@@ -1,7 +1,7 @@
 import { IBurgerConstructorState } from "../constructor/action";
 import { CLEAR_CONSTRUCTOR } from "../constructor/action";
 import api from "../api";
-import { AppDispatch, AppThunk } from "../types";
+import { AppThunk } from "../types";
 
 import { 
     CREATE_ORDER_REQUEST,
@@ -27,8 +27,8 @@ export type TOrderAction = ICreateOrderRequestAction
                         | ICreateOrderRequestSuccessAction
                         | ICreateOrderRequestFailedAction;
 
-export const refreshOrderIndex: AppThunk = (burger: IBurgerConstructorState) => {
-    return function(dispatch: AppDispatch){
+export const refreshOrderIndex = (burger: IBurgerConstructorState): AppThunk => {
+    return function(dispatch){
         //обработка данных и получение заказа
         
         dispatch({

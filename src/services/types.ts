@@ -1,30 +1,35 @@
 import {store} from './store';
 import { ThunkAction } from 'redux-thunk';
-import { Action, ActionCreator, Dispatch } from 'redux';
 
 import { TIngredientsAction } from './ingredients/action';
 import { TConstructorAction } from './constructor/action';
 import { TOrderAction } from './order/action';
-import { WsConnectionAction } from './web-socket/wsActionType';
+import { TFeedAction } from './feed/reducer';
+import { TUserInfoAction } from './auth/reducer';
+import { TWsFeedAction } from './web-socket/ws-actions/feed';
+import { TWsOrdersHistoryAction } from './web-socket/ws-actions/orders-history';
+import { rootReducer } from './reducer';
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 
 // Типизация всех экшенов приложения
 export type TApplicationActions = TIngredientsAction
                                 | TConstructorAction
                                 | TOrderAction
-                                | WsConnectionAction;
+                                | TFeedAction
+                                | TUserInfoAction
+                                | TWsFeedAction
+                                | TWsOrdersHistoryAction;
 
 // Типизация thunk'ов в нашем приложении
 
-export type AppThunk<TReturn = void> = ActionCreator<
-  ThunkAction<TReturn, Action, RootState, TApplicationActions>
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  TApplicationActions
 >;
 
 // Типизация метода dispatch для проверки на валидность отправляемого экшена
-
-//1 метод
-//export type AppDispatch = typeof store.dispatch;
-
-//2 метод
-export type AppDispatch = Dispatch<TApplicationActions>;
+export type AppStore = typeof store
+export type AppDispatch = typeof store.dispatch

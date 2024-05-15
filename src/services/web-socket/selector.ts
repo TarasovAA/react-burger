@@ -1,4 +1,5 @@
-import { useSelector } from "../hooks";
 import { RootState } from "../types";
 
-export const GetWsMessages = () => useSelector((store: RootState) => store.ws.messages);
+export const getFeedWsStore = (store: RootState) => store.feedWs;
+
+export const getOrderHistoryWsStore = (store: RootState) => store.orderHistoryWs;

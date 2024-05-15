@@ -7,15 +7,15 @@ import { ErrorBlock } from '../../local-uikit/components';
 import '../index.css';
 import React from 'react';
 
-import { GetUserErrorMessage } from '../../services/auth/selectors';
+import { getUserErrorMessage } from '../../services/auth/selectors';
+
+import { useSelector } from '../../services/hooks';
 
 const LoginPage = () => {
     const {values, handleChange} = useForm({
         email: '',
         password: ''
     });
-
-    const errorMessage = GetUserErrorMessage();
    
     const dispatch = useDispatch();
 
@@ -27,6 +27,8 @@ const LoginPage = () => {
             password: values.password
         }));
     }
+
+    const errorMessage = useSelector(getUserErrorMessage());
 
     return (<div className='mainPanel'>
             <form onSubmit={loginClickHandler}>

@@ -26,8 +26,8 @@ export interface IGetIngredientsFailedAction{
 
 export type TIngredientsAction = IGetIngredientsAction | IGetIngredientsSuccessAction | IGetIngredientsFailedAction;
 
-export const getIngredients: AppThunk = () => {
-    return function (dispatch: AppDispatch) {
+export const getIngredients = () : AppThunk => {
+    return function (dispatch) {
         dispatch({
             type: GET_INGREDIENTS_REQUEST
         });

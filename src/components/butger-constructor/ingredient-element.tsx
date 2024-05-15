@@ -8,7 +8,6 @@ import { useDrag, useDrop } from 'react-dnd';
 import { DndDragTypes } from '../../constants/common';
 import { Identifier } from 'typescript';
 import { TIngredient } from '../../utils/types';
-import { number } from 'prop-types';
 
 interface IDragItem {
     index: number

@@ -1,11 +1,11 @@
-import { useSelector } from "../hooks";
+import { RootState } from "../types";
 
-export const GetUserInfo = ()  => useSelector((store: any) => store.user.user);
+export const getUserInfo = (store: RootState) => store.user.user;
 
-export const IsAuthChecked = ()  => useSelector((store: any) => store.user.isAuthChecked);
+export const isAuthChecked = (store: RootState) => store.user.isAuthChecked;
 
-export const IsForgotPasswordEmailSent = () => useSelector((store: any) => store.user.isForgotPasswordEmailSent);
+export const isForgotPasswordEmailSent = (store: RootState) => store.user.isForgotPasswordEmailSent;
 
-export const IsPasswordSet = () => useSelector((store: any) => store.user.isPasswordSet);
+export const isPasswordSet = () => (store: RootState) => store.user.isPasswordSet;
 
-export const GetUserErrorMessage = () => useSelector((store: any) => store.user.errorMessage);
+export const getUserErrorMessage = () => (store: RootState) => store.user.errorMessage;

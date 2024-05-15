@@ -1,10 +1,11 @@
 import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import style from './modal.module.module.css';
 import { Loader } from '../../local-uikit/components';
-import { GetOrderRequestData } from '../../services/order/selector';
+import { getOrderRequestData } from '../../services/order/selector';
+import { useSelector } from '../../services/hooks';
 
 const OrderDetails = () => {
-   const {orderNamber, isCreating} = GetOrderRequestData();
+   const {orderNamber, isCreating} = useSelector(getOrderRequestData);
    
    return (
       <div className={style.orderWindow}>
@@ -13,7 +14,7 @@ const OrderDetails = () => {
             ( <>
                <div>
                   <p className="text text_type_digits-large  text_color_inactive">
-                     {orderNamber}
+                     {orderNamber && orderNamber}
                   </p>
                </div>
                <div className="mt-8">

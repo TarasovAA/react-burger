@@ -13,8 +13,10 @@ import IngredientsConstructor from './ingredients-constructor';
 import { useNavigate } from 'react-router-dom';
 import { TIngredient } from '../../utils/types';
 
-import { GetBurgerConstructor } from '../../services/constructor/selectors';
-import { GetUserInfo } from '../../services/auth/selectors';
+import { getBurgerConstructor } from '../../services/constructor/selectors';
+import { getUserInfo } from '../../services/auth/selectors';
+
+import { useSelector } from '../../services/hooks';
 
 
 interface IOrderCounterProps{
@@ -34,8 +36,8 @@ const BurgerConstructor = () => {
     const navigate = useNavigate();
     const [amount, setAmount] = useState<number>(0);
 
-    const burger = GetBurgerConstructor();
-    const user = GetUserInfo()
+    const burger = useSelector(getBurgerConstructor);
+    const user = useSelector(getUserInfo);
     
     console.log(user);
 

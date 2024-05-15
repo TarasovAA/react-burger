@@ -7,9 +7,10 @@ import { DndDragTypes } from '../../constants/common'
 import {SET_CONSTRUCTOR_BUNS} from '../../services/constructor/action';
 import React, { FC } from 'react';
 import { TIngredient } from '../../utils/types';
-import { GetBurgerConstructor } from '../../services/constructor/selectors';
-import { GetAllIngredientsRequestData } from '../../services/ingredients/selectors';
+import { getBurgerConstructor } from '../../services/constructor/selectors';
+import { getAllIngredientsRequestData } from '../../services/ingredients/selectors';
 import empty from '../../images/Empty.png';
+import { useSelector } from '../../services/hooks';
 
 interface IBunsConstructorProps{
     children: React.ReactNode
@@ -20,8 +21,8 @@ interface IDragItem {
   }
 
 const BunsConstructor: FC<IBunsConstructorProps> = ({children}) => {
-    const {head} = GetBurgerConstructor();
-    const { allIngredients } = GetAllIngredientsRequestData();
+    const {head} = useSelector(getBurgerConstructor);
+    const { allIngredients } = useSelector(getAllIngredientsRequestData);
 
     const dispatch = useDispatch();
 

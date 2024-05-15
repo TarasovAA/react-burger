@@ -10,14 +10,19 @@ import {
     TOrderResponseBody,
     TGetUserResponseBody,
     TRefreshUserResponseBody,
-    TAllOrdersResponseBody
+    TAllOrdersResponseBody,
+    NewPasswordRequestBody,
+    TUserInfoWithEmptyFields,
+    TUserInfo,
+    TUserShortInfo,
+    TIngredient
 } from "../utils/types";
 
 import { baseUrl } from "../constants/common";
 
-export class Api{
+class Api{
     //auth
-    sighUp = (userCredentials: any): Promise<TUserLogInResponseBody> => {
+    sighUp = (userCredentials: TUserInfo): Promise<TUserLogInResponseBody> => {
         return handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/register', {
             method: "POST",
             headers: {
@@ -28,7 +33,7 @@ export class Api{
         });
     }
 
-    sighIn = (userCredentials: any): Promise<TUserLogInResponseBody> => {
+    sighIn = (userCredentials: TUserShortInfo): Promise<TUserLogInResponseBody> => {
         return handleRequest<TUserLogInResponseBody>(baseUrl + '/api/auth/login', {
             method: "POST",
             headers: {
@@ -52,7 +57,7 @@ export class Api{
         });
     }
 
-    startResetingPassword = (requestBody: any): Promise<any> => {
+    startResetingPassword = (requestBody: {email: string}): Promise<TResponseBody> => {
         return handleRequest<TResponseBody>(baseUrl + '/api/password-reset', {
             method: "POST",
             headers: {
@@ -63,7 +68,7 @@ export class Api{
         });
     }
 
-    finishResettinPassword = (requestBody: any): Promise<any> => {
+    finishResettinPassword = (requestBody: NewPasswordRequestBody): Promise<TResponseBody> => {
         return handleRequest<TResponseBody>(baseUrl + '/api/password-reset/reset', {
             method: "POST",
             headers: {
@@ -86,7 +91,7 @@ export class Api{
         });
     }
 
-    refreshUser = (userInfo: any, token: string): Promise<TGetUserResponseBody> => {
+    refreshUser = (userInfo: TUserInfoWithEmptyFields, token: string): Promise<TGetUserResponseBody> => {
         return fetchWithRefresh<TRefreshUserResponseBody>(baseUrl + '/api/auth/user', {
             method: "PATCH",
             headers: {
@@ -105,7 +110,7 @@ export class Api{
     }
 
 
-    createOrders = (requestBody: any, token: string): Promise<TOrderResponseBody>  => {
+    createOrders = (requestBody: { ingredients: Array<TIngredient> }, token: string): Promise<TOrderResponseBody>  => {
         return fetchWithRefresh<TOrderResponseBody>(baseUrl + '/api/orders', {
             method: "POST",
             headers: {
@@ -123,4 +128,5 @@ export class Api{
     }
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default new Api();
