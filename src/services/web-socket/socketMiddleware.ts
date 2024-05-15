@@ -1,89 +1,90 @@
-import type { Middleware, MiddlewareAPI } from "redux";
-import type { TApplicationActions, RootState, AppDispatch } from "../types";
-import { getCurrentTimestamp } from "../../utils/datetime";
+import type { Middleware } from "redux";
 
-import { IFeedMessageResponse } from "./wsTypes";
+import { ActionCreatorWithPayload, ActionCreatorWithoutPayload } from "@reduxjs/toolkit";
+import { RootState } from "../types";
 
-import { 
-    WS_CONNECTION_START,
-    WS_CONNECTION_SUCCESS,
-    WS_CONNECTION_CLOSED,
-    WS_CONNECTION_ERROR,
-    WS_GET_MESSAGE,
-    WS_SEND_MESSAGE,
-    WS_CONNECTION_CLOSING
- } from "./wsActionType";
+export type TwsActionsTypes = {
+    connect: ActionCreatorWithPayload<string>,
+    disconnect: ActionCreatorWithoutPayload,
+    connecting: ActionCreatorWithoutPayload,
+    sendMessage?: ActionCreatorWithPayload<any>,
+    onOpen: ActionCreatorWithoutPayload,
+    onClose: ActionCreatorWithPayload<string>,
+    onError: ActionCreatorWithPayload<string>,
+    onMessage: ActionCreatorWithPayload<any>
+}
 
- import { IWsConnectionStartAction, IWsSendMessageAction } from "./wsActionType";
-
-export const socketMiddleware = (): Middleware => {
-    return ((store: MiddlewareAPI<AppDispatch, RootState>) => {
+export const socketMiddleware = (wsActions: TwsActionsTypes) : Middleware<{}, RootState> => {
+    return (store) => {
         let socket: WebSocket | null = null;
+        let url: string | null = null;
+        let closing: boolean = false;
 
-        return next => (action: TApplicationActions) =>{
-            const { dispatch, getState } = store;
-            const { type } = action;
+        const {
+            connect,
+            disconnect,
+            sendMessage,
+            onOpen,
+            onClose,
+            onError,
+            onMessage,
+          } = wsActions;
 
-            if(type === WS_CONNECTION_START) {
-                const { wsUrl } = (action as IWsConnectionStartAction);
-                console.log(`Попытка соединения с сокетом  ${wsUrl}`);
-                socket = new WebSocket(wsUrl);
-            }
+        return next => (action) => {
+            const { dispatch } = store;
 
-            if(socket) {
-                socket.onopen = (event: Event) => {
-                    console.log(`Соединение по сокету ${getState().ws.wsUrl} установлено`);
-                    dispatch({
-                        type: WS_CONNECTION_SUCCESS
-                    })
-                }
-            
-                socket.onclose =  (event: Event) => {
-                    console.log(`Соединение по сокету ${getState().ws.wsUrl} закрыто`);
-                    dispatch({
-                        type: WS_CONNECTION_CLOSED
-                    })
-                }
-            
-                socket.onerror = (event: Event) => {
+            if (connect.match(action)) {
+                const { payload } = action;
+                socket = new WebSocket(payload);
+                url = payload;
+
+                console.log(`Попытка соединения с сокетом  ${url}`);
+
+                socket.onopen = (event) => {
+                    console.log(`Соединение по сокету ${url} установлено`);
+                    dispatch(onOpen());
+                };
+
+                socket.onerror = (event) => {
                     console.log(`Ошибка ${event}`);
+                    dispatch(onError(String(event)));
+                  };
 
-                    //TODO: сделать обноыление токена при выводе ошибки
-
-                    dispatch({
-                        type: WS_CONNECTION_ERROR,
-                        payload: event
-                    })
-                }
-            
-                socket.onmessage = async (event: MessageEvent) => {
-                    const {data} = event;
-                    const parsedData: IFeedMessageResponse = JSON.parse(data);
+                  socket.onmessage = (event) => {
+                    console.log(event);
+                    const { data } = event;
+                    const parsedData = JSON.parse(data);
                     
                     console.log(`Получены новые данные: ${data}`);
 
-                    dispatch({
-                        type: WS_GET_MESSAGE,
-                        payload: {...parsedData, timestamp: getCurrentTimestamp()}
-                    })
-                }
+                    dispatch(onMessage(parsedData));
+                  };
 
-                if (type === WS_CONNECTION_CLOSING) {
-                    console.log(`Попытка закрыть соединение`);
-                    socket.close()
-                }
-
-                if (type === WS_SEND_MESSAGE) {
-                    const {pingPongMessage, token} = (action as IWsSendMessageAction);
-                    const message = { message: pingPongMessage, token };
-
-                    socket.send(JSON.stringify(message));
-                }
+                  socket.onclose = (event) => {
+                    if (closing) {
+                      
+                      console.log(`Соединение по сокету ${url} закрыто`);
+                      dispatch(onClose(event.code.toString()));
+                    } else {
+                        if(url)
+                            dispatch(connect(url));
+                    }
+                  };
             }
 
+            if (disconnect?.match(action) && socket) {
+                closing = true;
+                socket.close(1000);
+              }
+
+            if (sendMessage?.match(action) && socket) {
+                const { payload } = action;
+                
+                socket.send(JSON.stringify(payload));
+                dispatch(onClose("1000"));
+              }
+
             next(action);
-        };
-
-
-    }) as Middleware;
+        }
+    }
 }

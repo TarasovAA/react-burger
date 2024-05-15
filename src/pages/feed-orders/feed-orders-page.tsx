@@ -3,47 +3,46 @@ import { OrdersFeedStatusLine, OrdersFeedStatusLineProps } from "../../component
 import { useState, useEffect } from "react";
 import { TFeed } from "../../utils/types";
 import { useDispatch } from "../../services/hooks";
-import { getWsMessages } from "../../services/web-socket/selector";
+import { getFeedWsStore } from "../../services/web-socket/selector";
 
 import { 
-    WS_CONNECTION_START,
-    WS_CONNECTION_CLOSING
- } from "../../services/web-socket/wsActionType";
+    feedWsConnect,
+    feedWsDisconnect
+ } from "../../services/web-socket/ws-actions/feed";
+import { WebSocketStatus } from "../../services/web-socket/types";
 
 const FeedOrdersPage = () => {
     const [orders, setOrders] = useState<Array<TFeed> | null>(null);
     const [feedLineInfo, setfeedLineInfo] = useState<OrdersFeedStatusLineProps>({});
 
     const dispatch = useDispatch();
-    const wsMesages = getWsMessages();
+    const wsStore = getFeedWsStore();
     
     useEffect(() => {
-        dispatch({
-            type: WS_CONNECTION_START,
-            wsUrl: `ws://norma.nomoreparties.space/orders/all`
-        });
+        dispatch(feedWsConnect(`ws://norma.nomoreparties.space/orders/all`));
 
         return () => {
-            dispatch({
-                type: WS_CONNECTION_CLOSING
-            });
+            dispatch(feedWsDisconnect());
         }
     }, [])
 
     useEffect(() => {
-        if(wsMesages){
-            setOrders(wsMesages.orders);
+        if(wsStore.status === WebSocketStatus.ONLINE && wsStore.messages.length > 0){
+
+            var currentWsMessage = wsStore.messages[wsStore.messages.length - 1];
+            setOrders(currentWsMessage.orders);
 
             setfeedLineInfo({
-                done: wsMesages.orders.filter(value => value.status === 'done').splice(0, 10).map(value => value.number),
-                inProgress: wsMesages.orders.filter(value => value.status !== 'done').splice(0, 10).map(value => value.number),
-                total: wsMesages.total,
-                totalToday: wsMesages.totalToday
+                done: currentWsMessage.orders.filter(value => value.status === 'done').splice(0, 10).map(value => value.number),
+                inProgress: currentWsMessage.orders.filter(value => value.status !== 'done').splice(0, 10).map(value => value.number),
+                total: currentWsMessage.total,
+                totalToday: currentWsMessage.totalToday
             })
         }
        
-    }, [wsMesages])
+    }, [wsStore])
 
+    console.log('wsStore', wsStore);
     return <div style={{width: '100%', height: '100%', display: 'flex'}}>
         <div style={{width: '50%'}}>
             <h1 className="text text_type_main-medium m-5">Лента заказов</h1>

@@ -3,38 +3,37 @@ import { useState, useEffect } from "react";
 import { TFeed } from "../../../utils/types";
 import { useDispatch } from "../../../services/hooks";
 
-import { getWsMessages } from "../../../services/web-socket/selector";
+import { getOrderHistoryWsStore } from "../../../services/web-socket/selector";
+
 import { 
-    WS_CONNECTION_START,
-    WS_CONNECTION_CLOSING
- } from "../../../services/web-socket/wsActionType";
+    ordersHistoryWsConnect,
+    ordersHistoryWsDisconnect
+ } from "../../../services/web-socket/ws-actions/orders-history";
+import { WebSocketStatus } from "../../../services/web-socket/types";
 
 const OrderHistoryPage = () => {
     const dispatch = useDispatch();
     const [orders, setOrders] = useState<Array<TFeed> | null>(null);
-    const wsMesages = getWsMessages();
+    const wsStore = getOrderHistoryWsStore();
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
        
 
-        dispatch({
-            type: WS_CONNECTION_START,
-            wsUrl: `wss://norma.nomoreparties.space/orders?token=${accessToken}`
-        });
+        dispatch(ordersHistoryWsConnect(`wss://norma.nomoreparties.space/orders?token=${accessToken}`));
 
         return () => {
-            dispatch({
-                type: WS_CONNECTION_CLOSING
-            });
+            dispatch(ordersHistoryWsDisconnect());
         }
     }, []);
 
     useEffect(() => {
-        if(wsMesages){
-            setOrders(wsMesages.orders);
+        if(wsStore.status === WebSocketStatus.ONLINE && wsStore.messages.length > 0){
+            var currentWsMessage = wsStore.messages[wsStore.messages.length - 1];
+
+            setOrders(currentWsMessage.orders);
         }
-    }, [wsMesages])
+    }, [wsStore])
 
     return (<>
         <OrdersFeedLine orders={orders} link="/profile/orders"/>

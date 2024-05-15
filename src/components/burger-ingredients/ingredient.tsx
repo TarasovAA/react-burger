@@ -17,8 +17,6 @@ const Ingredient: FC<IIngredientProps> = ({item}) => {
   const burgerConstructor = getBurgerConstructor();
   const {_id, type} = item;
 
-
-  console.log("error", burgerConstructor);
   const count = (type === 'bun') ? 
                   burgerConstructor.head.filter((_: TIngredient) => _._id === item._id).length
                   :
