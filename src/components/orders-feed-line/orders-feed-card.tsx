@@ -25,12 +25,12 @@ export const OrderFeedCard: FC<OrderFeedCardProps> = (props) => {
         state={{ backgroundLocation:  location}}
         to={link ? `${link}/${number}` : `/feed/${number}`}
         >
-        <div style={{width: '100%', height: '30%', display: 'flex'}}>
-            <div style={{width: '20%'}}><p className='text text_type_digits-default'>#{number}</p></div>
-            <div style={{width: '60%'}}></div>
-            <div style={{width: '20%'}}><FormattedDate date={new Date(createdAt)} /></div>
+        <div className={style.cardMainInfo}>
+            <div className={style.cardMainInfoIndexColumn}><p className='text text_type_digits-default'>#{number}</p></div>
+            <div className={style.cardMainInfoEmptyColumn}></div>
+            <div className={style.cardMainInfoDateColumn}><FormattedDate date={new Date(createdAt)} /></div>
         </div>
-        <div style={{width: '80%', minHeight: '30%', marginBottom: '20px'}}>
+        <div className={style.tytleInfo}>
             <p className="text text_type_main-medium">{name}</p>
         </div>
         <div style={{width: '100%', height: '40%' , display: 'flex'}}>

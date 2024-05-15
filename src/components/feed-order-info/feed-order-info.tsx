@@ -10,6 +10,8 @@ import { Loader } from '../../local-uikit/components';
 import { GetAllIngredients } from '../../services/ingredients/selectors';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 
+import style from './feed-order-info.module.css';
+
 type TOrderIngredient = TIngredient & { count: number; }
 
 export const FeedOrderInfo = () => {
@@ -40,9 +42,9 @@ export const FeedOrderInfo = () => {
        
     }, [allIngredients])
 
-    return ( <div className='p-10' style={{display: 'flex', flexDirection: 'column', maxWidth: '35vw'}}>
+    return ( <div className={`${style.container} p-10`}>
     {orderInfo ? (<>
-        <div style={{textAlign: 'center'}}>
+        <div className={`${style.textCenter}`}>
             <p className="text text_type_main-medium mb-10">#{id}</p>
         </div>
 
@@ -59,10 +61,10 @@ export const FeedOrderInfo = () => {
 
             <div className='custom-scroll' style={{maxWidth: 800, maxHeight: 640, display: 'flex', flexDirection: 'column', gap: '24px', overflowY: 'auto' }}>
                 {ingredients.map(ingredient => (
-                <div key={ingredient._id} style={{display: 'flex'}}>
-                    <div style={{width: '20%'}}><img src={ingredient.image_mobile} alt="Изображение нигридиента" /></div>
-                    <div style={{width: '69%'}}><p className="text text_type_main-default">{ingredient.name}</p></div> 
-                    <div style={{width: '10%'}}><p className="text text_type_main-default">{ingredient.count}x{ingredient.price}{<CurrencyIcon type='primary' />}</p></div>
+                <div key={ingredient._id} className={style.flexIngredientContainer}>
+                    <div className={style.imageColumn}><img src={ingredient.image_mobile} alt="Изображение нигридиента" /></div>
+                    <div className={style.textColumn}><p className="text text_type_main-default">{ingredient.name}</p></div> 
+                    <div className={style.priceColumn}><p className="text text_type_main-default">{ingredient.count}x{ingredient.price}{<CurrencyIcon type='primary' />}</p></div>
                 </div>))}
             </div>
         </div>
