@@ -1,8 +1,9 @@
 import Ingredient from './ingredient';
 import styles from './burger-ingredients.module.css';
 import React, {forwardRef} from 'react';
+import { TIngredient } from '../../utils/types';
 
-const IngredientsContainer = forwardRef<HTMLDivElement,{data: Array<any>, name: string | null}>(({ data, name }, ref: React.ForwardedRef<HTMLDivElement>) => {
+const IngredientsContainer = forwardRef<HTMLDivElement,{data: Array<TIngredient>, name: string | null}>(({ data, name }, ref: React.ForwardedRef<HTMLDivElement>) => {
 
     return (
         <div ref={ref}>

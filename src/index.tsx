@@ -1,22 +1,16 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/app/app';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import {rootReducer} from './services/reducers/index'
-import { configureStore} from '@reduxjs/toolkit';
 import { BrowserRouter } from 'react-router-dom';
+import { store } from './services/store';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production',
-});
 
 root.render(<>
     <BrowserRouter>

@@ -31,7 +31,7 @@ const Modal: FC<IModalProps> = ({ onClose, title, children }) => {
             <div className={styles.window} onClick={e => e.stopPropagation()}>
                 <div className={`${styles.header} pl-10 pr-10 pt-10`}>
                     <div>
-                        <p className="text text_type_main-default">{title}</p>
+                        <p className="text text_type_main-medium">{title}</p>
                     </div>
                     <CloseIcon onClick={onClose} type='secondary' />
                 </div>

@@ -1,4 +1,5 @@
 import { baseUrl } from "../constants/common";
+import { TUserLogInResponseBody } from "./types";
 
 export function handleRequest<T>(url: string, options:RequestInit = {}) : Promise<T> {
     return fetch(url, options)
@@ -10,7 +11,7 @@ export function handleRequest<T>(url: string, options:RequestInit = {}) : Promis
             })
 }
 
-export const fetchWithRefresh = async (url: string, options: any) : Promise<any>=> {
+export async function fetchWithRefresh<T>(url: string, options: RequestInit = {} ) : Promise<T> {
     try{
         const res = await fetch(url, options);
 
@@ -20,14 +21,18 @@ export const fetchWithRefresh = async (url: string, options: any) : Promise<any>
         if (err.message === "jwt expired"){
             const refreshData = await refreshToken();
             
-            options.headers.authorization = refreshData.accessToken;
+            options.headers = {} as Record<string, string>;
+            options.headers.Authorization = refreshData.accessToken;
 
             const res = await fetch(url, options);
             return await checkReponse(res);
         }
+
+        return Promise.reject(err);
     }
 }
-export const refreshToken = async () : Promise<any> => {
+
+export async function refreshToken() : Promise<TUserLogInResponseBody>{
     return await fetch(`${baseUrl}/api/auth/token`,{
         method: "POST",
         headers: {
@@ -47,7 +52,7 @@ export const refreshToken = async () : Promise<any> => {
         localStorage.setItem("refreshToken", refreshData.refreshToken); 
         localStorage.setItem("accessToken", refreshData.accessToken.split("Bearer ").pop());
 
-        return refreshData;
+        return refreshData as TUserLogInResponseBody;
     })
 }
 

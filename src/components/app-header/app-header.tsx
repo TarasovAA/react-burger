@@ -1,10 +1,11 @@
 import { Logo, ProfileIcon, BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './app-header.module.css';
 import { NavLink, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { getUserInfo } from '../../services/auth/selectors';
+import { useSelector } from '../../services/hooks';
 
 const AppHeader = () => {
-    const {user} = useSelector((store: any) => store.user);
+    const user = useSelector(getUserInfo);
 
     return (
         <header className={styles.header}>
@@ -17,14 +18,20 @@ const AppHeader = () => {
                                 <p className={`text text_type_main-default ${!isActive && 'text_color_inactive'} ml-2`}>Конструктор</p>
                             </>
 
-                            )}
-                        
+                            )
+                        }
                     </NavLink>
 
-                    <div className= {`${styles.icon} m-2 pr-5 pl-5 pt-4 pb-4`}>
-                        <ListIcon type="secondary"/>
-                        <p className="text text_type_main-default text_color_inactive ml-2">Лента заказов</p>
-                    </div>
+                    <NavLink to='/feed' className= {`${styles.icon} m-2 pr-5 pl-5 pt-4 pb-4`}>
+                        {
+                             ({isActive}) => (
+                                <>
+                                    <ListIcon type="secondary"/>
+                                    <p className={`text text_type_main-default ${!isActive && 'text_color_inactive'} ml-2`}>Лента заказов</p>
+                                </>
+                             )
+                        }
+                    </NavLink>
                 </div>
 
                 <div className={styles.icon}>

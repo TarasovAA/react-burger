@@ -1,12 +1,13 @@
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { IngredientsDataType } from '../../utils/data';
 import styles from './burger-ingredients.module.css';
-import { useSelector } from "react-redux";
 import { useDrag } from 'react-dnd';
 import {DndDragTypes} from '../../constants/common';
 import { Link, useLocation } from 'react-router-dom';
 import { TIngredient } from '../../utils/types';
 import { FC } from 'react';
+import { getBurgerConstructor } from '../../services/constructor/selectors';
+
+import { useSelector } from '../../services/hooks';
 
 interface IIngredientProps{
   item: TIngredient
@@ -15,12 +16,9 @@ interface IIngredientProps{
 const Ingredient: FC<IIngredientProps> = ({item}) => {
   const location = useLocation();
 
-  /* @ts-ignore */
-  const burgerConstructor = useSelector(store => store.burgerConstructor)
+  const burgerConstructor = useSelector(getBurgerConstructor);
   const {_id, type} = item;
 
-
-  console.log("error", burgerConstructor);
   const count = (type === 'bun') ? 
                   burgerConstructor.head.filter((_: TIngredient) => _._id === item._id).length
                   :

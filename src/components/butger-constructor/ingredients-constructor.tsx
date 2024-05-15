@@ -1,9 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import style from './burger-constructor.module.css';
 import { useDrop } from 'react-dnd';
 import {ADD_INGREDIENT_DATA,
     DELETE_INGREDIENT_DATA,
-    RESET_INGREDIENT_DATA} from '../../services/actions/index';
+    RESET_INGREDIENT_DATA} from '../../services/constructor/action';
 import { DndDragTypes } from '../../constants/common'
 import IngredientElement from './ingredient-element'
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -11,12 +11,16 @@ import { useCallback } from 'react'
 import {v4  as uuidv4} from 'uuid';
 import { TIngredient, TConstructorIngredient } from '../../utils/types';
 
+import { getBurgerConstructorBody } from '../../services/constructor/selectors';
+import { getAllIngredients } from '../../services/ingredients/selectors';
+import empty from '../../images/Empty.png';
+
+import { useSelector } from '../../services/hooks';
+
 
 const IngredientsConstructor = () => {
-    /* @ts-ignore */
-    const burgerBody: Array<TConstructorIngredient> = useSelector(store => store.burgerConstructor.body);
-    /* @ts-ignore */
-    const allIngredients: Array<TIngredient> = useSelector(store => store.allIngredients.allIngredients);
+    const burgerBody: Array<TConstructorIngredient> = useSelector(getBurgerConstructorBody);
+    const allIngredients: Array<TIngredient> = useSelector(getAllIngredients);
 
     const dispatch = useDispatch();
 
@@ -83,9 +87,10 @@ const IngredientsConstructor = () => {
         }
             ))
             : (
-                 /* @ts-ignore */
                 <ConstructorElement
-                text = {'Выберите начинку'}
+                    text = {'Выберите начинку'}
+                    thumbnail={empty}
+                    price={0}
                 />
             )}
     </div>);

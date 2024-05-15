@@ -18,7 +18,7 @@ export const useFetch = (url: string): any => {
         })
         .then(result => {
             if (!cancelled)
-                setData(result.data);
+                setData(result);
         })
         .catch(err => {if (!cancelled) setError(err)})
         .finally(() => { if (!cancelled) setIsLoading(false) })

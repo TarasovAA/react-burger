@@ -1,0 +1,52 @@
+.containter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card{
+    width: 80%;
+    min-height: 150px;
+    background-color: rgb(29, 29, 33);
+    border-radius: 25px;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.ingredientContainer{
+    display: flex;
+}
+
+.ingredientIcon{
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin: -10px;
+    border: solid 3px slateblue;
+    background-color: rgb(29, 29, 33);
+}
+
+.cardMainInfo{
+    width: 100%;
+    height: 30%;
+    display: flex;
+}
+
+.cardMainInfoIndexColumn{
+    width: 20%;
+}
+
+.cardMainInfoEmptyColumn{
+    width: 69%;
+}
+
+.cardMainInfoDateColumn{
+    width: 10%;
+}
+
+.tytleInfo{
+    width: 80%;
+    min-height: 30%;
+    margin-bottom: 20px;
+}

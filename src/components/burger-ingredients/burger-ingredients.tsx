@@ -1,10 +1,10 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-import { useSelector } from 'react-redux';
+import { getAllIngredientsRequestData } from '../../services/ingredients/selectors';
 import IngredientsContainer from './ingredients-container'
-
 import { TIngredient } from '../../utils/types';
+import { useSelector } from '../../services/hooks';
 
 enum Tabs{
     buns = "buns",
@@ -19,7 +19,8 @@ interface ITabs{
 
 const BurgerIngredients = () => {
     const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.buns);
-    const {allIngredients, allIngredientsRequested} = useSelector((store:any) => store.allIngredients);
+
+    const {allIngredients, allIngredientsRequested} = useSelector(getAllIngredientsRequestData);
 
     const bungs = useMemo(() => allIngredients.filter((item:TIngredient) => item.type === 'bun'), [allIngredients]);
     const sauces = useMemo(() => allIngredients.filter((item: TIngredient) => item.type === 'sauce'), [allIngredients]);
@@ -72,7 +73,7 @@ const BurgerIngredients = () => {
         <section className={styles.mainIngredientsSection}>
             {allIngredientsRequested && (
                 <div className={styles.mainContainer}>
-                    <h1>Соберите бургер</h1>
+                    <h1 className="text text_type_main-medium mt-5">Соберите бургер</h1>
 
                     <div>
                         <div className={styles.tabs} ref={tabRef}>

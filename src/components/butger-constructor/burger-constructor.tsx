@@ -1,18 +1,23 @@
-import { useState, useEffect, FC } from 'react'
-import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import Modal from '../modal/modal'
-import OrderDetails from '../order-details/order-details'
-import PropTypes from 'prop-types'
-import styles from './burger-constructor.module.css'
-import {useModal} from '../../hooks/useModal'
-import { useSelector, useDispatch } from 'react-redux';
-import {refreshOrderIndex} from '../../services/actions';
+import { useState, useEffect, FC } from 'react';
+import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import Modal from '../modal/modal';
+import OrderDetails from '../order-creation-details/order-details';
+import styles from './burger-constructor.module.css';
+import {useModal} from '../../hooks/useModal';
+import { useDispatch } from '../../services/hooks';
+import {refreshOrderIndex} from '../../services/order/action';
 
 import BunsConstructor from './buns-constructor'
 import IngredientsConstructor from './ingredients-constructor';
 
 import { useNavigate } from 'react-router-dom';
-import { TIngredient } from '../../utils/types'
+import { TIngredient } from '../../utils/types';
+
+import { getBurgerConstructor } from '../../services/constructor/selectors';
+import { getUserInfo } from '../../services/auth/selectors';
+
+import { useSelector } from '../../services/hooks';
+
 
 interface IOrderCounterProps{
     count: number;
@@ -31,10 +36,8 @@ const BurgerConstructor = () => {
     const navigate = useNavigate();
     const [amount, setAmount] = useState<number>(0);
 
-    {/* @ts-ignore */}
-    const burger = useSelector(store => store.burgerConstructor)
-    {/* @ts-ignore */}
-    const user = useSelector(store => store.user.user)
+    const burger = useSelector(getBurgerConstructor);
+    const user = useSelector(getUserInfo);
     
     console.log(user);
 
@@ -55,7 +58,6 @@ const BurgerConstructor = () => {
             return;
         }
 
-        {/* @ts-ignore */}
         dispach(refreshOrderIndex(burger));
         openModal();
     }
@@ -75,7 +77,7 @@ const BurgerConstructor = () => {
                     <OrderCounter count={amount} />
                 </div>
                 {isModalOpen && (
-                    <Modal onClose={closeModal}>
+                    <Modal title='Оформление заказа' onClose={closeModal}>
                         <OrderDetails />
                     </Modal>
                 )}

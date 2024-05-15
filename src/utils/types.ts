@@ -14,19 +14,33 @@ export type TIngredient = {
 
 export type TConstructorIngredient = TIngredient & {uniqueId: string}
 
+//TODO: переделать что бы параметры были обязательными!
 export type TUserInfo = {
-    name?: string;
-    email?: string;
+    name: string;
+    email: string;
     password?: string;
 }
 
+export type TUserInfoWithEmptyFields = {
+  name?: string;
+  email?: string;
+  password?: string;
+}
+
+export type TUserShortInfo =  Omit<TUserInfo, 'name'>;
+
+export type NewPasswordRequestBody = {
+  password: string;
+  token: string;
+}
+
 export type TOrder = {
-    createdAt: Date | unknown;
+    createdAt: Date;
     ingredients: Array<TIngredient>;
-    name: string | unknown;
+    name: string;
     owner: TOwner;
-    price: number | unknown;
-    status: string | unknown;
+    price: number;
+    status: string;
     number: number;
 }
 
@@ -42,11 +56,63 @@ export type TResponseBody<TDataKey extends string = '', TDataType = {}> = {
   message?: string;
 }
 
-  export type TOrderResponseBody = TResponseBody<'order', TOrder> & { name: string; }
+export type TOrderResponseBody = TResponseBody<'order', TOrder> & { name: string; }
 
-  export type TUserLogInResponseBody = TResponseBody<'user', Omit<TUserInfo, 'password'>> & {
+export type TUserLogInResponseBody = TResponseBody<'user', Omit<TUserInfo, 'password'>> & {
     accessToken: string,
     refreshToken: string,
   }
 
-  export type TGetIngredientsResponseBody = TResponseBody<'data', Array<TIngredient>>;
+export type TGetIngredientsResponseBody = TResponseBody<'data', Array<TIngredient>>;
+
+export type TGetUserResponseBody = TResponseBody<'user', Omit<TUserInfo, 'password'>>
+
+export type TRefreshUserResponseBody = TResponseBody<'user', TUserInfo>
+
+interface CustomBody<T extends any> extends Body {
+  json(): Promise<T>;
+}
+
+export interface CustomResponse<T> extends CustomBody<T> {
+  readonly headers: Headers;
+  readonly ok: boolean;
+  readonly redirected: boolean;
+  readonly status: number;
+  readonly statusText: string;
+  readonly trailer: Promise<Headers>;
+  readonly type: ResponseType;
+  readonly url: string;
+  clone(): Response;
+}
+
+export type TFeed = {
+  _id: string;
+  number: number;
+  name: string;
+  status: string;
+  updatedAt: Date;
+  createdAt: Date;
+  ingredients: Array<string>;
+}
+
+export type TOrderA = {
+  createdAt: Date;
+  ingredients: Array<string>;
+  name: string;
+  owner: TOwner;
+  price: number;
+  status: string;
+  number: number;
+}
+
+
+export type TAllOrdersResponseBody = TResponseBody<'orders', Array<TOrderA>> & { name: string; }
+
+export interface IUserCredentials{
+  email: string;
+  password: string;
+}
+
+export interface IUserFullCredentials extends IUserCredentials{
+  name: string;
+}
