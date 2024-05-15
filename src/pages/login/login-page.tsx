@@ -16,8 +16,6 @@ const LoginPage = () => {
         email: '',
         password: ''
     });
-
-    const errorMessage = getUserErrorMessage();
    
     const dispatch = useDispatch();
 
@@ -29,6 +27,8 @@ const LoginPage = () => {
             password: values.password
         }));
     }
+
+    const errorMessage = useSelector(getUserErrorMessage());
 
     return (<div className='mainPanel'>
             <form onSubmit={loginClickHandler}>
@@ -58,7 +58,7 @@ const LoginPage = () => {
                 <p />
                 <span>Забыли пароль? <Link to='/forgot-password'>Востановить пароль</Link></span>
             </div>
-        <ErrorBlock message={useSelector(errorMessage)} />
+        <ErrorBlock message={errorMessage} />
     </div>);
 }
 
