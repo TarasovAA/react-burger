@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import { Loader } from '../../local-uikit/components';
 import { useMemo } from 'react';
 import { TIngredient } from '../../utils/types';
-import { GetAllIngredients } from '../../services/ingredients/selectors';
+import { getAllIngredients } from '../../services/ingredients/selectors';
+import { useSelector } from '../../services/hooks';
 
 const IngredientDetails = () => {
-    const allIngredients = GetAllIngredients();
+    const allIngredients = useSelector(getAllIngredients);
 
     const {id} = useParams();
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { TFeed } from "../../utils/types";
 import { useDispatch } from "../../services/hooks";
 import { getFeedWsStore } from "../../services/web-socket/selector";
+import { useSelector } from "../../services/hooks";
 
 import { 
     feedWsConnect,
@@ -16,7 +17,7 @@ const FeedOrdersPage = () => {
     const [feedLineInfo, setfeedLineInfo] = useState<OrdersFeedStatusLineProps>({});
 
     const dispatch = useDispatch();
-    const wsStore = getFeedWsStore();
+    const wsStore = useSelector(getFeedWsStore);
     
     useEffect(() => {
         dispatch(feedWsConnect(`ws://norma.nomoreparties.space/orders/all`));

@@ -1,10 +1,10 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.css';
-import { GetAllIngredientsRequestData } from '../../services/ingredients/selectors';
+import { getAllIngredientsRequestData } from '../../services/ingredients/selectors';
 import IngredientsContainer from './ingredients-container'
-
 import { TIngredient } from '../../utils/types';
+import { useSelector } from '../../services/hooks';
 
 enum Tabs{
     buns = "buns",
@@ -20,7 +20,7 @@ interface ITabs{
 const BurgerIngredients = () => {
     const [currentTab, setCurrentTab] = useState<Tabs>(Tabs.buns);
 
-    const {allIngredients, allIngredientsRequested} = GetAllIngredientsRequestData();
+    const {allIngredients, allIngredientsRequested} = useSelector(getAllIngredientsRequestData);
 
     const bungs = useMemo(() => allIngredients.filter((item:TIngredient) => item.type === 'bun'), [allIngredients]);
     const sauces = useMemo(() => allIngredients.filter((item: TIngredient) => item.type === 'sauce'), [allIngredients]);

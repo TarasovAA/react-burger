@@ -9,6 +9,7 @@ import { useForm } from "../../hooks/useForm";
 import '../index.css'
 
 import { isForgotPasswordEmailSent } from "../../services/auth/selectors";
+import { useSelector } from "../../services/hooks";
 
 
 const ForgotPasswordPage = () => {
@@ -32,7 +33,7 @@ const ForgotPasswordPage = () => {
         
     }
     
-    const forgotPasswordEmailSent = isForgotPasswordEmailSent();
+    const forgotPasswordEmailSent = useSelector(isForgotPasswordEmailSent);
     
     useEffect(() => {
         if(forgotPasswordEmailSent)

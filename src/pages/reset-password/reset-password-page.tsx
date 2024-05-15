@@ -7,11 +7,12 @@ import '../index.css'
 import React from 'react';
 
 import { isPasswordSet, isForgotPasswordEmailSent } from '../../services/auth/selectors';
+import { useSelector } from '../../services/hooks';
 
 const ResetPasswordPage = () => {
     const dispatch = useDispatch();
 
-    const forgotPasswordEmailSent = isForgotPasswordEmailSent();
+    const forgotPasswordEmailSent = useSelector(isForgotPasswordEmailSent);
     const passwordSet = isPasswordSet();
 
     const {values, handleChange} = useForm({

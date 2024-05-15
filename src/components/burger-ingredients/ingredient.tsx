@@ -7,6 +7,8 @@ import { TIngredient } from '../../utils/types';
 import { FC } from 'react';
 import { getBurgerConstructor } from '../../services/constructor/selectors';
 
+import { useSelector } from '../../services/hooks';
+
 interface IIngredientProps{
   item: TIngredient
 }
@@ -14,7 +16,7 @@ interface IIngredientProps{
 const Ingredient: FC<IIngredientProps> = ({item}) => {
   const location = useLocation();
 
-  const burgerConstructor = getBurgerConstructor();
+  const burgerConstructor = useSelector(getBurgerConstructor);
   const {_id, type} = item;
 
   const count = (type === 'bun') ? 

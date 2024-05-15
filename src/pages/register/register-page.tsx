@@ -8,6 +8,8 @@ import '../index.css';
 import { TUserInfo } from '../../utils/types';
 
 import { getUserInfo, getUserErrorMessage } from '../../services/auth/selectors';
+import { useSelector } from '../../services/hooks';
+
 
 
 const RegisterPage = () => {
@@ -19,7 +21,7 @@ const RegisterPage = () => {
 
 
     const dispatch = useDispatch();
-    const user = getUserInfo();
+    const user = useSelector(getUserInfo);
     const errorMessage = getUserErrorMessage();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,7 +72,7 @@ const RegisterPage = () => {
                 <span>Уже зарегистрированы? <Link to='/login'>Войти</Link></span>
             </div>
 
-         <ErrorBlock message={errorMessage} />
+         <ErrorBlock message={useSelector(errorMessage)} />
     </div>);
 }
 

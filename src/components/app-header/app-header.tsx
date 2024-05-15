@@ -2,9 +2,10 @@ import { Logo, ProfileIcon, BurgerIcon, ListIcon } from '@ya.praktikum/react-dev
 import styles from './app-header.module.css';
 import { NavLink, Link } from 'react-router-dom';
 import { getUserInfo } from '../../services/auth/selectors';
+import { useSelector } from '../../services/hooks';
 
 const AppHeader = () => {
-    const user = getUserInfo();
+    const user = useSelector(getUserInfo);
 
     return (
         <header className={styles.header}>

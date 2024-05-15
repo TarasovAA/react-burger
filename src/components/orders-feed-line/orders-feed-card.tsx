@@ -2,9 +2,10 @@ import style from './orders-feed-line.module.css';
 import { TFeed, TIngredient } from '../../utils/types';
 import { FC } from 'react';
 import { FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import { GetIngredientsByIds } from '../../services/ingredients/selectors';
+import { getIngredientsByIds } from '../../services/ingredients/selectors';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from '../../services/hooks';
 
 interface OrderFeedCardProps{
     feedInfo: TFeed;
@@ -17,7 +18,7 @@ export const OrderFeedCard: FC<OrderFeedCardProps> = (props) => {
     const {number, name, createdAt, ingredients} = props.feedInfo;
     const link = props.link
 
-    const ingredientsInfo: Array<TIngredient> = GetIngredientsByIds(ingredients);
+    const ingredientsInfo: Array<TIngredient> = useSelector(getIngredientsByIds(ingredients));
     const orderCost = ingredientsInfo.reduce((acc, ingredient) => acc + ingredient.price * (ingredient.type === "bun" ? 2 : 1),
     0);
 

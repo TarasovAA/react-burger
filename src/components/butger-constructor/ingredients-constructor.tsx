@@ -12,13 +12,15 @@ import {v4  as uuidv4} from 'uuid';
 import { TIngredient, TConstructorIngredient } from '../../utils/types';
 
 import { getBurgerConstructorBody } from '../../services/constructor/selectors';
-import { GetAllIngredients } from '../../services/ingredients/selectors';
+import { getAllIngredients } from '../../services/ingredients/selectors';
 import empty from '../../images/Empty.png';
+
+import { useSelector } from '../../services/hooks';
 
 
 const IngredientsConstructor = () => {
-    const burgerBody: Array<TConstructorIngredient> = getBurgerConstructorBody();
-    const allIngredients: Array<TIngredient> = GetAllIngredients();
+    const burgerBody: Array<TConstructorIngredient> = useSelector(getBurgerConstructorBody);
+    const allIngredients: Array<TIngredient> = useSelector(getAllIngredients);
 
     const dispatch = useDispatch();
 

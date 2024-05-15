@@ -6,9 +6,10 @@ import '../index.css';
 import React from "react";
 import { TUserInfoWithEmptyFields } from "../../utils/types";
 import { getUserInfo } from "../../services/auth/selectors";
+import { useSelector } from "../../services/hooks";
 
 export const ProfileFieldsPage = () => {
-    const user = getUserInfo();
+    const user = useSelector(getUserInfo);
     const dispatch = useDispatch();
 
     const {values, handleChange, setValues} = useForm({

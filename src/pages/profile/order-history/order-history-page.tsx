@@ -11,10 +11,12 @@ import {
  } from "../../../services/web-socket/ws-actions/orders-history";
 import { WebSocketStatus } from "../../../services/web-socket/types";
 
+import { useSelector } from "../../../services/hooks";
+
 const OrderHistoryPage = () => {
     const dispatch = useDispatch();
     const [orders, setOrders] = useState<Array<TFeed> | null>(null);
-    const wsStore = getOrderHistoryWsStore();
+    const wsStore = useSelector(getOrderHistoryWsStore);
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');

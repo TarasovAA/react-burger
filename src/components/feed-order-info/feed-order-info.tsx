@@ -7,8 +7,9 @@ import {
     TIngredient
 } from '../../utils/types';
 import { Loader } from '../../local-uikit/components';
-import { GetAllIngredients } from '../../services/ingredients/selectors';
+import { getAllIngredients } from '../../services/ingredients/selectors';
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector } from '../../services/hooks';
 
 import style from './feed-order-info.module.css';
 
@@ -20,7 +21,7 @@ export const FeedOrderInfo = () => {
 
     const [ingredients, setIngredients] = useState<Array<TOrderIngredient>>([]);
     
-    const allIngredients : Array<TIngredient> = GetAllIngredients();
+    const allIngredients : Array<TIngredient> = useSelector(getAllIngredients);
 
     useEffect(() => {
         if(id){

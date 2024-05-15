@@ -16,6 +16,8 @@ import { TIngredient } from '../../utils/types';
 import { getBurgerConstructor } from '../../services/constructor/selectors';
 import { getUserInfo } from '../../services/auth/selectors';
 
+import { useSelector } from '../../services/hooks';
+
 
 interface IOrderCounterProps{
     count: number;
@@ -34,8 +36,8 @@ const BurgerConstructor = () => {
     const navigate = useNavigate();
     const [amount, setAmount] = useState<number>(0);
 
-    const burger = getBurgerConstructor();
-    const user = getUserInfo()
+    const burger = useSelector(getBurgerConstructor);
+    const user = useSelector(getUserInfo);
     
     console.log(user);
 

@@ -9,6 +9,8 @@ import React from 'react';
 
 import { getUserErrorMessage } from '../../services/auth/selectors';
 
+import { useSelector } from '../../services/hooks';
+
 const LoginPage = () => {
     const {values, handleChange} = useForm({
         email: '',
@@ -56,7 +58,7 @@ const LoginPage = () => {
                 <p />
                 <span>Забыли пароль? <Link to='/forgot-password'>Востановить пароль</Link></span>
             </div>
-        <ErrorBlock message={errorMessage} />
+        <ErrorBlock message={useSelector(errorMessage)} />
     </div>);
 }
 
