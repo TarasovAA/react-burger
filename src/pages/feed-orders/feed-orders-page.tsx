@@ -10,7 +10,9 @@ import {
     feedWsConnect,
     feedWsDisconnect
  } from "../../services/web-socket/ws-actions/feed";
+
 import { WebSocketStatus } from "../../services/web-socket/types";
+import { wsFeedUrl } from "../../constants/common";
 
 const FeedOrdersPage = () => {
     const [orders, setOrders] = useState<Array<TFeed> | null>(null);
@@ -20,7 +22,7 @@ const FeedOrdersPage = () => {
     const wsStore = useSelector(getFeedWsStore);
     
     useEffect(() => {
-        dispatch(feedWsConnect(`ws://norma.nomoreparties.space/orders/all`));
+        dispatch(feedWsConnect(wsFeedUrl));
 
         return () => {
             dispatch(feedWsDisconnect());
