@@ -55,8 +55,6 @@ const IngredientsConstructor = () => {
         newBurgerBody[draggingIndex] = newBurgerBody[hoverIndex];
         newBurgerBody[hoverIndex] = value;
 
-        console.log('a1', draggingIndex);
-        console.log('a2', hoverIndex);
         dispatch({
             type: RESET_INGREDIENT_DATA,
             payload: newBurgerBody

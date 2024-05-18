@@ -49,7 +49,7 @@ describe('Ingredients redux reducers', () => {
         );
     })
 
-    test('should return state after GET_INGREDIENTS_REQUEST actions', () => {
+    test('should return state after GET_INGREDIENTS_REQUEST action', () => {
         expect(reducer(undefined, {type: GET_INGREDIENTS_REQUEST})).toEqual({
             ...initialState,
             allIngredientsRequesting: true,
@@ -59,7 +59,7 @@ describe('Ingredients redux reducers', () => {
     });
 
     
-    test('should return state after GET_INGREDIENTS_REQUEST_SUCCESS actions', () => {
+    test('should return state after GET_INGREDIENTS_REQUEST_SUCCESS action', () => {
         const testObj = data;
 
         expect(reducer(undefined, {type: GET_INGREDIENTS_REQUEST_SUCCESS, payload: testObj})).toEqual({
@@ -72,7 +72,7 @@ describe('Ingredients redux reducers', () => {
         
     });
 
-    test('should return state after GET_INGREDIENTS_REQUEST_FAILED actions', () => {
+    test('should return state after GET_INGREDIENTS_REQUEST_FAILED action', () => {
         const testObj = 'Something went wrong!';
 
         expect(reducer(undefined, {type: GET_INGREDIENTS_REQUEST_FAILED, errorMessage: 'Something went wrong!'})).toEqual({

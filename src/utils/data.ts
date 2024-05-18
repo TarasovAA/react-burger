@@ -1,5 +1,5 @@
 import proptypes from 'prop-types';
-import { TIngredient } from './types';
+import { TIngredient, TConstructorIngredient } from './types';
 
 export const data: Array<TIngredient> = [
     {
