@@ -8,7 +8,7 @@ import { TIngredientsAction,
      IGetIngredientsFailedAction} from './action';
 import { TIngredient } from '../../utils/types';
     
-interface IInitialState{
+export interface IInitialState{
         allIngredients: Array<TIngredient>;
         allIngredientsRequesting: boolean;
         allIngredientsRequested: boolean;
@@ -17,7 +17,7 @@ interface IInitialState{
         errorMessage: string | null | undefined;
     }
     
-const initialState: IInitialState = {
+export const initialState: IInitialState = {
             allIngredients: [],
             allIngredientsRequesting: false,
             allIngredientsRequested: false,

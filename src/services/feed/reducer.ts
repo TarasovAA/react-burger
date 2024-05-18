@@ -10,7 +10,7 @@ interface IFeedData{
     errorMessage: string | null;
 }
 
-const initialState : IFeedData = {
+export const initialState : IFeedData = {
     data: [],
     isConnecting: false,
     isConnected: false,

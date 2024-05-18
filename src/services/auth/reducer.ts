@@ -24,7 +24,7 @@ interface IUserState{
     tryResetPasswordSuccess: string | null;
 }
 
-const initialState : IUserState = {
+export const initialState : IUserState = {
     isCreateNewUserPending: false,
     errorMessage: '',
 
