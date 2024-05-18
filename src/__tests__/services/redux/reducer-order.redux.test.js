@@ -1,9 +1,9 @@
-import reducer, { initialState } from "../../services/order/reducer";
+import reducer, { initialState } from "../../../services/order/reducer";
 import { 
     CREATE_ORDER_REQUEST,
     CREATE_ORDER_REQUEST_SUCCESS,
     CREATE_ORDER_REQUEST_FAILED 
-} from "../../services/order/constants";
+} from "../../../services/order/constants";
 
 describe('Order redux reducers', () => {
     test('should return default state', () => {

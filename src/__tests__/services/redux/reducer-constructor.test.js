@@ -1,11 +1,11 @@
-import reducer, { initialState } from "../../services/constructor/reducer";
+import reducer, { initialState } from "../../../services/constructor/reducer";
 
 import {ADD_INGREDIENT_DATA,
     DELETE_INGREDIENT_DATA,
     SET_CONSTRUCTOR_BUNS,
     CLEAR_CONSTRUCTOR,
     RESET_INGREDIENT_DATA,
-} from '../../services/constructor/constants';
+} from '../../../services/constructor/constants';
 
 
 const testConstructorBodyData = [

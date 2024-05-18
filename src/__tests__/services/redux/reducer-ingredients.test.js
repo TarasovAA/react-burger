@@ -1,15 +1,15 @@
-import { initialState } from "../../services/ingredients/reducer";
-import reducer from "../../services/ingredients/reducer";
+import { initialState } from "../../../services/ingredients/reducer";
+import reducer from "../../../services/ingredients/reducer";
 
 import {GET_INGREDIENTS_REQUEST,
     GET_INGREDIENTS_REQUEST_SUCCESS,
     GET_INGREDIENTS_REQUEST_FAILED}
-    from '../../services/ingredients/constants';
+    from '../../../services/ingredients/constants';
 
-import { data } from "../../utils/data";
+import { data } from "../../../utils/data";
 
-import { getIngredients } from "../../services/ingredients/action";
-import { store } from "../../services/store";
+import { getIngredients } from "../../../services/ingredients/action";
+import { store } from "../../../services/store";
 
 describe('Ingredients redux reducers', () => {
     // beforeEach({

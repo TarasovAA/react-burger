@@ -1,4 +1,4 @@
-import {userReducer as reducer, initialState } from "../../services/auth/reducer";
+import {userReducer as reducer, initialState } from "../../../services/auth/reducer";
 import {
     loginUser,
     logoutUser,
@@ -7,7 +7,7 @@ import {
     patchUserInfo,
     tryResetPassword,
     resetPassword
-} from "../../services/auth/action";
+} from "../../../services/auth/action";
 
 const defaultUser = {
     name: 'user 1',
