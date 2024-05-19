@@ -41,7 +41,8 @@ const BunsConstructor: FC<IBunsConstructorProps> = ({children}) => {
 
     return (
         <div ref={dropRef}
-            className={`${style.scroller} p-5 ${isOver && style.isHover}`}>
+            className={`${style.scroller} p-5 ${isOver && style.isHover}`}
+            id="burger_constructor">
          {head.length !== 0 ? (
          <ConstructorElement
                     type='top'
