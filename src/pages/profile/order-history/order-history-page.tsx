@@ -12,6 +12,7 @@ import {
 import { WebSocketStatus } from "../../../services/web-socket/types";
 
 import { useSelector } from "../../../services/hooks";
+import { wsOrderUrl } from "../../../constants/common";
 
 const OrderHistoryPage = () => {
     const dispatch = useDispatch();
@@ -21,8 +22,7 @@ const OrderHistoryPage = () => {
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
        
-
-        dispatch(ordersHistoryWsConnect(`wss://norma.nomoreparties.space/orders?token=${accessToken}`));
+        dispatch(ordersHistoryWsConnect(`${wsOrderUrl}?token=${accessToken}`));
 
         return () => {
             dispatch(ordersHistoryWsDisconnect());

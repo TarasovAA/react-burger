@@ -1,7 +1,7 @@
 import {
     handleRequest,
     fetchWithRefresh
-} from "../utils/helpers";
+} from "../utils/httpHelpers";
 
 import {
     TGetIngredientsResponseBody,

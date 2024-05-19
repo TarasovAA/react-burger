@@ -14,7 +14,7 @@ import {
     TConstructorAction
 } from '../constructor/action';
 
-const initialState: IBurgerConstructorState = {
+export const initialState: IBurgerConstructorState = {
     head: [],
     body: [],
 }

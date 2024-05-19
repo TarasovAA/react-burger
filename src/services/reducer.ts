@@ -4,7 +4,6 @@ import burgerConstructorReducer from './constructor/reducer';
 import orderReducer from './order/reducer';
 
 import {userReducer} from './auth/reducer';
-import { feedReducer } from "./feed/reducer";
 
 import { feedWsReducer } from "./web-socket/ws-reducers/feedWsReducer";
 import { orderHistoryWsReducer } from "./web-socket/ws-reducers/orderHistoryWsReducer";
@@ -14,7 +13,6 @@ export const rootReducer = combineReducers({
     burgerConstructor: burgerConstructorReducer,
     order: orderReducer,
     user: userReducer,
-    feed: feedReducer,
     feedWs: feedWsReducer,
     orderHistoryWs: orderHistoryWsReducer
 });

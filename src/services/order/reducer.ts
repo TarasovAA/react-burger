@@ -21,7 +21,7 @@ interface IOrderAction{
 }
 
 
-const initialState: IOrderState = {
+export const initialState: IOrderState = {
     isCreating: false,
     isCreated: false,
     orderNamber: null,

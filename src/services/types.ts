@@ -4,7 +4,6 @@ import { ThunkAction } from 'redux-thunk';
 import { TIngredientsAction } from './ingredients/action';
 import { TConstructorAction } from './constructor/action';
 import { TOrderAction } from './order/action';
-import { TFeedAction } from './feed/reducer';
 import { TUserInfoAction } from './auth/reducer';
 import { TWsFeedAction } from './web-socket/ws-actions/feed';
 import { TWsOrdersHistoryAction } from './web-socket/ws-actions/orders-history';
@@ -16,7 +15,6 @@ export type RootState = ReturnType<typeof rootReducer>;
 export type TApplicationActions = TIngredientsAction
                                 | TConstructorAction
                                 | TOrderAction
-                                | TFeedAction
                                 | TUserInfoAction
                                 | TWsFeedAction
                                 | TWsOrdersHistoryAction;

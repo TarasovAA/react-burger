@@ -70,7 +70,9 @@ const BurgerIngredients = () => {
     }, [])
 
     return (
-        <section className={styles.mainIngredientsSection}>
+        <section
+            id="burger-ingredients"
+            className={styles.mainIngredientsSection}>
             {allIngredientsRequested && (
                 <div className={styles.mainContainer}>
                     <h1 className="text text_type_main-medium mt-5">Соберите бургер</h1>
